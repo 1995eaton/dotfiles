@@ -1,0 +1,43 @@
+#!/bin/sh
+
+repo_dir="$HOME/.source"
+working_dir=`pwd`
+cd $repo_dir
+
+repositories=(
+ 'git|https://github.com/baskerville/bspwm|bspwm'
+ 'git|https://github.com/baskerville/sxhkd|sxhdkd'
+ 'git|https://github.com/chjj/compton|compton'
+ 'git|https://github.com/pypa/pip|pip'
+ 'git|https://github.com/robm/dzen|dzen'
+ 'git|https://github.com/1995eaton/vimium-smoothscroll|vimium-smoothscroll'
+ 'hg|https://code.google.com/p/pychess|pychess'
+ 'hg|https://vim.googlecode.com/hg|vim'
+ 'git|git://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code|tmux'
+)
+
+for i in ${repositories[*]}; do
+   method=`echo $i | grep -o "^hg"`
+   if [[ ! $method ]]; then
+      method=`echo $i | grep -o "^git"`
+   fi
+   if [[ ! $method ]]; then
+      exit
+   fi
+   repo=`echo $i | sed 's/.*|//'`
+   if [[ ! -d $repo ]]; then
+      i=`echo $i | sed "s/$method|//"`
+      echo -e "\033[36;1;31m$repo not found\033[0;0m: cloning now"
+      $method clone `echo $i | tr '|' ' '`
+   else
+      cd $repo
+      echo -e "\033[36;1;31m$repo\033[0;0m: updating..."
+      if [[ $method == 'hg' ]]; then
+         $method pull -u
+      else $method pull
+      fi
+      cd ..
+   fi
+done
+
+cd $working_dir

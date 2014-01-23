@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pacman -Qe | grep -v 'base\|base-devel' | sed 's/\(^.*\/\| .*$\)//g'

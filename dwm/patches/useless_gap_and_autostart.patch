@@ -1,0 +1,150 @@
+--- config.h	2013-09-09 21:08:57.214944133 +0000
++++ config.h	2011-12-19 15:02:46.000000000 +0000
+@@ -1,16 +1,14 @@
+ /* See LICENSE file for copyright and license details. */
+ 
+ /* appearance */
+-/*static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";*/
+-static const char font[]            = "-*-proggyclean-*-*-*-10-*-*-*-*-*-*-*";
++static const char font[]            = "-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*";
+ static const char normbordercolor[] = "#444444";
+-static const char normbgcolor[]     = "#121212";
++static const char normbgcolor[]     = "#222222";
+ static const char normfgcolor[]     = "#bbbbbb";
+-static const char selbordercolor[]  = "#5F5F5F";
+-static const char selbgcolor[]      = "#5F5F5F";
+-static const char selfgcolor[]      = "#171717";
+-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+-static const unsigned int gappx     = 9;        /* gap pixel between windows */
++static const char selbordercolor[]  = "#005577";
++static const char selbgcolor[]      = "#005577";
++static const char selfgcolor[]      = "#eeeeee";
++static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const Bool showbar           = True;     /* False means no bar */
+ static const Bool topbar            = True;     /* False means bottom bar */
+@@ -27,7 +25,7 @@
+ /* layout(s) */
+ static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
+ static const int nmaster      = 1;    /* number of clients in master area */
+-static const Bool resizehints = False; /* True means respect size hints in tiled resizals */
++static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
+ 
+ static const Layout layouts[] = {
+ 	/* symbol     arrange function */
+@@ -49,23 +47,12 @@
+ 
+ /* commands */
+ static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+-static const char *termcmd[]  = { "urxvt", "-e", "tmux", "-2", NULL };
+-static const char *filecmd[] = { "urxvt", "-e", "ranger", NULL };
+-static const char *webcmd[] = { "google-chrome", NULL };
+-static const char *volup[] = { "amixer", "-c", "1", "set", "Master", "3+", NULL};
+-static const char *voldown[] = { "amixer", "-c", "1", "set", "Master", "3-", NULL};
+-static const char *volmute[] = { "amixer", "-c", "1", "set", "Master", "0", NULL};
++static const char *termcmd[]  = { "uxterm", NULL };
+ 
+ static Key keys[] = {
+ 	/* modifier                     key        function        argument */
+-	{ MODKEY,						XK_Down,   spawn,		   {.v = volmute } },
+-	{ MODKEY,						XK_Right,  spawn,		   {.v = volup } },
+-	{ MODKEY,						XK_Left,   spawn,		   {.v = voldown } },
+-	{ MODKEY,						XK_w,	   spawn,		   {.v = webcmd } },	
+-	{ MODKEY,						XK_f,	   spawn,		   {.v = filecmd } },	
+ 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+-  /*{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },*/
+-	{ MODKEY,             			XK_t, 	   spawn,          {.v = termcmd } },
++	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+ 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+ 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+ 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+@@ -75,9 +62,9 @@
+ 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+ 	{ MODKEY,                       XK_Return, zoom,           {0} },
+ 	{ MODKEY,                       XK_Tab,    view,           {0} },
+-	{ MODKEY,             			XK_q,      killclient,     {0} },
+-	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[0]} },
+-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[1]} },
++	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
++	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
++	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+ 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+ 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+ 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+--- dwm.c	2011-12-19 15:02:46.000000000 +0000
++++ dwm.c	2013-09-09 19:48:21.657861277 +0000
+@@ -212,6 +212,7 @@
+ static void resizemouse(const Arg *arg);
+ static void restack(Monitor *m);
+ static void run(void);
++static void runAutostart(void);
+ static void scan(void);
+ static Bool sendevent(Client *c, Atom proto);
+ static void sendmon(Client *c, Monitor *m);
+@@ -283,6 +284,7 @@
+ static DC dc;
+ static Monitor *mons = NULL, *selmon = NULL;
+ static Window root;
++static int globalborder ;
+ 
+ /* configuration, allows nested code to access above variables */
+ #include "config.h"
+@@ -1350,11 +1352,18 @@
+ void
+ resizeclient(Client *c, int x, int y, int w, int h) {
+ 	XWindowChanges wc;
++	
++	if(c->isfloating || selmon->lt[selmon->sellt]->arrange == NULL) { globalborder = 0 ; }
++	else {
++		if (selmon->lt[selmon->sellt]->arrange == monocle) { globalborder = 0 - borderpx ; }
++		else { globalborder =  gappx ; }
++	}
++
+ 
+-	c->oldx = c->x; c->x = wc.x = x;
+-	c->oldy = c->y; c->y = wc.y = y;
+-	c->oldw = c->w; c->w = wc.width = w;
+-	c->oldh = c->h; c->h = wc.height = h;
++	c->oldx = c->x; c->x = wc.x = x + globalborder ;
++	c->oldy = c->y; c->y = wc.y = y + globalborder ;
++	c->oldw = c->w; c->w = wc.width = w - 2 * globalborder ;
++	c->oldh = c->h; c->h = wc.height = h - 2 * globalborder ;
+ 	wc.border_width = c->bw;
+ 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
+ 	configure(c);
+@@ -1446,6 +1455,12 @@
+ }
+ 
+ void
++runAutostart(void) {
++	//system("cd ~/.dwm; ./autostart_blocking.sh");
++	system("cd ~/.dwm; ./autostart.sh &");
++}
++
++void
+ scan(void) {
+ 	unsigned int i, num;
+ 	Window d1, d2, *wins = NULL;
+@@ -1718,12 +1733,12 @@
+ 		if(i < m->nmaster) {
+ 			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
+ 			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), False);
+-			my += HEIGHT(c);
++			my += HEIGHT(c) + 2 * globalborder;
+ 		}
+ 		else {
+ 			h = (m->wh - ty) / (n - i);
+ 			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), False);
+-			ty += HEIGHT(c);
++			ty += HEIGHT(c) + 2 * globalborder;
+ 		}
+ }
+ 
+@@ -2139,6 +2154,7 @@
+ 	checkotherwm();
+ 	setup();
+ 	scan();
++	runAutostart();
+ 	run();
+ 	cleanup();
+ 	XCloseDisplay(dpy);

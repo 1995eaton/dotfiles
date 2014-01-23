@@ -1,0 +1,9 @@
+#!/bin/sh
+
+NOTE_DIR=~/.notes
+
+if [[ $1 ]]; then
+   cd $NOTE_DIR
+   vim -c Note $1
+   cd - >> /dev/null
+fi

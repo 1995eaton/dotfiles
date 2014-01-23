@@ -1,0 +1,46 @@
+#!/bin/sh
+
+home=`cd ~ && pwd`
+dfile_dir="$home/dotfiles/"
+
+if [[ ! -d $dfile_dir ]]; then
+   echo "Dotfile directory not found!"
+   exit
+fi
+
+dotfiles=(
+'.vim'
+'.vimrc'
+'.conkyrc'
+'.compton.conf'
+'.Xresources'
+'.macros'
+'.dwm'
+'.bashrc'
+'.zshrc'
+'.scripts'
+'.python-autocomplete.py'
+'.config/bspwm'
+'.config/sxhkd'
+'.xinitrc'
+)
+
+for dot in ${dotfiles[*]}; do
+   if [[ ! -e $home/$dot ]]; then
+      if [[ ! -e $dfile_dir$dot ]]; then
+         echo "Dotfile \'$dfile_dir$dot\' not found!"
+      else
+         if [[ $dot =~ "\/" ]]; then
+            mkdir -p `echo $dot | grep -o '.*\/'`
+         fi
+         echo "Creating symlink: $home/$dot"
+         ln -s $dfile_dir$dot $home/$dot
+      fi
+   else
+      if [[ ! -h $home/$dot ]]; then
+         echo "WARNING: $dot exists but isn't a symbolic link! Not overwriting!"
+      fi
+   fi
+done
+
+cd - 2>/dev/null

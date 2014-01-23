@@ -1,0 +1,33 @@
+/* Key Mappings */
+
+unmap o
+unmap p
+map e scrollPageUp
+map s scrollDown
+map w scrollUp
+map R nextTab
+map E previousTab
+map S goBack
+map D goForward
+
+
+/* CSS For Link Hints */
+
+
+div > .vimiumHintMarker {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7E7D7D), color-stop(100%,#403D37));
+	border: 2px solid rgba(255, 255, 255, .5);
+	background-clip: padding-box;
+}
+
+div > .vimiumHintMarker span {
+	color: white;
+	font-weight: normal;
+	font-size: 12px;
+	letter-spacing: 1px;
+}
+
+div > .vimiumHintMarker > .matchingCharacter {
+	color: white;
+	opacity: 0.3;
+}

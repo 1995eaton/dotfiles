@@ -1,0 +1,97 @@
+/* Firefox CSS stylesheet */
+
+#appcontent,
+#appcontent > #content,
+#appcontent > #content > tabbox > tabpanels {
+	background: #fbfbfb !important;
+}
+     
+.tabbrowser-arrowscrollbox > .scrollbutton-up,
+.tabbrowser-arrowscrollbox > .scrollbutton-down,
+toolbarbutton#appmenu-toolbar-button,
+toolbarbutton#alltabs-button,
+.tab-icon-image,
+.tabs-closebutton-box,
+.tab-close-button,
+#urlbar dropmarker,
+#identity-box,
+#star-button,
+#go-button,
+.tab-throbber,
+.tab-throbber[progress] {
+	display: none !important;
+}
+     
+#main-window:not([disablechrome]) #navigator-toolbox[tabsontop=true] {
+	border-bottom: 0px !important;
+}
+
+tab {
+	border-bottom: 2px solid !important;
+	border-bottom-color: #30303a !important;
+}
+    
+tabs#tabbrowser-tabs, tabs#tabbrowser-tabs * {
+	-moz-appearance: none !important;
+	border-radius: 0px !important;
+	background-image: none !important;
+	margin-top: 0px !important;
+	height:18px !important;
+}
+     
+tabs#tabbrowser-tabs {
+	background: #121212 !important;
+	text-align: center !important;
+}
+     
+.tabbrowser-tab {
+	max-height: 12px !important;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+	padding-top: 3px !important;
+	padding-bottom: 8px !important;
+	border: none !important;
+	color: #888 !important;
+	background: #121212 !important;
+}
+    
+.tabbrowser-tab:hover, .tabbrowser-tab:active {
+	background: #383838 !important;
+	color: #eee !important;
+}
+     
+.tabbrowser-tab[selected=true], .tabbrowser-tab[selected=true]:hover {
+	color: #121212 !important;
+	background: #888 !important;
+	box-shadow: inset 0px 0px 2px rgba(0,0,0,0.12) !important;
+}
+     
+.tabbrowser-tab .tab-text {
+	margin-left: 3px !important;
+	margin-right: 3px !important;
+	margin-top: -2px !important;
+	font-size: 8pt !important;
+	font-family: Terminus !important;
+}
+
+.tabs-newtab-button {
+    display: none !important;
+}
+
+.titlebar-placeholder[type="caption-buttons"] {
+	margin-left: 10px !important;
+}
+     
+.tabbrowser-tabs:not([drag=detach]) > .tabbrowser-tab:not([pinned])[fadein] {
+	min-width: 30px !important;
+	max-width: 330px !important;
+}
+     
+notificationbox {
+	overflow-x: hidden;
+}
+     
+browser[type="content-primary"], browser[type="content-targetable"] {
+	overflow-y: scroll;
+	margin-right: -8px;
+}

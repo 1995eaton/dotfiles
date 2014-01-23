@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $1 == 'i' ]]; then
+	sudo cpupower frequency-info
+elif [[ $1 == 'h' ]]; then
+	sudo cpupower frequency-set -d 3.4GHz -u 3.4GHz
+elif [[ $1 == 'l' ]]; then
+	sudo cpupower frequency-set -d 800MHz -u 800MHz
+else
+	echo -e "Usage:\ni ==> info\nh ==> high power (3.4GHz)\nl ==> low power (800MHz)"
+fi

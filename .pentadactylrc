@@ -1,0 +1,28 @@
+set guioptions=Cs
+colorscheme custom
+set hintkeys=asdfgwertzxcv
+set scrollsteps=20
+set scrolltime=150
+map -b j 5j
+map -b k 5k
+map s j
+map w k
+map d <C-d>
+map e <C-u>
+map x <C-w>
+map u <C-u>
+map K <C-TAB>
+map R <C-TAB>
+map E <C-S-TAB>
+map J <C-S-TAB>
+map S H
+map D L
+map <S-SPACE> <Return>
+imap <S-SPACE> <Return>
+cmap <S-SPACE> <Return>
+vmap <S-SPACE> <Return>
+map gq gi
+map c :open google 
+map C :tabopen google 
+map v :open 
+map V :tabopen 
