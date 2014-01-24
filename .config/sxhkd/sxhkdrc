@@ -4,8 +4,6 @@ alt + shift q
  bspc quit
 ~button1
  bspc pointer -g focus
-alt + {_,shift + }Tab
- bspc window -f {next,prev}
 alt + shift + {h,j,k,l}
  bspc window -f {left,down,up,right}
 alt + !button{1-3}

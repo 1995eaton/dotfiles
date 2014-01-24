@@ -45,3 +45,4 @@
 	alias less="less -Cr"
 	alias hist="history"
 	alias histt="history -t %m/%d\ -\ %r"
+   alias down="cd ~/downloads"
