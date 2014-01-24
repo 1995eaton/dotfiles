@@ -500,6 +500,7 @@ if !exists("g:jellybeans_background_color_256")
 end
 " Manual overrides for 256-color terminals. Dark colors auto-map badly.
 if !s:low_color
+  hi Visual cterm=reverse
   hi StatusLineNC ctermbg=235
   hi Folded ctermbg=236
   hi FoldColumn ctermbg=234

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-repo_dir="$HOME/.source"
+repo_dir="$HOME/source"
 working_dir=`pwd`
 cd $repo_dir
 
@@ -13,7 +13,6 @@ repositories=(
  'git|https://github.com/1995eaton/vimium-smoothscroll|vimium-smoothscroll'
  'hg|https://code.google.com/p/pychess|pychess'
  'hg|https://vim.googlecode.com/hg|vim'
- 'git|git://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code|tmux'
 )
 
 for i in ${repositories[*]}; do
