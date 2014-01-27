@@ -1,6 +1,6 @@
 #!/bin/sh
 
-NOTE_DIR=~/.notes
+NOTE_DIR=~/notes
 
 if [[ $1 ]]; then
    cd $NOTE_DIR

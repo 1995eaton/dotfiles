@@ -42,8 +42,8 @@ execute pathogen#infect()
 
 "Tab settings
    set smarttab
-   set tabstop=3
-   set shiftwidth=3
+   set tabstop=2
+   set shiftwidth=2
    set expandtab
 
 "Searching
@@ -82,7 +82,7 @@ execute pathogen#infect()
    set history=100
 
 "Vim notes
-   let g:notes_directories=['~/.notes']   
+   let g:notes_directories=['~/notes']   
 
 "Miscellaneous
    let mapleader=","
