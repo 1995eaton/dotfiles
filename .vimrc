@@ -1,3 +1,6 @@
+ map j gj
+ map k gk
+
 execute pathogen#infect()
 
 "Color schemes
@@ -22,6 +25,7 @@ execute pathogen#infect()
 
 "Cursor movement
    "set scrolloff=1000 "Keep cursor centered
+   set mouse=a
    nnoremap 0 g^
    nnoremap $ g$
    map J <C-d>
