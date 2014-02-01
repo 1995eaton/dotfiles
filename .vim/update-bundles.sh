@@ -11,7 +11,8 @@ packages=(
    'https://github.com/1995eaton/vim-notes'
    'https://github.com/xolox/vim-misc'
    'https://github.com/dag/vim2hs'
-   'https://github.com/Lokaltog/vim-easymotion'
+   'https://github.com/Shougo/unite.vim'
+   'https://github.com/mattn/emmet-vim'
 )
 
 for i in ${packages[*]}; do

@@ -3,7 +3,6 @@ execute pathogen#infect()
 "Color schemes
   set t_Co=256
   colorscheme jellybeans
-
 "Lightline
   set laststatus=2
   let g:lightline = { 'colorscheme': 'jellybeans' }
@@ -11,6 +10,31 @@ execute pathogen#infect()
 "File settings
   filetype plugin indent on
   set fileformats=unix,dos,mac
+
+"Unite
+  let g:unite_force_overwrite_statusline = 0
+  let g:unite_winheight = 15
+
+  call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+        \ 'ignore_pattern', join([
+        \ '\.git/',
+        \ ], '\|'))
+
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+
+  nnoremap <C-p> :Unite file_rec<cr>
+
+  autocmd FileType unite call s:unite_settings()
+
+  function! s:unite_settings()
+    let b:SuperTabDisabled=1
+    map <silent><buffer><expr> h unite#do_action('split')
+    map <silent><buffer><expr> v unite#do_action('vsplit')
+    map <silent><buffer><expr> t unite#do_action('tabopen')
+
+    nmap <buffer> <ESC> <Plug>(unite_exit)
+  endfunction
 
 "Syntax hightlighting
   syntax on
@@ -21,6 +45,7 @@ execute pathogen#infect()
 
 "Cursor movement
   set mouse=a
+  map 0 ^
   nnoremap j gj
   nnoremap k gk
   map J jzz
@@ -83,6 +108,20 @@ execute pathogen#infect()
 
 "Vim notes
   let g:notes_directories=['~/notes']   
+
+"EasyMotion
+  map <C-j> <leader><leader>w
+  map <C-k> <leader><leader>gE
+
+"Windows
+  map fw <C-w><C-w>
+  map <C-h> <C-w>h
+  map <C-l> <C-w>l
+  map <C-k> <C-w>k
+  map <C-j> <C-w>j
+
+"Emmet
+  let g:user_emmet_leader_key='<C-e>'
 
 "Miscellaneous
   set noerrorbells visualbell t_vb=
