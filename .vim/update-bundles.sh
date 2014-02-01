@@ -10,6 +10,7 @@ packages=(
    'https://github.com/kchmck/vim-coffee-script'
    'https://github.com/1995eaton/vim-notes'
    'https://github.com/xolox/vim-misc'
+   'https://github.com/dag/vim2hs'
 )
 
 for i in ${packages[*]}; do

@@ -34,7 +34,7 @@
 		else alias ls='ls --color=auto'
 	fi
 
-	export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/nginx/sbin:~/scripts
+	export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/local/nginx/sbin:~/scripts:~/.gem/ruby/2.1.0/bin
 
 	export EDITOR="vim"
 	export PYTHONSTARTUP=~/.python-autocomplete.py
