@@ -4,7 +4,7 @@ bundle_dir="$HOME/.vim/bundle"
 cd $bundle_dir
 
 packages=(
-   'https://github.com/vim-scripts/comments.vim'
+   'https://github.com/scrooloose/nerdcommenterd'
    'https://github.com/itchyny/lightline.vim'
    'https://github.com/scrooloose/nerdtree'
    'https://github.com/kchmck/vim-coffee-script'
