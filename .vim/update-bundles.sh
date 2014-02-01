@@ -4,13 +4,14 @@ bundle_dir="$HOME/.vim/bundle"
 cd $bundle_dir
 
 packages=(
-   'https://github.com/scrooloose/nerdcommenterd'
+   'https://github.com/scrooloose/nerdcommenter'
    'https://github.com/itchyny/lightline.vim'
    'https://github.com/scrooloose/nerdtree'
    'https://github.com/kchmck/vim-coffee-script'
    'https://github.com/1995eaton/vim-notes'
    'https://github.com/xolox/vim-misc'
    'https://github.com/dag/vim2hs'
+   'https://github.com/Lokaltog/vim-easymotion'
 )
 
 for i in ${packages[*]}; do

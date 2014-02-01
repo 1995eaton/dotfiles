@@ -61,10 +61,10 @@ execute pathogen#infect()
   nmap <silent> <leader>r :so ~/.vimrc<cr>
 
 "Vim comments
-  nmap fd ,cb
-  vmap fd ,cb
-  nmap ff ,cu
-  vmap ff ,cu
+  nmap fd <leader>cb
+  vmap fd <leader>cb
+  nmap ff <leader>cu
+  vmap ff <leader>cu
 
 "Bracket highlighting
   set showmatch 
