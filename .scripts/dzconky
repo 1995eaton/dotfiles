@@ -4,4 +4,4 @@ BG="#121212"
 FG="#888888"
 FONT='Terminus:pixelsize=12:style=Regular'
 killall dzen2 conky > /dev/null
-conky | dzen2 -h '18' -fn "$FONT" -bg $BG -fg $FG -p -e & sleep 0.01; transset-df --no-regex -n 'dzen title' .90
+conky | dzen2 -h '18' -fn "$FONT" -bg $BG -fg $FG -p -e & sleep 0.05; transset-df --no-regex -n 'dzen title' .85

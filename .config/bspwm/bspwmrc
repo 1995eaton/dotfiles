@@ -15,8 +15,8 @@ compton &
 urxvtd -q &
 xsetroot -cursor_name left_ptr &
 xrdb ~/.Xresources &
-dzconky &
 xmodmap /home/jake/.macros &
 nitrogen --restore &
 xset r rate 400 35 &
 xset m 1/2 &
+dzconky &
