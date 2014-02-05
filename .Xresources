@@ -1,7 +1,9 @@
 ! To list available fonts: fc-list / xlsfonts
 
-*font: xft:Terminus:pixelsize=11:style=Regular
-*boldFont: xft:Terminus:pixelsize=11:style=Regular
+!*font: xft:Terminus:pixelsize=11:style=Regular
+!*boldFont: xft:Terminus:pixelsize=11:style=Regular
+*font: xft:Monospace:pixelsize=11:style=Regular
+*boldFont: xft:Monospace:pixelsize=11:style=Bold
 
 ! XFT CONFIGS
 
@@ -17,6 +19,7 @@ Xft.lcdfilter: 	lcddefault
 
 urxvt*internalBorder: 		10
 !urxvt*internalBorder: 		0
+urxvt.letterSpace: -1
 urxvt.scrollTtyOutput: false
 urxvt.scrollTtyKeypress: true
 urxvt.scrollBar: false
@@ -42,7 +45,7 @@ urxvt.cursorBlink: 1
 
 ! transparent
 urxvt.depth: 32
-urxvt.background: [90]#121212
+urxvt.background: [95]#121212
 !urxvt.background: #000
 urxvt*foreground: #888888
 

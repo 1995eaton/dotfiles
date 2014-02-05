@@ -31,7 +31,7 @@ alt + {_,shift + }{1-9,0}
 alt + {p, space}
  dmenu_run -nb \#121212 -nf \#888888 -sf \#FFFFFF -sb \#171717
 alt + w
- google-chrome-unstable
+ google-chrome-beta
 alt + f
  urxvtc -e 'ranger'
 alt + t
