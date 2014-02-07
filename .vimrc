@@ -1,8 +1,8 @@
 execute pathogen#infect()
-
 "Color schemes
   set t_Co=256
-  colorscheme jellybeans
+  colorscheme molokai
+  set background=dark
 "Lightline
   set laststatus=2
   let g:lightline = { 'colorscheme': 'jellybeans' }
@@ -38,7 +38,8 @@ execute pathogen#infect()
 
 "Syntax hightlighting
   syntax on
-  map <silent> fh :nohl<cr>
+  "map <silent> fh :nohl<cr>
+  map <silent> <C-h> :nohl<cr>
 
 "Line numbering (dynamic + relative)
   set number
@@ -51,8 +52,8 @@ execute pathogen#infect()
   map J jzz
   map K kzz
   map L zz
-  inoremap fj <Esc>
-  vnoremap fj <Esc>
+  "inoremap fj <Esc>
+  "vnoremap fj <Esc>
 
 "Disable line breaks unless the <Enter> key is hit
   set wrap
@@ -114,15 +115,23 @@ execute pathogen#infect()
   map <C-k> <leader><leader>gE
 
 "Windows
-  map fw <C-w><C-w>
-  map <C-h> <C-w>h
-  map <C-l> <C-w>l
-  map <C-k> <C-w>k
-  map <C-j> <C-w>j
+  "map fw <C-w><C-w>
+  "map <C-h> <C-w>h
+  "map <C-l> <C-w>l
+  "map <C-k> <C-w>k
+  "map <C-j> <C-w>j
 
 "Emmet
   let g:user_emmet_leader_key='<C-e>'
 
 "Miscellaneous
   set noerrorbells visualbell t_vb=
+  nnoremap <buffer> <C-b> :exec '!python' shellescape(@%, 1)<cr>
   set lazyredraw
+  fun! TabComplete()
+    if &ft !~ "note"
+      imap <Tab> <C-n>
+      imap <S-Tab> <C-p>
+    endif
+  endfun
+  autocmd BufNewFile,BufRead * call TabComplete()

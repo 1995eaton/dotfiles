@@ -4,6 +4,10 @@
 !*boldFont: xft:Terminus:pixelsize=11:style=Regular
 *font: xft:Monospace:pixelsize=11:style=Regular
 *boldFont: xft:Monospace:pixelsize=11:style=Bold
+!*font: xft:Courier New:pixelsize=11:style=Regular
+!*boldFont: xft:Courier New:pixelsize=11:style=Bold
+!*font: xft:DejaVuSansMono:pixelsize=11:style=Book
+!*boldFont: xft:DejaVuSansMono-Bold:pixelsize=11:style=Bold
 
 ! XFT CONFIGS
 
@@ -17,8 +21,7 @@ Xft.lcdfilter: 	lcddefault
 
 ! URXVT CONFIGS
 
-urxvt*internalBorder: 		10
-!urxvt*internalBorder: 		0
+urxvt*internalBorder: 5
 urxvt.letterSpace: -1
 urxvt.scrollTtyOutput: false
 urxvt.scrollTtyKeypress: true
@@ -37,44 +40,70 @@ urxvt.iso14755:0
 urxvt.iso14755_52:0
 urxvt.cursorBlink: 1
 
-! COLORS
+!Molokai Color Scheme
+!By Jake Eaton
 
-!! solid
-!urxvt*background: #121212
-!urxvt*foreground: #888888
-
-! transparent
-urxvt.depth: 32
-urxvt.background: [95]#121212
-!urxvt.background: #000
-urxvt*foreground: #888888
-
-! man page colors
+!Manpage colors
 urxvt.colorIT:      #87af5f
 urxvt.colorBD:      #d7d7d7
 urxvt.colorUL:      #87afd7
 
-! black
-urxvt*color0: #1C1C1C
-urxvt*color8: #404040
-! red
-urxvt*color1: #B85335
-urxvt*color9: #CF6A4C
-! green
-urxvt*color2: #799D6A
-urxvt*color10: #99AD6A
-! yellow
-urxvt*color3: #FFB964
-urxvt*color11: #FAD07A
-! blue
-urxvt*color4: #667899
-urxvt*color12: #8197BF
-! magenta
-urxvt*color5: #8787AF
-urxvt*color13: #C6B6EE
-! cyan
-urxvt*color6: #668799
-urxvt*color14: #8FBFDC
-! white
-urxvt*color7: #888888
-urxvt*color15: #E8E8D3
+urxvt*foreground: #8F8F8F
+urxvt*background: #1B1D1E
+!Dark Yellow + Yellow
+*color3:  #E6DB74
+*color11: #FFF381
+!Black + Dark Grey
+*color0:  #000000
+*color8:  #232526
+!Light Grey + White
+*color7:  #7E8E91
+!*color15: #F8F8F2
+*color15: #4E4E4E
+!Dark Magenta + Magenta
+*color5:  #8C60DB
+*color13: #AE81FF
+!Dark Red + Red
+*color1: #FF5C97
+*color9: #F92672
+!Dark Green + Light Green (Executable files)
+*color2:  #A6E22E
+*color10: #CCFF66
+!Dark Blue + Blue (Directories)
+*color4:  #107BCC
+*color12: #17A4D6
+!Dark Cyan + Cyan (Symbolic links)
+*color6:  #66D9EF
+*color14: #80EBFF
+
+
+!Jellybeans Color Scheme
+
+!urxvt.depth: 32
+!urxvt.background: [95]#121212
+!urxvt*foreground: #888888
+
+!! Black + Dark Grey
+!urxvt*color0: #1C1C1C
+!urxvt*color8: #404040
+!! Dark Grey + White
+!urxvt*color7:  #888888
+!urxvt*color15: #E8E8D3
+!! Dark Red + Red
+!urxvt*color1: #B85335
+!urxvt*color9: #CF6A4C
+!! Dark Green + Green (Executable files)
+!urxvt*color2:  #799D6A
+!urxvt*color10: #99AD6A
+!! Dark Yellow + Yellow
+!urxvt*color3:  #FFB964
+!urxvt*color11: #FAD07A
+!! Dark Blue + Blue
+!urxvt*color4:  #667899
+!urxvt*color12: #8197BF
+!! Dark Magenta + Magenta
+!urxvt*color5:  #8787AF
+!urxvt*color13: #C6B6EE
+!! Dark Cyan + Cyan
+!urxvt*color6:  #668799
+!urxvt*color14: #8FBFDC
