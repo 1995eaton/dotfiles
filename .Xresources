@@ -2,8 +2,8 @@
 
 !*font: xft:Terminus:pixelsize=11:style=Regular
 !*boldFont: xft:Terminus:pixelsize=11:style=Regular
-*font: xft:Monospace:pixelsize=11:style=Regular
-*boldFont: xft:Monospace:pixelsize=11:style=Bold
+*font: xft:Monospace:pixelsize=41:style=Regular
+*boldFont: xft:Monospace:pixelsize=41:style=Bold
 !*font: xft:Courier New:pixelsize=11:style=Regular
 !*boldFont: xft:Courier New:pixelsize=11:style=Bold
 !*font: xft:DejaVuSansMono:pixelsize=11:style=Book
