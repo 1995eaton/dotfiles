@@ -29,7 +29,7 @@ alt + {o,i}
 alt + {_,shift + }{1-9,0}
  bspc {desktop -f,window -d} ^{1-9,10}
 alt + {p, space}
- dmenu_run -nb \#121212 -nf \#888888 -sf \#FFFFFF -sb \#171717
+ dmenu_run -nb \#1b1d1e -nf \#8f8f8f -sf \#5f5f5f -sb \#262626
 alt + w
  google-chrome-beta
 alt + f
