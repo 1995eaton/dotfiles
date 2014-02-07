@@ -136,13 +136,13 @@ end
 "
 if &t_Co > 255
    if s:molokai_original == 1
-      hi Normal                   ctermbg=none
+      hi Normal                   ctermbg=234
       hi CursorLine               ctermbg=235   cterm=none
-      hi CursorLineNr ctermfg=227               cterm=none
+      hi CursorLineNr ctermfg=208               cterm=none
    else
       hi Normal       ctermfg=252 ctermbg=none
       hi CursorLine               ctermbg=234   cterm=none
-      hi CursorLineNr ctermfg=227               cterm=none
+      hi CursorLineNr ctermfg=208               cterm=none
    endif
    hi Boolean         ctermfg=135
    hi Character       ctermfg=144
@@ -168,7 +168,7 @@ if &t_Co > 255
    hi FoldColumn      ctermfg=67  ctermbg=16
    hi Folded          ctermfg=67  ctermbg=16
    hi Function        ctermfg=118
-   hi Identifier      ctermfg=227               cterm=none
+   hi Identifier      ctermfg=208               cterm=none
    hi Ignore          ctermfg=244 ctermbg=232
    hi IncSearch       ctermfg=193 ctermbg=16
 
@@ -177,7 +177,7 @@ if &t_Co > 255
    hi Macro           ctermfg=193
    hi SpecialKey      ctermfg=81
 
-   hi MatchParen      ctermfg=227  ctermbg=154 cterm=bold
+   hi MatchParen      ctermfg=208  ctermbg=233 cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
    hi Operator        ctermfg=161
@@ -208,7 +208,7 @@ if &t_Co > 255
    hi Statement       ctermfg=161               cterm=bold
    hi StatusLine      ctermfg=238 ctermbg=253
    hi StatusLineNC    ctermfg=244 ctermbg=232
-   hi StorageClass    ctermfg=227
+   hi StorageClass    ctermfg=208
    hi Structure       ctermfg=81
    hi Tag             ctermfg=161
    hi Title           ctermfg=166
@@ -227,8 +227,7 @@ if &t_Co > 255
    hi Comment         ctermfg=59
    hi CursorColumn                ctermbg=236
    hi ColorColumn                 ctermbg=236
-   "hi LineNr          ctermfg=250 ctermbg=236
-   hi LineNr          ctermfg=250 ctermbg=235
+   hi LineNr          ctermfg=250 ctermbg=236
    hi NonText         ctermfg=59
 
    hi SpecialKey      ctermfg=59
@@ -236,7 +235,7 @@ if &t_Co > 255
    if exists("g:rehash256") && g:rehash256 == 1
        hi Normal       ctermfg=252 ctermbg=234
        hi CursorLine               ctermbg=236   cterm=none
-       hi CursorLineNr ctermfg=227               cterm=none
+       hi CursorLineNr ctermfg=208               cterm=none
 
        hi Boolean         ctermfg=141
        hi Character       ctermfg=222
@@ -252,7 +251,7 @@ if &t_Co > 255
        hi Exception       ctermfg=154               cterm=bold
        hi Float           ctermfg=141
        hi Function        ctermfg=154
-       hi Identifier      ctermfg=227
+       hi Identifier      ctermfg=208
 
        hi Keyword         ctermfg=197               cterm=bold
        hi Operator        ctermfg=197

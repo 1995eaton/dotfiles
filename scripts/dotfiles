@@ -18,7 +18,7 @@ dotfiles=(
 '.dwm'
 '.bashrc'
 '.zshrc'
-'.scripts'
+'scripts'
 '.python-autocomplete.py'
 '.config/bspwm'
 '.config/sxhkd'
