@@ -10,7 +10,12 @@
   setopt HIST_REDUCE_BLANKS
   setopt INC_APPEND_HISTORY
   setopt SHARE_HISTORY
+  setopt HIST_IGNORE_ALL_DUPS
+  setopt HIST_IGNORE_DUPS
+  setopt HIST_SAVE_NO_DUPS
   setopt EXTENDED_HISTORY
+  setopt HIST_IGNORE_SPACE
+  setopt COMPLETE_ALIASES
 	HISTFILE=~/.history.zsh
 	bindkey -e
 
@@ -47,6 +52,7 @@
   export BROWSER="google-chrome-beta"
 
 	alias d="pwd"
+  alias ^l="ls"
 	alias p="ss -tn"
 	alias u="id -u -n"
   alias less="less -Cr"

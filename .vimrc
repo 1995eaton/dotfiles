@@ -38,7 +38,6 @@ execute pathogen#infect()
 
 "Syntax hightlighting
   syntax on
-  "map <silent> fh :nohl<cr>
   map <silent> <C-h> :nohl<cr>
 
 "Line numbering (dynamic + relative)
@@ -52,8 +51,6 @@ execute pathogen#infect()
   map J jzz
   map K kzz
   map L zz
-  "inoremap fj <Esc>
-  "vnoremap fj <Esc>
 
 "Disable line breaks unless the <Enter> key is hit
   set wrap
@@ -114,19 +111,13 @@ execute pathogen#infect()
   map <C-j> <leader><leader>w
   map <C-k> <leader><leader>gE
 
-"Windows
-  "map fw <C-w><C-w>
-  "map <C-h> <C-w>h
-  "map <C-l> <C-w>l
-  "map <C-k> <C-w>k
-  "map <C-j> <C-w>j
-
 "Emmet
   let g:user_emmet_leader_key='<C-e>'
 
 "Miscellaneous
+  vnoremap . :normal .<CR>
   set noerrorbells visualbell t_vb=
-  nnoremap <buffer> <C-b> :exec '!python' shellescape(@%, 1)<cr>
+  nnoremap <buffer> <C-b> :w<cr>:exec '!clear'<cr>:exec '!python' shellescape(@%, 1)<cr>
   set lazyredraw
   fun! TabComplete()
     if &ft !~ "note"
