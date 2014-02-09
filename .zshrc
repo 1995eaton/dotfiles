@@ -59,4 +59,3 @@
 	alias hist="history"
 	alias histt="history -t %m/%d\ -\ %r"
   alias down="cd ~/downloads"
-  alias python="python2"
