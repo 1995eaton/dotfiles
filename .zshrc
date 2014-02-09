@@ -30,9 +30,9 @@ autoload -U compinit && compinit -C
 #PROFILE OPTIONS
 
 if [[ `id -u` == '0' ]]; then
-  PROMPT=$'(%d) >> '
+  PROMPT=$'\>\> '
 else
-  PROMPT=$'(%d) > '
+  PROMPT=$'\> '
 fi
 
 if [ $COLORTERM ]; then
