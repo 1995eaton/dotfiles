@@ -6,8 +6,6 @@
 !*boldFont: xft:Monospace:pixelsize=11:style=Bold
 *font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
 *boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
-!*font: xft:Courier New:pixelsize=11:style=Regular
-!*boldFont: xft:Courier New:pixelsize=11:style=Bold
 !*font: xft:DejaVuSansMono:pixelsize=11:style=Book
 !*boldFont: xft:DejaVuSansMono-Bold:pixelsize=11:style=Bold
 
@@ -17,7 +15,7 @@ Xft.dpi:	96
 Xft.rgba:	rgb
 Xft.antialias: 	1
 Xft.hinting: 	1
-Xft.autohint: 	0
+Xft.autohint: 	1
 Xft.hintstyle: 	hintslight
 Xft.lcdfilter: 	lcddefault
 

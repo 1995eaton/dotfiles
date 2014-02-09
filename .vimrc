@@ -5,7 +5,7 @@ execute pathogen#infect()
   set background=dark
 "Lightline
   set laststatus=2
-  let g:lightline = { 'colorscheme': 'jellybeans' }
+  let g:lightline = { 'colorscheme': 'wombat' }
 
 "File settings
   filetype plugin indent on

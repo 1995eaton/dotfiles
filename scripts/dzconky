@@ -1,10 +1,8 @@
 #!/bin/sh
 
-#BG="#121212"
-#FG="#888888"
 BG="#1B1D1E"
 FG="#8F8F8F"
-FONT='Terminus:pixelsize=12:style=Regular'
+FONT='Terminus:pixelsize=11:style=Regular'
 killall dzen2 conky > /dev/null
 #conky | dzen2 -h '18' -fn "$FONT" -bg $BG -fg $FG -p -e & sleep 0.05; transset-df --no-regex -n 'dzen title' .85
-conky | dzen2 -h '18' -fn "$FONT" -bg $BG -fg $FG -p -e &
+conky | dzen2 -h '19' -fn "$FONT" -bg $BG -fg $FG -p -e &
