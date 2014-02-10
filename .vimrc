@@ -11,31 +11,6 @@ execute pathogen#infect()
   filetype plugin indent on
   set fileformats=unix,dos,mac
 
-"Unite
-  let g:unite_force_overwrite_statusline = 0
-  let g:unite_winheight = 15
-
-  call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-        \ 'ignore_pattern', join([
-        \ '\.git/',
-        \ ], '\|'))
-
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  call unite#filters#sorter_default#use(['sorter_rank'])
-
-  nnoremap <C-p> :Unite file_rec<cr>
-
-  autocmd FileType unite call s:unite_settings()
-
-  function! s:unite_settings()
-    let b:SuperTabDisabled=1
-    map <silent><buffer><expr> h unite#do_action('split')
-    map <silent><buffer><expr> v unite#do_action('vsplit')
-    map <silent><buffer><expr> t unite#do_action('tabopen')
-
-    nmap <buffer> <ESC> <Plug>(unite_exit)
-  endfunction
-
 "Syntax hightlighting
   syntax on
   map <silent> <C-h> :nohl<cr>
@@ -115,14 +90,15 @@ execute pathogen#infect()
   let g:user_emmet_leader_key='<C-e>'
 
 "Miscellaneous
+  let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
   vnoremap . :normal .<CR>
   set noerrorbells visualbell t_vb=
   nnoremap <buffer> <C-b> :w<cr>:exec '!clear'<cr>:exec '!python' shellescape(@%, 1)<cr>
   set lazyredraw
-  fun! TabComplete()
-    if &ft !~ "note"
-      imap <Tab> <C-n>
-      imap <S-Tab> <C-p>
-    endif
-  endfun
-  autocmd BufNewFile,BufRead * call TabComplete()
+  "fun! TabComplete()
+  "  if &ft !~ "note"
+  "    imap <Tab> <C-n>
+  "    imap <S-Tab> <C-p>
+  "  endif
+  "endfun
+  "autocmd BufNewFile,BufRead * call TabComplete()

@@ -11,9 +11,10 @@ packages=(
    'https://github.com/1995eaton/vim-notes'
    'https://github.com/xolox/vim-misc'
    'https://github.com/dag/vim2hs'
-   'https://github.com/Shougo/unite.vim'
    'https://github.com/mattn/emmet-vim'
    'https://github.com/lilydjwg/colorizer'
+   'https://github.com/jaxbot/brolink.vim'
+   'https://github.com/ervandew/supertab'
 )
 
 
