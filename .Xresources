@@ -21,44 +21,44 @@
 
 ! XFT CONFIGS
 
-Xft.dpi:	96
-Xft.rgba:	rgb
-Xft.antialias: 	1
-Xft.hinting: 	1
-Xft.autohint: 	1
-Xft.hintstyle: 	hintfull
-Xft.lcdfilter: 	lcddefault
+Xft.dpi:       96
+Xft.rgba:      rgb
+Xft.antialias: 1
+Xft.hinting:   1
+Xft.autohint:  1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
 
 ! URXVT CONFIGS
 
-urxvt*internalBorder: 5
-urxvt.scrollTtyOutput: 0
+urxvt.termName:          xterm-256color
+urxvt.imLocale:          en_US.UTF-8
+urxvt.iso14755:          0
+urxvt.iso14755_52:       0
+urxvt.loginShell:        1
+urxvt*internalBorder:    5
+urxvt.cursorBlink:       1
+urxvt.scrollBar:         0
+urxvt.scrollTtyOutput:   0
 urxvt.scrollTtyKeypress: 1
-urxvt.scrollBar: 0
-urxvt.termName: rxvt
-urxvt.imLocale: en_US.UTF-8
-urxvt.loginShell: 1
-urxvt.saveLines: 4096
-urxvt.boldMode: 0
-urxvt.inheritPixmap: 0
-urxvt.jumpScroll: 0
-urxvt.perl-ext-common: default,clipboard,matcher,keyboard-select
-urxvt.underlineURLs: 1
-urxvt.url-launcher: /usr/bin/google-chrome-beta
-urxvt.matcher.button: 1
-urxvt.keysym.M-c: perl:clipboard:copy
-urxvt.keysym.M-v: perl:clipboard:paste
-urxvt.iso14755: 0
-urxvt.iso14755_52: 0
-urxvt.cursorBlink: 1
+urxvt.jumpScroll:        0
+urxvt.saveLines:         4096
+urxvt.boldMode:          0
+urxvt.inheritPixmap:     0
+urxvt.perl-ext-common:   default,clipboard,matcher,keyboard-select
+urxvt.matcher.button:    1
+urxvt.underlineURLs:     1
+urxvt.url-launcher:      /usr/bin/google-chrome-beta
+urxvt.keysym.M-c:        perl:clipboard:copy
+urxvt.keysym.M-v:        perl:clipboard:paste
 
 ! Molokai Color Scheme
 ! By Jake Eaton
 
 !Manpage colors
-urxvt.colorIT:      #87af5f
-urxvt.colorBD:      #d7d7d7
-urxvt.colorUL:      #87afd7
+urxvt.colorIT: #87af5f
+urxvt.colorBD: #d7d7d7
+urxvt.colorUL: #87afd7
 
 urxvt*foreground: #8F8F8F
 urxvt*background: #1B1D1E
@@ -66,11 +66,10 @@ urxvt*background: #1B1D1E
 *color3:  #E6DB74
 *color11: #FFF381
 !Black + Dark Grey
-*color0:  #000000
-*color8:  #232526
+*color0: #000000
+*color8: #232526
 !Light Grey + White
-*color7:  #7E8E91
-!*color15: #F8F8F2
+*color7: #7E8E91
 *color15: #4E4E4E
 !Dark Magenta + Magenta
 *color5:  #8C60DB
