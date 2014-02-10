@@ -41,7 +41,8 @@ urxvt.cursorBlink:       1
 urxvt.scrollBar:         0
 urxvt.scrollTtyOutput:   0
 urxvt.scrollTtyKeypress: 1
-urxvt.fading:            20
+urxvt.fading:            5
+urxvt.fadeColor:         #999
 urxvt.jumpScroll:        0
 urxvt.saveLines:         4096
 urxvt.boldMode:          0
