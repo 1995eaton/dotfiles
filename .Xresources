@@ -1,13 +1,23 @@
 ! To list available fonts: fc-list / xlsfonts
 
-!*font: xft:Terminus:pixelsize=11:style=Regular
-!*boldFont: xft:Terminus:pixelsize=11:style=Regular
+*font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
+*boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
+
+!*font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
+!*boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
+!urxvt.letterSpace: -1
+
 !*font: xft:Monospace:pixelsize=11:style=Regular
 !*boldFont: xft:Monospace:pixelsize=11:style=Bold
-*font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
-*boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
-!*font: xft:DejaVuSansMono:pixelsize=11:style=Book
-!*boldFont: xft:DejaVuSansMono-Bold:pixelsize=11:style=Bold
+!urxvt.letterSpace: -1
+
+!*font: xft:Inconsolata:pixelsize=14:style=Regular
+!*boldFont: xft:Inconsolata:pixelsize=14:style=Bold
+!urxvt.letterSpace: -1
+
+!*font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
+!*boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
+!urxvt.letterSpace: -1
 
 ! XFT CONFIGS
 
@@ -16,32 +26,34 @@ Xft.rgba:	rgb
 Xft.antialias: 	1
 Xft.hinting: 	1
 Xft.autohint: 	1
-Xft.hintstyle: 	hintslight
+Xft.hintstyle: 	hintfull
 Xft.lcdfilter: 	lcddefault
 
 ! URXVT CONFIGS
 
 urxvt*internalBorder: 5
-urxvt.letterSpace: -1
-urxvt.scrollTtyOutput: false
-urxvt.scrollTtyKeypress: true
-urxvt.scrollBar: false
+urxvt.scrollTtyOutput: 0
+urxvt.scrollTtyKeypress: 1
+urxvt.scrollBar: 0
 urxvt.termName: rxvt
 urxvt.imLocale: en_US.UTF-8
-urxvt.loginShell: true
+urxvt.loginShell: 1
 urxvt.saveLines: 4096
-urxvt.boldMode: false
-urxvt.inheritPixmap: false
-urxvt.jumpScroll: false
-urxvt.perl-ext-common: clipboard
+urxvt.boldMode: 0
+urxvt.inheritPixmap: 0
+urxvt.jumpScroll: 0
+urxvt.perl-ext-common: default,clipboard,matcher,keyboard-select
+urxvt.underlineURLs: 1
+urxvt.url-launcher: /usr/bin/google-chrome-beta
+urxvt.matcher.button: 1
 urxvt.keysym.M-c: perl:clipboard:copy
 urxvt.keysym.M-v: perl:clipboard:paste
-urxvt.iso14755:0
-urxvt.iso14755_52:0
+urxvt.iso14755: 0
+urxvt.iso14755_52: 0
 urxvt.cursorBlink: 1
 
-!Molokai Color Scheme
-!By Jake Eaton
+! Molokai Color Scheme
+! By Jake Eaton
 
 !Manpage colors
 urxvt.colorIT:      #87af5f
@@ -77,7 +89,7 @@ urxvt*background: #1B1D1E
 *color14: #80EBFF
 
 
-!Jellybeans Color Scheme
+! Jellybeans Color Scheme
 
 !urxvt.depth: 32
 !urxvt.background: [95]#121212
