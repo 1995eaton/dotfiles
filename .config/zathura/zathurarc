@@ -1,0 +1,11 @@
+set default-bg "#aaaaaa"
+set completion-highlight-bg "#ff9400"
+set inputbar-fg "#aaaaaa"
+set guioptions =
+set font "Terminus normal 9"
+set incremental-search
+set highlight-color "#eeff03"
+unmap d
+unmap u
+map d scroll half-down
+map u scroll half-up

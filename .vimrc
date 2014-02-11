@@ -19,10 +19,11 @@ execute pathogen#infect()
   set number
 
 "Cursor movement
-  set mouse=a
-  map 0 ^
+  set mouse=nicr
   nnoremap j gj
   nnoremap k gk
+  nnoremap 0 g^
+  nnoremap $ g$
   map J jzz
   map K kzz
   map L zz
@@ -89,16 +90,23 @@ execute pathogen#infect()
 "Emmet
   let g:user_emmet_leader_key='<C-e>'
 
+" GUI options
+  if has('gui_running')
+    set guifont=Bitstream\ Vera\ Sans\ Mono\ 10
+    autocmd GUIEnter * set vb t_vb=
+    autocmd VimEnter * set vb t_vb=
+    set guioptions-=T
+    set guioptions-=e
+    set guioptions-=r
+    set guioptions-=m
+  endif
+
 "Miscellaneous
   let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
   vnoremap . :normal .<CR>
-  set noerrorbells visualbell t_vb=
+  set visualbell t_vb=
+  let g:Tex_CompileRule_ps='ps2pdf $*'
   nnoremap <buffer> <C-b> :w<cr>:exec '!clear'<cr>:exec '!python' shellescape(@%, 1)<cr>
+  set ttyfast
+  "set cursorline
   set lazyredraw
-  "fun! TabComplete()
-  "  if &ft !~ "note"
-  "    imap <Tab> <C-n>
-  "    imap <S-Tab> <C-p>
-  "  endif
-  "endfun
-  "autocmd BufNewFile,BufRead * call TabComplete()
