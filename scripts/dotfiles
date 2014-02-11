@@ -24,6 +24,7 @@ dotfiles=(
 '.config/sxhkd'
 '.config/zathura'
 '.xinitrc'
+'.gtkrc-2.0'
 )
 
 for dot in ${dotfiles[*]}; do
