@@ -25,6 +25,7 @@ dotfiles=(
 '.config/zathura'
 '.xinitrc'
 '.gtkrc-2.0'
+'.gitignore-global'
 )
 
 for dot in ${dotfiles[*]}; do
