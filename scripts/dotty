@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+
+import os
+from configparser import SafeConfigParser
+import argparse
+
+CONFIG_PATH = "/home/jake/dotfiles/scripts/.dottyrc"
+
+
+class color:
+    green = '\033[32m'
+    yellow = '\033[33m'
+    red = '\033[31m'
+    end = '\033[0m'
+
+
+def check_path(path):
+    pass
+
+
+def load_config():
+    if not os.path.isfile(CONFIG_PATH):
+        raise Exception("Config file not found")
+    configs = SafeConfigParser()
+    configs.optionxform = str
+    configs.read(CONFIG_PATH)
+    repository_dir = os.path.expanduser(configs.get('main', 'repository_dir'))
+    if not os.path.isdir(repository_dir):
+        raise Exception("Repository directory not found.")
+    mappings = configs._sections['mappings']
+    mappings_real = {}
+    for orig, dest in mappings.items():
+        abs_path = os.path.join(repository_dir, orig)
+        mappings[orig] = abs_path
+        if not os.path.exists(abs_path):
+            print(os.path.join(repository_dir, orig))
+            print(color.red + "Warning: " + color.end +
+                  "\'" + abs_path +
+                  "\' could not be found. Not including in list.")
+            mappings.pop(orig, None)
+        else:
+            mappings_real[abs_path] = os.path.expanduser(dest)
+    return mappings_real
+
+
+def is_linked(orig, dest):
+    dest = os.path.expanduser(os.path.normpath(dest))
+    if os.path.islink(dest):
+        if os.path.realpath(dest) == orig:
+            return True
+        else:
+            os.unlink(dest)
+            return False
+    if os.path.exists(dest):
+        print(color.red + "Warning: " + color.end + "\'" + dest +
+              "\' already exists, but isn't a symbolic link." +
+              " Will not overwrite.")
+        return True
+    return False
+
+
+def list_dotfiles():
+    mappings = load_config()
+    for key, value in mappings.items():
+        if is_linked(key, value):
+            print(color.green + "Linked: " + color.end + key + " => " + value)
+        else:
+            print(color.yellow + "Not Linked: " +
+                  color.end + key + " => " + value)
+
+
+def modify_dotfiles(option):
+    mappings = load_config()
+    for key, value in mappings.items():
+        if not is_linked(key, value):
+            if option == 'link':
+                os.symlink(key, value)
+                print(color.green + "Added link: " +
+                      color.end + key + " => " + value)
+        else:
+            if option == 'remove':
+                try:
+                    os.unlink(value)
+                    print(color.red + "Removed link: " +
+                          color.end + key + " => " + value)
+                except IsADirectoryError:
+                    pass
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Easily manage dotfiles \
+                                     across computers with the aid of \
+                                     repository management software \
+                                     such as Git.', prefix_chars='-+')
+    parser.add_argument('-l', '--link', action='store_true',
+                        dest='link', help='update symlinks')
+    parser.add_argument('-r', '--remove-links', action='store_true',
+                        dest='remove', help='removes all symlinks')
+    parser.add_argument('--list', action='store_true',
+                        dest='list', help='display a list of dotfiles to \
+                        be linked')
+    args = parser.parse_args()
+    if args.list and not args.link and not args.remove:
+        list_dotfiles()
+        return
+    if args.link and not args.list and not args.remove:
+        modify_dotfiles('link')
+        return
+    if args.remove and not args.link and not args.list:
+        modify_dotfiles('remove')
+        return
+
+
+if __name__ == '__main__':
+    main()

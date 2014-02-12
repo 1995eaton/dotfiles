@@ -44,7 +44,7 @@ if [[ $(uname) == "Darwin" ]]; then
   else alias ls='ls --color=auto'
 fi
 
-export PATH=$PATH:~/scripts:~/.gem/ruby/2.1.0/bin
+export PATH=$PATH:~/dotfiles/scripts:~/.gem/ruby/2.1.0/bin
 
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.python-autocomplete.py
