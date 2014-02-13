@@ -1,6 +1,5 @@
 #! /bin/sh
 
-#bspc monitor -d I II III IV V VI VII VIII IX X
 bspc monitor -d 1 2 3 4 5 6
 
 bspc config border_width 0
@@ -18,3 +17,4 @@ xmodmap /home/jake/.macros &
 nitrogen --restore &
 xset r rate 400 35 &
 xset m 1/2 &
+~/.config/bspwm/panel/panel.sh
