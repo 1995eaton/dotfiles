@@ -2,20 +2,18 @@
 repository_dir = ~/dotfiles
 
 [mappings]
-.macros = ~/.macros
-.vim = ~/.vim
-.vimrc = ~/.vimrc
-.conkyrc = ~/.conkyrc
-.compton.conf = ~/.compton.conf
-.Xresources = ~/.Xresources
+macros = ~/.macros
+vim/vim = ~/.vim
+vim/vimrc = ~/.vimrc
+compton.conf = ~/.compton.conf
+Xresources = ~/.Xresources
 .dwm = ~/.dwm
-.bashrc = ~/.bashrc
-.zshrc = ~/.zshrc
+bashrc = ~/.bashrc
+zshrc = ~/.zshrc
 scripts = ~/scripts
-.python-autocomplete.py = ~/.python-autocomplete.py
-.config/bspwm = ~/.config/bspwm
-.config/sxhkd = ~/.config/sxhkd
-.config/zathura = ~/.config/zathura
-.xinitrc = ~/.xinitrc
-.gtkrc-2.0 = ~/.gtkrc-2.0
-
+python-autocomplete.py = ~/.python-autocomplete.py
+config/bspwm = ~/.config/bspwm
+config/sxhkd = ~/.config/sxhkd
+config/zathura = ~/.config/zathura
+xinitrc = ~/.xinitrc
+gtkrc = ~/.gtkrc-2.0

@@ -6,3 +6,4 @@ xset fp rehash
 sxhkd &
 exec bspwm
 #exec herbstluftwm
+#exec dwm
