@@ -1,7 +1,7 @@
 out_to_console yes
 out_to_x no
 background no
-update_interval 2
+update_interval 1
 total_run_times 0
 use_spacer none
 
