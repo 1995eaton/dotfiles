@@ -5,5 +5,3 @@ xset +fp /usr/share/fonts/local
 xset fp rehash
 sxhkd &
 exec bspwm
-#exec herbstluftwm
-#exec dwm
