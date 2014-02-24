@@ -2,6 +2,7 @@
 repository_dir = ~/dotfiles
 
 [mappings]
+tmux.conf = ~/.tmux.conf
 macros = ~/.macros
 vim/vim = ~/.vim
 vim/vimrc = ~/.vimrc
