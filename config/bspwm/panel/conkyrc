@@ -8,24 +8,24 @@ use_spacer none
 TEXT
 \
 \
-\l ${execi 0.05 ~/.config/bspwm/panel/monitor.sh} \
-\c${time %A \f2|\f\ %B %d, %Y \f2|\f\%k:%M:%S %p} \
-\rVOL[${execi 5 \
+\l${execi 0.05 ~/.config/bspwm/panel/monitor.sh} \
+\c\f9\b1\u1 ${time %A | %B %d, %Y |%k:%M:%S %p} \
+\r VOL[${execi 5 \
 	if amixer sget Master | grep -o "\[off\]" > /dev/null; \
 		then echo "Mute"; \
 	else amixer sget Master | grep -o "[0-9]\+%"; \
-fi}] \f2|\f\ \
+fi}] | \
 \
 BAT[${execi 10 \
 	acpi | grep -o "\(\(Discharging\|Charging\|Full\|Unknown\), \)\?[0-9]\+%" | \
 		sed -e "s/Unknown/Charging/g" | \
-		sed -e "s/,/:/g"}] \f2|\f\ \
+		sed -e "s/,/:/g"}] | \
 \
 CPU[${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}%] \
 [${execi 5 \
 	sensors | grep "Core 1" | \
 		grep -o "  \++.*C " | \
 		sed -e 's/[+ ]//g' | \
-		egrep -o "[0-9]+.[0-9]+"}C\f\] \f2|\f\ \
+		egrep -o "[0-9]+.[0-9]+"}C] | \
 \
-RAM[$mem/$memmax] 
+RAM[$mem/$memmax] \b
