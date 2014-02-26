@@ -28,5 +28,5 @@
 #define COLOR6 0x75b5aa
 #define COLOR7 0x6c7a80
 #define COLOR8 0x425059
-#define COLOR9 0x1b1d1e
+#define COLOR9 0xcc6666
 #define FOREGROUND 0x8f8f8f
