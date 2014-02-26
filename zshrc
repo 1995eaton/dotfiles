@@ -50,6 +50,7 @@ export EDITOR="vim"
 export PYTHONSTARTUP=~/.python-autocomplete.py
 export BROWSER="google-chrome-beta"
 
+alias sl="ls"
 alias d="pwd"
 alias p="ss -tn"
 alias u="id -u -n"

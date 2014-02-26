@@ -63,7 +63,8 @@ urxvt.colorBD: #d7d7d7
 urxvt.colorUL: #87afd7
 
 urxvt*foreground: #8F8F8F
-urxvt*background: #1B1D1E
+urxvt*depth: 32
+urxvt*background: [95]#1B1D1E
 !Dark Yellow + Yellow
 *color3:  #E6DB74
 *color11: #FFF381

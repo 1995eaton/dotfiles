@@ -8,7 +8,7 @@ use_spacer none
 TEXT
 \
 \l\u1${execi 0.05 ~/.config/bspwm/panel/monitor.sh | sed 's/6.*/6/'} \
-\c\f9\b1\u1 ${time %A | %B %d, %Y |%k:%M:%S %p} \
+\c\f9\b1\u1 ${time %A | %B %d, %Y |%l:%M:%S %p} \
 \r VOL[${execi 5 \
 	if amixer sget Master | grep -o "\[off\]" > /dev/null; \
 		then echo "Mute"; \
