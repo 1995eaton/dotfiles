@@ -7,8 +7,7 @@ use_spacer none
 
 TEXT
 \
-\
-\l${execi 0.05 ~/.config/bspwm/panel/monitor.sh} \
+\l\u1${execi 0.05 ~/.config/bspwm/panel/monitor.sh | sed 's/6.*/6/'} \
 \c\f9\b1\u1 ${time %A | %B %d, %Y |%k:%M:%S %p} \
 \r VOL[${execi 5 \
 	if amixer sget Master | grep -o "\[off\]" > /dev/null; \
@@ -28,4 +27,4 @@ CPU[${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}%] \
 		sed -e 's/[+ ]//g' | \
 		egrep -o "[0-9]+.[0-9]+"}C] | \
 \
-RAM[$mem/$memmax] \b
+RAM[$mem/$memmax] \f \b
