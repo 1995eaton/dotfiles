@@ -1,11 +1,15 @@
 ! To list available fonts: fc-list / xlsfonts
 
-*font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
-*boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
-
-!*font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
-!*boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
+!*font: xft:Monaco:pixelsize=11:style=Regular
+!*boldFont: xft:Monaco:pixelsize=11:style=Regular
 !urxvt.letterSpace: -1
+
+!*font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
+!*boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
+
+urxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
+urxvt*boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
+urxvt.letterSpace: -1
 
 !*font: xft:Monospace:pixelsize=11:style=Regular
 !*boldFont: xft:Monospace:pixelsize=11:style=Bold
@@ -63,8 +67,8 @@ urxvt.colorBD: #d7d7d7
 urxvt.colorUL: #87afd7
 
 urxvt*foreground: #8F8F8F
-urxvt*depth: 32
-urxvt*background: [95]#1B1D1E
+!urxvt*depth: 32
+urxvt*background: #1B1D1E
 !Dark Yellow + Yellow
 *color3:  #E6DB74
 *color11: #FFF381

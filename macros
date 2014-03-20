@@ -1,5 +1,3 @@
-remove Lock = Caps_Lock
-keysym Escape = Caps_Lock
-keysym Caps_Lock = Escape
-add Lock = Caps_Lock
-keycode 94 = F12
+clear Lock
+keycode 66 = Control_L
+add Control = Control_L
