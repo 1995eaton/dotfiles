@@ -106,7 +106,7 @@ execute pathogen#infect()
   vnoremap . :normal .<CR>
   set visualbell t_vb=
   set ttimeoutlen=0
-  set timeoutlen=100
+  set timeoutlen=500
   let g:Tex_CompileRule_ps='ps2pdf $*'
   nnoremap <buffer> <C-b> :w<cr>:exec '!clear'<cr>:exec '!python' shellescape(@%, 1)<cr>
   set ttyfast

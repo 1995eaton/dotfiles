@@ -13,8 +13,8 @@ packages=(
    'https://github.com/dag/vim2hs'
    'https://github.com/mattn/emmet-vim'
    'https://github.com/lilydjwg/colorizer'
-   'https://github.com/jaxbot/brolink.vim'
    'https://github.com/ervandew/supertab'
+   'https://github.com/jelera/vim-javascript-syntax.git'
 )
 
 
