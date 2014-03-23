@@ -136,13 +136,13 @@ end
 "
 if &t_Co > 255
    if s:molokai_original == 1
-      hi Normal                   ctermbg=234
+      hi Normal                   ctermbg=none
       hi CursorLine               ctermbg=235   cterm=none
       hi CursorLineNr ctermfg=208               cterm=none
    else
       hi Normal       ctermfg=252 ctermbg=none
       hi CursorLine               ctermbg=234   cterm=none
-      hi CursorLineNr ctermfg=161               cterm=none
+      hi CursorLineNr ctermfg=208               cterm=none
    endif
    hi Boolean         ctermfg=135
    hi Character       ctermfg=144
@@ -177,7 +177,7 @@ if &t_Co > 255
    hi Macro           ctermfg=193
    hi SpecialKey      ctermfg=81
 
-   hi MatchParen      ctermfg=208  ctermbg=233 cterm=bold
+   hi MatchParen      ctermfg=208  ctermbg=none cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
    hi Operator        ctermfg=161
@@ -220,7 +220,7 @@ if &t_Co > 255
 
    hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
    hi VisualNOS                   ctermbg=238
-   hi Visual                      ctermbg=15
+   hi Visual                      ctermbg=235
    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
    hi WildMenu        ctermfg=81  ctermbg=16
 
@@ -244,10 +244,10 @@ if &t_Co > 255
        hi Conditional     ctermfg=197               cterm=bold
        hi Constant        ctermfg=141               cterm=bold
 
-       hi DiffDelete      ctermfg=125 ctermbg=233
+       hi DiffDelete      ctermfg=125 ctermbg=none
 
        hi Directory       ctermfg=154               cterm=bold
-       hi Error           ctermfg=222 ctermbg=233
+       hi Error           ctermfg=222 ctermbg=none
        hi Exception       ctermfg=154               cterm=bold
        hi Float           ctermfg=141
        hi Function        ctermfg=154
