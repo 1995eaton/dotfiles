@@ -5,6 +5,7 @@ cd $bundle_dir
 
 packages=(
   'https://github.com/tomtom/tcomment_vim'
+  'https://github.com/scrooloose/nerdtree.git'
   'https://github.com/itchyny/lightline.vim'
   'https://github.com/kchmck/vim-coffee-script'
   'https://github.com/1995eaton/vim-notes'

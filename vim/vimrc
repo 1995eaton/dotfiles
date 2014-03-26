@@ -1,31 +1,31 @@
 execute pathogen#infect()
 
-"Color schemes
+" Color schemes
 
 set t_Co=256
 colorscheme molokai
 set background=dark
 
-"Lightline
+" Lightline
 
 set laststatus=2
 let g:lightline = { 'colorscheme': 'wombat' }
 
-"File settings
+" File settings
 
 filetype plugin indent on
 set fileformats=unix,dos,mac
 
-"Syntax hightlighting
+" Syntax hightlighting
 
 syntax on
-map <silent> <C-h> :nohl<cr>
+map <silent> <S-h> :nohl<cr>
 
-"Line numbering (dynamic + relative)
+" Line numbering (dynamic + relative)
 
 set number
 
-"Cursor movement
+" Cursor movement
 
 set mouse=nicr
 nnoremap j gj
@@ -36,7 +36,7 @@ map J jzz
 map K kzz
 map L zz
 
-"Disable line breaks unless the <Enter> key is hit
+" Disable line breaks unless the <Enter> key is hit
 
 set wrap
 set linebreak
@@ -44,18 +44,18 @@ set nolist
 set textwidth=0
 set wrapmargin=0
 
-"Normal backspace behavior (non-Vi)
+" Normal backspace behavior (non-Vi)
 
 set backspace=2
 
-"Tab settings
+" Tab settings
 
 set smarttab
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
-"Searching
+" Searching
 
 set incsearch
 set hlsearch
@@ -63,49 +63,44 @@ set ignorecase
 set smartcase
 set magic
 
-"Copy/Paste to/from X buffer
+" Copy/Paste to/from X buffer
 
-vnoremap Y "+y
-nmap P "+p
-vmap P "+p
+vnoremap gy "+y
+nmap gp "+p
+vmap gp "+p
 
-"Reload vimrc
+" Reload vimrc
 
 nmap <silent> <leader>r :so ~/.vimrc<cr>
 
-"Vim comments
+" Vim comments
 
 nmap ge gcc
 vmap ge gc
 
-"Bracket highlighting
+" Bracket highlighting
 
 set showmatch
 set matchtime=2
 
-"Disable file backups + swapfile creation
+" Disable file backups + swapfile creation
 
 set noswapfile
 set nobackup
 set nowb
 
-"Command mode settings
+" Command mode settings
 
 set wildmenu
 set wildmode=list:longest
 set shellslash
 set history=100
 
-"Vim notes
+" Vim notes
 
 let g:notes_directories=['~/notes']
 
-"EasyMotion
-
-map <C-j> <leader><leader>w
-map <C-k> <leader><leader>gE
-
-"Emmet
+" Emmet
 
 let g:user_emmet_leader_key='<C-e>'
 
@@ -121,7 +116,19 @@ if has('gui_running')
   set guioptions-=m
 endif
 
-"Miscellaneous
+" Windows
+
+function! MapAll(key, mapping)
+  execute 'imap' a:key "<C-o>" . a:mapping
+  execute 'map' a:key a:mapping
+endfunction
+
+call MapAll("<C-j>", "<C-w>j")
+call MapAll("<C-k>", "<C-w>k")
+call MapAll("<C-h>", "<C-w>h")
+call MapAll("<C-l>", "<C-w>l")
+
+" Miscellaneous
 
 vnoremap . :normal .<CR>
 set visualbell t_vb=
@@ -129,8 +136,9 @@ set ttimeoutlen=0
 set timeoutlen=500
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+nnoremap <C-n> :NERDTreeToggle<CR>
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 let g:Tex_CompileRule_ps='ps2pdf $*'
 nnoremap <buffer> <C-b> :w<cr>:exec '!clear'<cr>:exec '!python' shellescape(@%, 1)<cr>
 set ttyfast

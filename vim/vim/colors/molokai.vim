@@ -193,7 +193,7 @@ if &t_Co > 255
 "    hi Question        ctermfg=81
 "    hi Repeat          ctermfg=161               cterm=bold
 "    hi Search          ctermfg=253 ctermbg=66
-   hi Pmenu           ctermfg=232  ctermbg=255
+   hi Pmenu           ctermfg=232  ctermbg=7
    hi PmenuSel        ctermfg=255  ctermbg=232
    hi PmenuSbar                   ctermbg=232
    hi PmenuThumb      ctermfg=81
