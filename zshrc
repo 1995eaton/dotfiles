@@ -1,8 +1,7 @@
-#DRIVE CLONING
+# DRIVE CLONING
+#  rsync -aAXv /* /path/to/backup/folder --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found}
 
-#rsync -aAXv /* /path/to/backup/folder --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found}
-
-#ZSH OPTIONS
+# ZSH OPTIONS
 
 setopt bash_autolist
 export ZLE_REMOVE_SUFFIX_CHARS=""
@@ -22,12 +21,12 @@ setopt HIST_IGNORE_SPACE
 setopt COMPLETE_ALIASES
 bindkey -e
 
-#EXTRA COMPLETIONS ==> https://github.com/zsh-users/zsh-completions
+# EXTRA COMPLETIONS ==> https://github.com/zsh-users/zsh-completions
 
 fpath=(/home/jake/.zsh-completions/src $fpath)
 autoload -U compinit && compinit -C
 
-#PROFILE OPTIONS
+# PROFILE OPTIONS
 
 if [[ `id -u` == '0' ]]; then
   PROMPT=$'\>\> '
@@ -44,18 +43,24 @@ if [[ $(uname) == "Darwin" ]]; then
   else alias ls='ls --color=auto'
 fi
 
-export PATH=$PATH:~/dotfiles/scripts:~/.gem/ruby/2.1.0/bin:~/.config/bspwm/panel:~/.config/bspwm/bar
+export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar
 
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.python-autocomplete.py
-export BROWSER="google-chrome-beta"
+export BROWSER="chromium"
 
 alias sl="ls"
 alias d="pwd"
-alias p="ss -tn"
+alias p="netstat -plantu" # netstat apparently deprecated by ss
 alias u="id -u -n"
 alias less="less -Cr"
 alias h="history -t %m/%d\ -\ %r"
 alias dl="cd ~/downloads"
 alias sc="cd ~/source"
-alias brolink="node ~/.vim/bundle/brolink.vim/brolink/brolink.js & &> /dev/null"
+alias gp="git pull"
+alias gc="git clone"
+alias ..="cd .."
+alias l="ls"
+alias c="cd"
+alias v="vim"
+alias emacs="emacs -nw"

@@ -10,6 +10,7 @@ packages=(
   'https://github.com/1995eaton/vim-notes'
   'https://github.com/xolox/vim-misc'
   'https://github.com/mattn/emmet-vim'
+  'git@github.com:1995eaton/vim-better-javascript-syntax.git'
   'https://github.com/lilydjwg/colorizer'
   'http://git.code.sf.net/p/vim-latex/vim-latex'
 )
@@ -23,7 +24,8 @@ if [[ $1 == '-p' ]]; then
   rm -rf vim-pathogen
 else
   for i in ${packages[*]}; do
-    _dir=`echo $i | sed 's/http\(s\)\?.*\///g'`
+    # _dir=`echo $i | sed 's/http\(s\)\?.*\///g'`
+    _dir=`echo $i | sed 's/^.*\///' | sed 's/\.git$//'`
     if [[ ! -e $_dir ]]; then
       echo -e "\033[36;1;31mCloning $_dir:\033[0;0m\n"
       git clone $i

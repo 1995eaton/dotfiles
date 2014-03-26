@@ -169,7 +169,7 @@ if &t_Co > 255
    hi Folded          ctermfg=67  ctermbg=16
    hi Function        ctermfg=118
    hi Identifier      ctermfg=208               cterm=none
-   hi Ignore          ctermfg=244 ctermbg=232
+   hi Ignore          ctermfg=244 ctermbg=none
    hi IncSearch       ctermfg=193 ctermbg=16
 
    hi keyword         ctermfg=161               cterm=bold
@@ -183,8 +183,18 @@ if &t_Co > 255
    hi Operator        ctermfg=161
 
    " complete menu
-   hi Pmenu           ctermfg=81  ctermbg=16
-   hi PmenuSel        ctermfg=81  ctermbg=244
+"    hi Pmenu           ctermfg=81  ctermbg=16
+"    hi PmenuSel        ctermfg=81  ctermbg=244
+"    hi PmenuSbar                   ctermbg=232
+"    hi PmenuThumb      ctermfg=81
+"
+"    hi PreCondit       ctermfg=118               cterm=bold
+"    hi PreProc         ctermfg=118
+"    hi Question        ctermfg=81
+"    hi Repeat          ctermfg=161               cterm=bold
+"    hi Search          ctermfg=253 ctermbg=66
+   hi Pmenu           ctermfg=232  ctermbg=255
+   hi PmenuSel        ctermfg=255  ctermbg=232
    hi PmenuSbar                   ctermbg=232
    hi PmenuThumb      ctermfg=81
 
@@ -207,18 +217,18 @@ if &t_Co > 255
    endif
    hi Statement       ctermfg=161               cterm=bold
    hi StatusLine      ctermfg=238 ctermbg=253
-   hi StatusLineNC    ctermfg=244 ctermbg=232
+   hi StatusLineNC    ctermfg=244 ctermbg=none
    hi StorageClass    ctermfg=208
    hi Structure       ctermfg=81
    hi Tag             ctermfg=161
    hi Title           ctermfg=166
-   hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+   hi Todo            ctermfg=231 ctermbg=none   cterm=bold
 
    hi Typedef         ctermfg=81
    hi Type            ctermfg=81                cterm=none
    hi Underlined      ctermfg=244               cterm=underline
 
-   hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
+   hi VertSplit       ctermfg=244 ctermbg=none   cterm=bold
    hi VisualNOS                   ctermbg=238
    hi Visual                      ctermbg=235
    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
