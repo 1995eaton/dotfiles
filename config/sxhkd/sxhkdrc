@@ -1,7 +1,7 @@
 alt + {comma,period}
  bspc desktop -C {backward,forward}
 alt + shift q
- bspc quit
+ killall conky bar && bspc quit
 ~button1
  bspc pointer -g focus
 alt + shift + {h,j,k,l}
