@@ -128,10 +128,10 @@ call MapAll("<C-k>", "<C-w>k")
 call MapAll("<C-h>", "<C-w>h")
 call MapAll("<C-l>", "<C-w>l")
 
-map <silent> [ :vertical res -3<CR>
-map <silent> ] :vertical res +3<CR>
-map <silent> { :res -3<CR>
-map <silent> } :res +3<CR>
+nmap <silent> [ :vertical res -3<CR>
+nmap <silent> ] :vertical res +3<CR>
+nmap <silent> { :res -3<CR>
+nmap <silent> } :res +3<CR>
 
 " Miscellaneous
 

@@ -27,6 +27,7 @@ fpath=(/home/jake/.zsh-completions/src $fpath)
 autoload -U compinit && compinit -C
 
 # PROFILE OPTIONS
+# export PROMPT=$'┌───[\e[0;91m%n\e[0m@%M:\e[0;32m%d\e[0m]\n└╼ '
 
 if [[ `id -u` == '0' ]]; then
   PROMPT=$'\>\> '
@@ -43,7 +44,7 @@ if [[ $(uname) == "Darwin" ]]; then
   else alias ls='ls --color=auto'
 fi
 
-export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar
+export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/opt/firefox
 
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.python-autocomplete.py

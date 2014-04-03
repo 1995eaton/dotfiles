@@ -7,24 +7,11 @@ use_spacer none
 
 TEXT
 \
-\l\u1${execi 0.05 ~/.config/bspwm/panel/monitor.sh | sed 's/6.*/6/'} \
-\c\f9\b1\u1 ${time %A | %B %d, %Y |%l:%M:%S %p} \
-\r VOL[${execi 5 \
-	if amixer sget Master | grep -o "\[off\]" > /dev/null; \
-		then echo "Mute"; \
-	else amixer sget Master | grep -o "[0-9]\+%"; \
-fi}] | \
-\
-BAT[${execi 10 \
-	acpi | grep -o "\(\(Discharging\|Charging\|Full\|Unknown\), \)\?[0-9]\+%" | \
-		sed -e "s/Unknown/Charging/g" | \
-		sed -e "s/,/:/g"}] | \
-\
-CPU[${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}%] \
-[${execi 5 \
-	sensors | grep "Core 1" | \
-		grep -o "  \++.*C " | \
-		sed -e 's/[+ ]//g' | \
-		egrep -o "[0-9]+.[0-9]+"}C] | \
-\
-RAM[$mem/$memmax] \f \b
+${execi 0.05 /home/jake/.config/bspwm/panel/monitor.sh | sed 's/6.*/6/'} %{c} \
+${time %A | %B %d, %Y |%l:%M:%S %p} %{r} \
+A[${execi 5 /home/jake/.config/bspwm/panel/vol.sh }] | \
+B[${execi 10 /home/jake/.config/bspwm/panel/bat.sh}] | \
+C[${cpu cpu0},${cpu cpu1},${cpu cpu2},${cpu cpu3}] | \
+T[${execi 5 /home/jake/.config/bspwm/panel/cpu.sh}] | \
+D[${execi 200 /home/jake/.config/bspwm/panel/disk.sh}] | \
+R[${execi 20 /home/jake/.config/bspwm/panel/mem.sh}] 

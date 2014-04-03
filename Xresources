@@ -43,7 +43,8 @@ urxvt.imLocale:          en_US.UTF-8
 urxvt.iso14755:          0
 urxvt.iso14755_52:       0
 urxvt.loginShell:        1
-urxvt*internalBorder:    5
+! urxvt*internalBorder:    5
+urxvt*internalBorder:    2
 urxvt.cursorBlink:       1
 urxvt.scrollBar:         0
 urxvt.scrollTtyOutput:   0

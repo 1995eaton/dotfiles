@@ -2,4 +2,4 @@
 
 killall conky bar
 
-conky -c ~/.config/bspwm/panel/conkyrc | ~/.config/bspwm/bar/bar - p
+conky -c ~/.config/bspwm/panel/conkyrc | ~/.config/bspwm/panel/bar.sh

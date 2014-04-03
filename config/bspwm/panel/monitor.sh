@@ -16,8 +16,7 @@ get_mons() {
 format_output() {
   get_active_mon
   get_mons
-  #echo $mons | sed 's/ /  /g' | sed 's/\(^\|$\)/ /g' | sed "s/ \($active_mon\) /\\\f9\\\u1\\\b1 \1 \\\u \\\\\\b\\\\\ \\\f/g"
-  echo $mons | sed 's/ /  /g' | sed 's/\(^\|$\)/ /g' | sed "s/ \($active_mon\) /\\\f9\\\b1 \1 \\\\\\b\\\\\ \\\f/g"
+  echo $mons | sed 's/ /  /g' | sed 's/\(^\|$\)/ /g' | sed "s/ \($active_mon\) /%{R} \1 %{R}/g"
 }
 
 format_output
