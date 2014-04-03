@@ -17,6 +17,6 @@ xsetroot -cursor_name left_ptr &
 xrdb ~/.Xresources &
 xmodmap /home/jake/.macros &
 nitrogen --restore &
-xset r rate 400 35 &
-xset m 1/2 &
-~/.config/bspwm/panel/panel.sh
+xset r rate 300 40 &
+xset m 3/2.5 &
+~/.config/bspwm/panel/panel.sh &
