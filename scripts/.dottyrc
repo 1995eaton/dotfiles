@@ -8,7 +8,6 @@ vim/vim = ~/.vim
 vim/vimrc = ~/.vimrc
 compton.conf = ~/.compton.conf
 Xresources = ~/.Xresources
-bashrc = ~/.bashrc
 zshrc = ~/.zshrc
 scripts = ~/scripts
 python-autocomplete.py = ~/.python-autocomplete.py
