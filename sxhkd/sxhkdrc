@@ -36,6 +36,8 @@ alt + f
  urxvtc -e 'ranger'
 alt + t
  urxvtc -e tmux -2
+alt + m
+ /home/jake/scripts/hide_cursor/hide.sh
 super + Escape
  pkill -USR1 -x sxhkd
 alt + Left
