@@ -3,9 +3,11 @@
 if [[ $1 == 'i' ]]; then
 	sudo cpupower frequency-info
 elif [[ $1 == 'h' ]]; then
-	sudo cpupower frequency-set -d 3.4GHz -u 3.4GHz
+	sudo cpupower frequency-set -d 3.4GHz -u 3.4GHz -g performance
+elif [[ $1 == 'n' ]]; then
+  sudo cpupower frequency-set -d 800MHz -u 3.4GHz -g powersave
 elif [[ $1 == 'l' ]]; then
-	sudo cpupower frequency-set -d 800MHz -u 800MHz
+	sudo cpupower frequency-set -d 800MHz -u 800MHz -g powersave
 else
-	echo -e "Usage:\ni ==> info\nh ==> high power (3.4GHz)\nl ==> low power (800MHz)"
+  echo -e "Usage:\ni ==> info\nh ==> high power (3.4GHz)\nn ==> normal power (800MHz-3.4GHz)\nl ==> low power (800MHz)"
 fi

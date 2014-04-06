@@ -1,0 +1,15 @@
+out_to_console yes
+out_to_x no
+background no
+update_interval 1
+total_run_times 0
+use_spacer none
+
+TEXT
+\
+${execi 0.5 ~/.config/bspwm/panel/bspwm.sh} \
+%{c}${time %A | %B %d, %Y |%l:%M:%S %p} \
+%{r}V[${execi 5 ~/.config/bspwm/panel/vol.sh}] | \
+T[${execi 5 ~/.config/bspwm/panel/thermal.sh}] | \
+D[${execi 200 ~/.config/bspwm/panel/disk.sh}] | \
+M[${execi 10 ~/.config/bspwm/panel/mem.sh}] 

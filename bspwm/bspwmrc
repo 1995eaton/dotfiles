@@ -19,4 +19,4 @@ xmodmap /home/jake/.macros &
 nitrogen --restore &
 xset r rate 300 40 &
 xset m 3/2.5 &
-~/.config/bspwm/panel/panel.sh &
+~/.config/bspwm/panel/init.sh &
