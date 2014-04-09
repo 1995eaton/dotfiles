@@ -53,6 +53,7 @@ if [[ $(uname) == "Darwin" ]]; then
   else alias ls='ls --color=auto'
 fi
 
+
 export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/opt/firefox
 
 export EDITOR="vim"
@@ -86,8 +87,10 @@ function zle-line-init zle-keymap-select {
   fi
   zle reset-prompt
 }
+
 zle -N zle-keymap-select
 zle -N zle-line-init
+# zle -N zle-line-init
 bindkey -rM vicmd ":" # Annoying as shit
 zle -N zle-keymap-select
 # Use vi-style keybindings
