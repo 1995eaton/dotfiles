@@ -3,13 +3,15 @@ execute pathogen#infect()
 " Color schemes
 
 set t_Co=256
-colorscheme molokai
 set background=dark
+colorscheme molokai
+" colorscheme solarized
 
 " Lightline
 
 set laststatus=2
 let g:lightline = { 'colorscheme': 'wombat' }
+" let g:lightline = { 'colorscheme': 'solarized_dark' }
 
 " File settings
 
@@ -148,3 +150,4 @@ let g:Tex_CompileRule_ps='ps2pdf $*'
 nnoremap <buffer> <C-b> :w<cr>:exec '!clear'<cr>:exec '!python' shellescape(@%, 1)<cr>
 set ttyfast
 set lazyredraw
+let g:haddock_browser="/usr/bin/firefox"

@@ -29,8 +29,7 @@ setopt HIST_IGNORE_SPACE
 setopt COMPLETE_ALIASES
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ''
-# bindkey -e
-
+KEYTIMEOUT=1
 export CORRECT_IGNORE='_*'
 bindkey ';5A' up-line-or-history
 bindkey ';5B' down-line-or-history
@@ -54,7 +53,11 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 
-export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/opt/firefox
+export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/opt/firefox:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release
+export GOOGLE_API_KEY="AIzaSyAIOUE9BrHCDxhMbYkArx357qgW258VYhI"
+export GOOGLE_DEFAULT_CLIENT_ID="12183383802-ed4qc36t32aqvrkjjto17voq6ks19voj.apps.googleusercontent.com"
+export GOOGLE_DEFAULT_CLIENT_SECRET="VWJmeusSKze56W_oWpMA8u6b"
+export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
 
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.python-autocomplete.py
@@ -63,15 +66,19 @@ export BROWSER="chromium"
 alias sl="ls"
 alias d="pwd"
 alias p="netstat -plantu" # netstat apparently deprecated by ss
+alias killvim='$(kill -9 `ps -eo pid,comm | grep vim | egrep -o "[0-9]+" | tr "\n" " "`)'
 alias u="id -u -n"
 alias less="less -Cr"
+alias ed="ed -p '-> '"
 alias h="history -t %m/%d\ -\ %r"
 alias dl="cd ~/downloads"
 alias sc="cd ~/source"
+alias su="sudo su"
 alias gp="git pull"
 alias gc="git clone"
 alias ..="cd .."
 alias l="ls"
+alias emacs="emacs -nw"
 alias c="cd"
 alias v="vim"
 alias z="source ~/.zshrc"
@@ -163,3 +170,7 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd "^V" edit-command-line
 bindkey -M vicmd v edit-command-line
+# bindkey '^O' clear-screen
+# bindkey -s '^[\' 'ls -al\n'
+bindkey '^[a' beginning-of-line
+bindkey '^[e' end-of-line
