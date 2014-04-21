@@ -10,10 +10,9 @@ TEXT
 \
 ${execi 0.5 ~/.config/bspwm/panel/bspwm.sh}\
 ${execi 0.5 a=`bspc query -T -w | grep -o "m.*\*" | cut -f2 -d' '`;if [[ $a != "" ]]; then echo %{R} $a %{R}; fi} \
-%{c}${time %A | %B %d, %Y |%l:%M:%S %p} \
-%{r}VOL[${execi 5 ~/.config/bspwm/panel/vol.sh}] | \
-BAT[${execi 5 ~/.config/bspwm/panel/bat.sh}%%] | \
-CPU[${cpu cpu0}%%] | \
-TEMP[${execi 5 ~/.config/bspwm/panel/thermal.sh}${iconv_start UTF-8 ISO_8859-1}°C${iconv_stop}] | \
-DISK[${execi 200 ~/.config/bspwm/panel/disk.sh}%%] | \
-MEM[${execi 10 ~/.config/bspwm/panel/mem.sh}] 
+%{c}${time %A  %B %d, %Y %l:%M:%S %p} \
+%{r}${exec echo -ne "\ue100 "}${execi 5 ~/.config/bspwm/panel/vol.sh}  \
+${execi 5 ~/.config/bspwm/panel/bat.sh}  \
+ ${cpu cpu0}  \
+ ${execi 5 ~/.config/bspwm/panel/thermal.sh}${iconv_start UTF-8 ISO_8859-1}°C${iconv_stop}  \
+ ${execi 10 ~/.config/bspwm/panel/mem.sh} 

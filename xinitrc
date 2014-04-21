@@ -1,5 +1,6 @@
 # GENERAL #
 xset +fp /usr/share/fonts/local
+xset +fp /home/jake/.fonts
 xset fp rehash
 
 # BSPWM #

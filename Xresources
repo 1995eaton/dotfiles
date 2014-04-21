@@ -1,30 +1,43 @@
 ! To list available fonts: fc-list / xlsfonts
 
-!*font: -*-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
-!*boldFont: -*-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
-
 !*font: xft:Monaco:pixelsize=11:style=Regular
 !*boldFont: xft:Monaco:pixelsize=11:style=Regular
 !urxvt.letterSpace: -1
 
-!*font: xft:Liberation Mono:pixelsize=11:style=Regular
-!*boldFont: xft:Liberation Mono:pixelsize=11:style=Bold
-!urxvt.letterSpace: -1
+! *font: xft:Liberation Mono:pixelsize=11:style=Regular
+! *boldFont: xft:Liberation Mono:pixelsize=11:style=Bold
+! urxvt.letterSpace: -1
+
+! *font: -*-pyrite-medium-r-normal--12-120-96-96-c-60-iso10646-1
+! *boldFont: -*-pyrite-medium-r-normal--12-120-96-96-c-60-iso10646-1
+
+! *font: -*-ticon-medium-r-normal--12-120-72-72-c-60-iso8859-1
+! *boldFont: -*-ticon-medium-r-normal--12-120-72-72-c-60-iso8859-1
+
+! *font: xft:Source Code Pro:pixelsize=10:style=Regular
+! *boldFont: xft:Source Code Pro:pixelsize=10:style=Bold
+! urxvt.letterSpace: -2
+
+! *font: -Misc-ProggyTiny-Normal-R-Normal--9-80-96-96-C-60-ISO8859-1
+! *boldFont: -Misc-ProggyTiny-Normal-R-Normal--9-80-96-96-C-60-ISO8859-1
+
+! *font: -misc-GwdTE_437-Normal-R-Normal--12-90-96-96-M-80-ISO8859-1
+! *boldFont: -misc-GwdTE_437-Normal-R-Normal--12-90-96-96-M-80-ISO8859-1
 
 *font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
 *boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
 
-!urxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
-!urxvt*boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
-!urxvt.letterSpace: -1
+! urxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
+! urxvt*boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
+! urxvt.letterSpace: -1
 
-!*font: xft:Inconsolata:pixelsize=12:style=Regular
-!*boldFont: xft:Inconsolata:pixelsize=12:style=Bold
-!urxvt.letterSpace: -1
+! *font: xft:Inconsolata:pixelsize=12:style=Regular
+! *boldFont: xft:Inconsolata:pixelsize=12:style=Bold
+! urxvt.letterSpace: -1
 
-!*font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
-!*boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
-!urxvt.letterSpace: -1
+! *font: xft:DejaVu Sans Mono:pixelsize=18:style=Book
+! *boldFont: xft:DejaVu Sans Mono:pixelsize=18:style=Bold
+! urxvt.letterSpace: -1
 
 ! XFT CONFIGS
 
@@ -43,9 +56,9 @@ urxvt.imLocale:          en_US.UTF-8
 urxvt.iso14755:          0
 urxvt.iso14755_52:       0
 urxvt.loginShell:        1
-! urxvt*internalBorder:    5
-urxvt*internalBorder:    2
+urxvt*internalBorder:    3
 urxvt.cursorBlink:       1
+! urxvt.cursorUnderline:   1
 urxvt.scrollBar:         0
 urxvt.scrollTtyOutput:   0
 urxvt.scrollTtyKeypress: 1
