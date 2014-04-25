@@ -85,9 +85,12 @@ NORMAL_PS1_COLORS=('233' '250')
 ROOT_PS1_COLORS=('233' '118')
 VIM_PS1_COLORS=('254' '161')
 
-
 function zle-line-init zle-keymap-select {
-  PROMPT=$'%F{161}${${KEYMAP/vicmd/%(!.<.%f<)}/main/%(!.>.%f>)}%f '
+  if [[ ${KEYMAP/vicmd} == "main" ]]; then
+    PROMPT=$'%F{161}%(!.>.%f>)%f '
+  else
+    PROMPT=$'%F{161}%(!.<.%f<)%f '
+  fi
   zle reset-prompt
 }
 
