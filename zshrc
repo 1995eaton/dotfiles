@@ -85,24 +85,30 @@ NORMAL_PS1_COLORS=('233' '250')
 ROOT_PS1_COLORS=('233' '118')
 VIM_PS1_COLORS=('254' '161')
 
+
 function zle-line-init zle-keymap-select {
-  if [[ ${KEYMAP/vicmd} == "main" ]]; then
-    if [[ $UID == '0' ]]; then
-      FG=$ROOT_PS1_COLORS[1]
-      BG=$ROOT_PS1_COLORS[2]
-    else
-      FG=$NORMAL_PS1_COLORS[1]
-      BG=$NORMAL_PS1_COLORS[2]
-    fi
-  else
-    FG=$VIM_PS1_COLORS[1]
-    BG=$VIM_PS1_COLORS[2]
-  fi
-  # PROMPT=$'%F{$FG}%K{$BG%}%m%K{238}%F{$BG}%F{253} %~%k%F{238}%f'
-  # PROMPT=$'%F{$FG}%K{$BG%}%m%K{238}%F{$BG}%F{253} %~ %k%F{238}%f'
-  PROMPT=$'%F{$FG}%K{$BG%} %m %K{238}%F{$BG}%F{253} %~ %k%F{238}%f'
+  PROMPT=$'%F{161}${${KEYMAP/vicmd/%(!.<.%f<)}/main/%(!.>.%f>)}%f '
   zle reset-prompt
 }
+
+# function zle-line-init zle-keymap-select {
+#   if [[ ${KEYMAP/vicmd} == "main" ]]; then
+#     if [[ $UID == '0' ]]; then
+#       FG=$ROOT_PS1_COLORS[1]
+#       BG=$ROOT_PS1_COLORS[2]
+#     else
+#       FG=$NORMAL_PS1_COLORS[1]
+#       BG=$NORMAL_PS1_COLORS[2]
+#     fi
+#   else
+#     FG=$VIM_PS1_COLORS[1]
+#     BG=$VIM_PS1_COLORS[2]
+#   fi
+#   # PROMPT=$'%F{$FG}%K{$BG%}%m%K{238}%F{$BG}%F{253} %~%k%F{238}%f'
+#   # PROMPT=$'%F{$FG}%K{$BG%}%m%K{238}%F{$BG}%F{253} %~ %k%F{238}%f'
+#   PROMPT=$'%F{$FG}%K{$BG%} %m %K{238}%F{$BG}%F{253} %~ %k%F{238}%f'
+#   zle reset-prompt
+# }
 
 zsh-exit() {
   exit

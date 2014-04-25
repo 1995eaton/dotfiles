@@ -38,7 +38,7 @@ alt + p
 alt + {_,shift} + w
  {/home/jake/source/depot_tools/src/out/Release/chrome --user-data-dir=/home/jake/.config/chrome-dev, chromium}
 alt + f
- urxvtc -e 'ranger'
+ firefox
 alt + t
  urxvtc -e tmux -2
 alt + m
