@@ -13,6 +13,15 @@ set laststatus=2
 let g:lightline = { 'colorscheme': 'wombat' }
 " let g:lightline = { 'colorscheme': 'solarized_dark' }
 
+" Indentation
+
+function! AlignAll()
+  let curline = line(".")
+  execute 'normal gg=G'
+  execute 'normal ' + curline + 'gg'
+endfunction
+map <C-l> :call AlignAll()<CR>
+
 " File settings
 
 filetype plugin indent on
@@ -21,10 +30,11 @@ set fileformats=unix,dos,mac
 " Syntax hightlighting
 
 syntax on
-map <silent> <S-h> :nohl<cr>
+map <silent> <C-h> :nohlsearch<CR>
 
-" Line numbering (dynamic + relative)
+" Line numbering
 
+" set relativenumber
 set number
 
 " Cursor movement
@@ -120,34 +130,46 @@ endif
 
 " Windows
 
-function! MapAll(key, mapping)
-  execute 'imap' a:key "<C-o>" . a:mapping
-  execute 'map' a:key a:mapping
-endfunction
+" function! MapAll(key, mapping)
+"   execute 'imap' a:key "<C-o>" . a:mapping
+"   execute 'map' a:key a:mapping
+" endfunction
 
-call MapAll("<C-j>", "<C-w>j")
-call MapAll("<C-k>", "<C-w>k")
-call MapAll("<C-h>", "<C-w>h")
-call MapAll("<C-l>", "<C-w>l")
+" call MapAll("<C-j>", "<C-w>j")
+" call MapAll("<C-k>", "<C-w>k")
+" call MapAll("<C-h>", "<C-w>h")
+" call MapAll("<C-l>", "<C-w>l")
 
-nmap <silent> [ :vertical res -3<CR>
-nmap <silent> ] :vertical res +3<CR>
-nmap <silent> { :res -3<CR>
-nmap <silent> } :res +3<CR>
+" nmap <silent> [ :vertical res -3<CR>
+" nmap <silent> ] :vertical res +3<CR>
+" nmap <silent> { :res -3<CR>
+" nmap <silent> } :res +3<CR>
 
-" Miscellaneous
+"  Miscellaneous
 
 vnoremap . :normal .<CR>
 set visualbell t_vb=
 set ttimeoutlen=0
 set timeoutlen=500
 let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-nnoremap <C-n> :NERDTreeToggle<CR>
+let g:neocomplete#enable_smart_case = 0
+set pumheight=8
+let g:airline_theme='molokai'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
+" function Move()
+"   if !pumvisible() && col('.') - 2 >= 0
+"     if v:char =~# "\/" || getline('.')[col('.') - 2] == "/"
+"       call feedkeys("\<C-x>\<C-f>\<C-p>")
+"     elseif v:char =~# "[a-zA-Z.]"
+"       call feedkeys("\<C-x>\<C-o>\<C-p>")
+"     endif
+"   endif
+" endfunction
+" autocmd InsertCharPre * call Move()
+
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-let g:Tex_CompileRule_ps='ps2pdf $*'
-nnoremap <buffer> <C-b> :w<cr>:exec '!clear'<cr>:exec '!python' shellescape(@%, 1)<cr>
 set ttyfast
 set lazyredraw
-let g:haddock_browser="/usr/bin/firefox"

@@ -11,7 +11,7 @@ packages=(
   'https://github.com/mattn/emmet-vim'
   'git@github.com:1995eaton/vim-better-javascript-syntax.git'
   'http://git.code.sf.net/p/vim-latex/vim-latex'
-  'https://github.com/christoomey/vim-tmux-navigator.git'
+  'https://github.com/Shougo/neocomplete.vim.git'
 )
 
 

@@ -10,6 +10,7 @@ HISTFILE=~/.history.zsh
 setopt APPEND_HISTORY
 setopt AUTO_CD
 setopt NOHUP
+setopt PROMPT_SUBST
 setopt NOCHECKJOBS
 setopt GLOB_COMPLETE
 setopt HIST_FIND_NO_DUPS
@@ -47,6 +48,7 @@ if [[ $(uname) == "Darwin" ]]; then
   else alias ls='ls --color=auto'
 fi
 
+
 export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/opt/firefox:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release
 export GOOGLE_API_KEY="AIzaSyAIOUE9BrHCDxhMbYkArx357qgW258VYhI"
 export GOOGLE_DEFAULT_CLIENT_ID="12183383802-ed4qc36t32aqvrkjjto17voq6ks19voj.apps.googleusercontent.com"
@@ -79,12 +81,26 @@ alias hide="/home/jake/scripts/hide_cursor/hide.sh"
 alias :wq="exit" # Vi has ruined me
 alias :q="exit"
 
+NORMAL_PS1_COLORS=('233' '250')
+ROOT_PS1_COLORS=('233' '118')
+VIM_PS1_COLORS=('254' '161')
+
 function zle-line-init zle-keymap-select {
-  if [[ `id -u` == '0' ]]; then
-    PROMPT="${${KEYMAP/vicmd/<< }/(main|viins)/>> }"
+  if [[ ${KEYMAP/vicmd} == "main" ]]; then
+    if [[ $UID == '0' ]]; then
+      FG=$ROOT_PS1_COLORS[1]
+      BG=$ROOT_PS1_COLORS[2]
+    else
+      FG=$NORMAL_PS1_COLORS[1]
+      BG=$NORMAL_PS1_COLORS[2]
+    fi
   else
-    PROMPT="${${KEYMAP/vicmd/< }/(main|viins)/> }"
+    FG=$VIM_PS1_COLORS[1]
+    BG=$VIM_PS1_COLORS[2]
   fi
+  # PROMPT=$'%F{$FG}%K{$BG%}%m%K{238}%F{$BG}%F{253} %~%k%F{238}%f'
+  # PROMPT=$'%F{$FG}%K{$BG%}%m%K{238}%F{$BG}%F{253} %~ %k%F{238}%f'
+  PROMPT=$'%F{$FG}%K{$BG%} %m %K{238}%F{$BG}%F{253} %~ %k%F{238}%f'
   zle reset-prompt
 }
 

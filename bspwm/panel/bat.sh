@@ -1,5 +1,5 @@
 #!/bin/sh
-acpi | awk '{if (/Unknown|Full|Charging/){print "",$4} else {a=100/6;if ($4 >= 100 - a) {print ""} else if ($4 >= 100 - 2*a) {print ""} else if ($4 >= 100 - 3*a) {print ""} else if ($4 >= 100 - 4*a) {print ""} else if ($4 >= 100 - 5*a) {print ""} else {print ""}}}'
+acpi | awk '{if (/Unknown|Full|Charging/){print "",$4+0} else {a=100/6;if ($4 >= 100 - a) {printf ""} else if ($4 >= 100 - 2*a) {printf ""} else if ($4 >= 100 - 3*a) {printf ""} else if ($4 >= 100 - 4*a) {printf ""} else if ($4 >= 100 - 5*a) {printf ""} else {printf ""};printf " "$4+0;}}'
 # __bat=`acpi`
 # __perc=`echo $__bat | egrep -o "[0-9]+%" | head -c-2`
 # if [[ `echo $__bat | grep Full` ]]; then
