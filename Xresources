@@ -17,6 +17,9 @@
 *font: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 *boldFont: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 
+! *font: -lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1
+! *boldFont: -lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1
+
 ! *font: xft:Source Code Pro:pixelsize=10:style=Regular
 ! *boldFont: xft:Source Code Pro:pixelsize=10:style=Bold
 ! urxvt.letterSpace: -2
@@ -82,7 +85,8 @@ urxvt.keysym.M-v:        perl:clipboard:paste
 *colorUL: #87afd7
 *foreground: #8F8F8F
 !urxvt*depth: 32
-*background: #1B1D1E
+! *background: #1B1D1E
+*background: #1c1c1c
 !Dark Yellow + Yellow
 *color3:  #E6DB74
 *color11: #FFF381

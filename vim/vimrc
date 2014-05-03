@@ -3,7 +3,8 @@ execute pathogen#infect()
 " Color schemes
 
 set t_Co=256
-set background=dark
+" set background=dark
+let g:rehash256=1
 colorscheme molokai
 " colorscheme solarized
 
@@ -114,12 +115,12 @@ let g:notes_directories=['~/notes']
 
 " Emmet
 
-let g:user_emmet_leader_key='<C-e>'
+let g:user_emmet_leader_key='<C-n>'
 
 " GUI options
 
 if has('gui_running')
-  set guifont=Bitstream\ Vera\ Sans\ Mono\ 10
+  set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
   autocmd GUIEnter * set vb t_vb=
   autocmd VimEnter * set vb t_vb=
   set guioptions-=T
@@ -130,10 +131,10 @@ endif
 
 " Windows
 
-" function! MapAll(key, mapping)
-"   execute 'imap' a:key "<C-o>" . a:mapping
-"   execute 'map' a:key a:mapping
-" endfunction
+function! MapAll(key, mapping)
+  execute 'imap' a:key "<C-o>" . a:mapping
+  execute 'map' a:key a:mapping
+endfunction
 
 " call MapAll("<C-j>", "<C-w>j")
 " call MapAll("<C-k>", "<C-w>k")
@@ -146,7 +147,6 @@ endif
 " nmap <silent> } :res +3<CR>
 
 "  Miscellaneous
-
 vnoremap . :normal .<CR>
 set visualbell t_vb=
 set ttimeoutlen=0
@@ -169,7 +169,10 @@ let g:airline_right_sep=''
 " endfunction
 " autocmd InsertCharPre * call Move()
 
+vnoremap <C-e> <C-u>
+nnoremap <C-e> <C-u>
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+call MapAll("<C-f>", ":source $MYVIMRC<CR>")
 set ttyfast
 set lazyredraw

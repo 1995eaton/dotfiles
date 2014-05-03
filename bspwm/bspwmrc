@@ -1,7 +1,8 @@
 #! /bin/sh
 
 # bspc monitor -d 001 010 011 100 101
-bspc monitor -d I II III IV
+bspc monitor -d 0 1 2 3 4 5
+# bspc monitor -d I II III IV
 
 bspc config border_width 0
 bspc config window_gap 0

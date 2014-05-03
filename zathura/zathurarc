@@ -1,11 +1,15 @@
-set default-bg "#aaaaaa"
+set default-bg "#1c1c1c"
 set completion-highlight-bg "#ff9400"
 set inputbar-fg "#aaaaaa"
 set guioptions =
 set font "Terminus normal 9"
-set incremental-search
 set highlight-color "#eeff03"
-unmap d
-unmap u
 map d scroll half-down
 map u scroll half-up
+map e scroll half-up
+map s scroll down
+map w scroll up
+map <C-i> zoom in
+map <C-o> zoom out
+set incremental-search false
+set page-cache-size 45

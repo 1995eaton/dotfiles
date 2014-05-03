@@ -256,17 +256,17 @@ if &t_Co > 255
 
        hi DiffDelete      ctermfg=125 ctermbg=none
 
-       hi Directory       ctermfg=154               cterm=bold
+       hi Directory       ctermfg=118               cterm=bold
        hi Error           ctermfg=222 ctermbg=none
-       hi Exception       ctermfg=154               cterm=bold
+       hi Exception       ctermfg=118               cterm=bold
        hi Float           ctermfg=141
-       hi Function        ctermfg=154
+       hi Function        ctermfg=118
        hi Identifier      ctermfg=208
 
        hi Keyword         ctermfg=197               cterm=bold
        hi Operator        ctermfg=197
-       hi PreCondit       ctermfg=154               cterm=bold
-       hi PreProc         ctermfg=154
+       hi PreCondit       ctermfg=118               cterm=bold
+       hi PreProc         ctermfg=118
        hi Repeat          ctermfg=197               cterm=bold
 
        hi Statement       ctermfg=197               cterm=bold

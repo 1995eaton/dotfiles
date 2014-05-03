@@ -33,10 +33,11 @@ alt + {o,i}
 alt + {_,shift + }{1-9,0}
  bspc {desktop -f,window -d} ^{1-9,10}
 alt + p
-  dmenu_run -nb \#1b1d1e -nf \#8f8f8f -sf \#5f5f5f -sb \#262626
-#dmenu_run -nb \#002b36 -nf \#839496 -sf \#cb4b16 -sb \#073642
-alt + {_,shift} + w
- {/home/jake/source/depot_tools/src/out/Release/chrome --user-data-dir=/home/jake/.config/chrome-dev, chromium}
+  dmenu_run
+#alt + {_,shift} + w
+# {/home/jake/source/depot_tools/src/out/Release/chrome --user-data-dir=/home/jake/.config/chrome-dev, chromium}
+alt + w
+ chromium
 alt + f
  firefox
 alt + t

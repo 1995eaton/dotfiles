@@ -4,18 +4,19 @@ background no
 update_interval 1
 total_run_times 0
 use_spacer none
-#CPU[${cpu cpu1}%% ${cpu cpu2}%% ${cpu cpu3}%% ${cpu cpu4}%%] | \
 
 TEXT
 \
-${execi 0.5 ~/.config/bspwm/panel/bspwm.sh}\
-${execi 0.5 a=`bspc query -T -w | grep -o "m.*\*" | cut -f2 -d' '`;if [[ $a != "" ]]; then echo %{R} $a %{R}; fi} \
-%{r}%{B\#fff333333} ${execi 5 ~/.config/bspwm/panel/bat.sh}  \
-${execi 30 date +%I:%M\ %P | sed 's/^0//'} %{B\#fff1b1d1e}
-#${time %l:%M %P} %{B\#fff1b1d1e}\
-#%{c}%{R} ${time %A  %B %d, %Y %l:%M:%S %p} %{R}\
-#%{r}%{R} ${exec echo -ne "\ue100 "}${execi 5 ~/.config/bspwm/panel/vol.sh}  \
-#${execi 5 ~/.config/bspwm/panel/bat.sh}  \
-# ${cpu cpu0}  \
-# ${execi 5 ~/.config/bspwm/panel/thermal.sh}${iconv_start UTF-8 ISO_8859-1}°C${iconv_stop}  \
-# ${execi 10 ~/.config/bspwm/panel/mem.sh} %{R}
+%{B\#fff333333}${execi 0.5 ~/.config/bspwm/panel/bspwm.sh}\
+${execi 0.5 a=`bspc query -T -w | grep -o "m.*\*" | cut -f2 -d' '`;if [[ $a != "" ]]; then echo " $a "; fi}%{F\#fff333333}%{B\#fff888888}%{B\#fff1c1c1c}%{F\#fff888888}\
+%{r}%{F\#fffb9b9b9}%{F\#fff333333d}%{B\#fffb9b9b9} ${exec echo -ne "\ue100 "}${execi 5 ~/.config/bspwm/panel/vol.sh}  \
+${execi 5 ~/.config/bspwm/panel/bat.sh}  \
+${cpu cpu0}%%  ${execi 5 ~/.config/bspwm/panel/thermal.sh}${iconv_start UTF-8 ISO_8859-1}°C${iconv_stop} %{B\#fff333333}%{F\#fffbbbbbb}\
+%{B\#fffb9b9b9}%{F\#fff333333}%{F\#fffbbbbbb}%{B\#fff333333} \
+${execi 30 date +%I:%M\ %P | sed 's/^0//'} %{B\#fff1c1c1c}
+
+#%{r}%{R} ${exec echo -ne "\ue100 "}${execi 5 ~/.config/bspwm/panel/vol.sh}  \
+#${execi 5 ~/.config/bspwm/panel/bat.sh}  \
+#${cpu cpu0}%% -> ${execi 5 ~/.config/bspwm/panel/thermal.sh}${iconv_start UTF-8 ISO_8859-1}°C${iconv_stop} %{R}\
+#%{R}%{R} \
+#${execi 30 date +%I:%M\ %P | sed 's/^0//'} %{B\#fff1c1c1c}
