@@ -74,6 +74,7 @@ alias gp="git pull"
 alias gc="git clone"
 alias gd="git diff"
 alias gdh="git diff HEAD~1"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gcm="git commit -a -m"
 alias gco="git commit"
 alias gpu="git push"
@@ -157,5 +158,5 @@ bindkey -M vicmd "G" end-of-history
 bindkey -M vicmd "^R" redo
 autoload edit-command-line
 zle -N edit-command-line
-bindkey  "^V" edit-command-line
+bindkey  "^F" edit-command-line
 bindkey -M vicmd v edit-command-line

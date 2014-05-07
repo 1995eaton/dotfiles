@@ -34,8 +34,8 @@
 ! urxvt*boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
 ! urxvt.letterSpace: -1
 
-! *font: xft:Inconsolata:pixelsize=12:style=Regular
-! *boldFont: xft:Inconsolata:pixelsize=12:style=Bold
+! *font: xft:Inconsolata:size=9:style=Regular
+! *boldFont: xft:Inconsolata:size=9:style=Bold
 ! urxvt.letterSpace: -1
 
 ! *font: xft:DejaVu Sans Mono:pixelsize=18:style=Book

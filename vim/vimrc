@@ -79,6 +79,7 @@ set magic
 " Copy/Paste to/from X buffer
 
 vnoremap gy "+y
+nnoremap Y :%y+"<cr>
 nmap gp "+p
 vmap gp "+p
 
@@ -88,6 +89,7 @@ nmap <silent> <leader>r :so ~/.vimrc<cr>
 
 " Vim comments
 
+" imap <C-_> <Esc>gcci
 nmap ge gcc
 vmap ge gc
 
@@ -175,4 +177,20 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 call MapAll("<C-f>", ":source $MYVIMRC<CR>")
 set ttyfast
+hi SpellCap term=reverse ctermbg=160
+let g:syntastic_javascript_jshint_conf='/home/jake/source/chromium-vim/.jshintrc'
 set lazyredraw
+
+map <C-B> k
+
+" Insert Mode Movement
+
+" imap <C-h> <Esc>bi
+" imap <C-l> <Esc>lwi
+" imap <C-k> <Esc>lki
+" imap <C-j> <Esc>lji
+" imap <C-i> <Esc>I
+" imap <C-e> <Esc>A
+" imap <C-d> <Esc>ddi
+" nmap <C-e> A
+" nmap <C-i> I
