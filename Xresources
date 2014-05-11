@@ -1,38 +1,10 @@
 ! To list available fonts: fc-list / xlsfonts
 
-!*font: xft:Monaco:pixelsize=11:style=Regular
-!*boldFont: xft:Monaco:pixelsize=11:style=Regular
-!urxvt.letterSpace: -1
-
-! *font: xft:Liberation Mono:pixelsize=11:style=Regular
-! *boldFont: xft:Liberation Mono:pixelsize=11:style=Bold
-! urxvt.letterSpace: -1
-
-! *font: -*-pyrite-medium-r-normal--12-120-96-96-c-60-iso10646-1
-! *boldFont: -*-pyrite-medium-r-normal--12-120-96-96-c-60-iso10646-1
-
-! *font: -*-ticon-medium-r-normal--12-120-72-72-c-60-iso8859-1
-! *boldFont: -*-ticon-medium-r-normal--12-120-72-72-c-60-iso8859-1
-
 *font: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 *boldFont: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 
-! *font: -lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1
-! *boldFont: -lucy-tewi-medium-r-normal--11-90-75-75-p-58-iso10646-1
-
-! *font: xft:Source Code Pro:pixelsize=10:style=Regular
-! *boldFont: xft:Source Code Pro:pixelsize=10:style=Bold
-! urxvt.letterSpace: -2
-
-! *font: -Misc-ProggyTiny-Normal-R-Normal--9-80-96-96-C-60-ISO8859-1
-! *boldFont: -Misc-ProggyTiny-Normal-R-Normal--9-80-96-96-C-60-ISO8859-1
-
 ! *font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
 ! *boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
-
-! urxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
-! urxvt*boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
-! urxvt.letterSpace: -1
 
 ! *font: xft:Inconsolata:size=9:style=Regular
 ! *boldFont: xft:Inconsolata:size=9:style=Bold
@@ -42,7 +14,7 @@
 ! *boldFont: xft:DejaVu Sans Mono:pixelsize=18:style=Bold
 ! urxvt.letterSpace: -1
 
-! XFT CONFIGS
+! XFT CONFIG
 
 Xft.dpi:       96
 Xft.rgba:      rgb
@@ -52,7 +24,7 @@ Xft.autohint:  1
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 
-! URXVT CONFIGS
+! URXVT CONFIG
 
 urxvt.termName:          xterm-256color
 urxvt.imLocale:          en_US.UTF-8
@@ -76,136 +48,71 @@ urxvt.url-launcher:      /usr/bin/google-chrome-beta
 urxvt.keysym.M-c:        perl:clipboard:copy
 urxvt.keysym.M-v:        perl:clipboard:paste
 
+! COLORS
+
 ! Molokai Color Scheme
 ! By Jake Eaton
-
-!Manpage colors
+! Manpage colors
 *colorIT: #87af5f
 *colorBD: #d7d7d7
 *colorUL: #87afd7
+
 *foreground: #8F8F8F
-!urxvt*depth: 32
-! *background: #1B1D1E
+! *background: [98]#1c1c1c
 *background: #1c1c1c
-!Dark Yellow + Yellow
+urxvt.depth: 32
+! Dark Yellow + Yellow
 *color3:  #E6DB74
 *color11: #FFF381
-!Black + Dark Grey
+! Black + Dark Grey
 *color0: #000000
 *color8: #232526
-!Light Grey + White
+! Light Grey + White
 *color7: #7E8E91
 *color15: #4E4E4E
-!Dark Magenta + Magenta
+! Dark Magenta + Magenta
 *color5:  #8C60DB
 *color13: #AE81FF
-!Dark Red + Red
+! Dark Red + Red
 *color1: #FF5C97
 *color9: #F92672
-!Dark Green + Light Green (Executable files)
+! Dark Green + Light Green (Executable files)
 *color2:  #A6E22E
 *color10: #CCFF66
-!Dark Blue + Blue (Directories)
+! Dark Blue + Blue (Directories)
 *color4:  #107BCC
 *color12: #17A4D6
-!Dark Cyan + Cyan (Symbolic links)
+! Dark Cyan + Cyan (Symbolic links)
 *color6:  #66D9EF
 *color14: #80EBFF
 
-! ! Solarized
-!
-! ! Common
-!
-! #define S_yellow        #b58900
-! #define S_orange        #cb4b16
-! #define S_red           #dc322f
-! #define S_magenta       #d33682
-! #define S_violet        #6c71c4
-! #define S_blue          #268bd2
-! #define S_cyan          #2aa198
-! #define S_green         #859900
-!
-!
-! ! Dark
-!
-! #define S_base03        #002b36
-! #define S_base02        #073642
-! #define S_base01        #586e75
-! #define S_base00        #657b83
-! #define S_base0         #839496
-! #define S_base1         #93a1a1
-! #define S_base2         #eee8d5
-! #define S_base3         #fdf6e3
-!
-!
-! ! Light
-!
-! ! #define S_base03        #fdf6e3
-! ! #define S_base02        #eee8d5
-! ! #define S_base01        #93a1a1
-! ! #define S_base00        #839496
-! ! #define S_base0         #657b83
-! ! #define S_base1         #586e75
-! ! #define S_base2         #073642
-! ! #define S_base3         #002b36
-!
-!
-! ! To only apply colors to your terminal, for example, prefix
-! ! the color assignment statement with its name. Example:
-! !
-! ! URxvt*background:            S_base03
-!
-! *background:              S_base03
-! *foreground:              S_base0
-! *cursorColor:             S_base1
-! *pointerColorBackground:  S_base01
-! *pointerColorForeground:  S_base1
-!
-! *color0:                  S_base02
-! *color1:                  S_red
-! *color2:                  S_green
-! *color3:                  S_yellow
-! *color4:                  S_blue
-! *color5:                  S_magenta
-! *color6:                  S_cyan
-! *color7:                  S_base2
-! *color8:                  S_base03
-! *color9:                  S_orange
-! *color10:                 S_base01
-! *color11:                 S_base00
-! *color12:                 S_base0
-! *color13:                 S_violet
-! *color14:                 S_base1
-! *color15:                 S_base3
-
-
 ! Jellybeans Color Scheme
 
-!urxvt.depth: 32
-!urxvt.background: [95]#121212
-!urxvt*foreground: #888888
+! urxvt.depth: 32
+! urxvt.background: [95]#121212
+! urxvt*foreground: #888888
 
-!! Black + Dark Grey
-!urxvt*color0: #1C1C1C
-!urxvt*color8: #404040
-!! Dark Grey + White
-!urxvt*color7:  #888888
-!urxvt*color15: #E8E8D3
-!! Dark Red + Red
-!urxvt*color1: #B85335
-!urxvt*color9: #CF6A4C
-!! Dark Green + Green (Executable files)
-!urxvt*color2:  #799D6A
-!urxvt*color10: #99AD6A
-!! Dark Yellow + Yellow
-!urxvt*color3:  #FFB964
-!urxvt*color11: #FAD07A
-!! Dark Blue + Blue
-!urxvt*color4:  #667899
-!urxvt*color12: #8197BF
-!! Dark Magenta + Magenta
-!urxvt*color5:  #8787AF
-!urxvt*color13: #C6B6EE
-!! Dark Cyan + Cyan
-!urxvt*color6:  #668799
-!urxvt*color14: #8FBFDC
+! ! Black + Dark Grey
+! urxvt*color0: #1C1C1C
+! urxvt*color8: #404040
+! ! Dark Grey + White
+! urxvt*color7:  #888888
+! urxvt*color15: #E8E8D3
+! ! Dark Red + Red
+! urxvt*color1: #B85335
+! urxvt*color9: #CF6A4C
+! ! Dark Green + Green (Executable files)
+! urxvt*color2:  #799D6A
+! urxvt*color10: #99AD6A
+! ! Dark Yellow + Yellow
+! urxvt*color3:  #FFB964
+! urxvt*color11: #FAD07A
+! ! Dark Blue + Blue
+! urxvt*color4:  #667899
+! urxvt*color12: #8197BF
+! ! Dark Magenta + Magenta
+! urxvt*color5:  #8787AF
+! urxvt*color13: #C6B6EE
+! ! Dark Cyan + Cyan
+! urxvt*color6:  #668799
+! urxvt*color14: #8FBFDC
