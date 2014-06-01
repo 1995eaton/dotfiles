@@ -71,9 +71,11 @@ alias dl="cd ~/downloads"
 alias sc="cd ~/source"
 alias su="sudo su"
 alias gp="git pull"
+alias cvim="cd ~/source/chromium-vim"
 alias gc="git clone"
 alias gd="git diff"
 alias gdh="git diff HEAD~1"
+alias gds="git diff --stat"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gcm="git commit -a -m"
 alias gco="git commit"
@@ -142,6 +144,7 @@ bindkey -rpM viins '^[[D'
 bindkey -rpM vicmd '^[[D'
 bindkey -M viins "^B" _history-complete-newer
 bindkey -M viins "^U" backward-kill-line
+bindkey "^R" history-incremental-search-backward
 bindkey -M viins "^W" backward-kill-word
 bindkey -M viins "^X^L" history-beginning-search-backward-then-append
 bindkey -M viins "^X^H" _complete_help

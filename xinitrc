@@ -5,7 +5,7 @@ xset fp rehash
 
 # BSPWM #
 sxhkd &
-exec bspwm
+exec bspwm -c /home/jake/.config/bspwm/bspwmrc
 
 # 2BWM #
 # compton &

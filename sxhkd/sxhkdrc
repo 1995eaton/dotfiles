@@ -22,8 +22,8 @@ ctrl + shift + j
  bspc window -e up +20 || bspc window -e down +20
 alt + {_,shift} + s
  {killall -9 conky bar; bspc config top_padding 0,bspc config top_padding 12; /home/jake/.config/bspwm/panel/init.sh}
-alt + {_,shift} + b
- bspc config window_gap {0,15}
+#alt + {_,shift} + b
+# bspc config window_gap {0,15}
 alt + button{1-3}
  bspc pointer -g {move,resize_side,resize_corner}
 alt + q
@@ -33,13 +33,16 @@ alt + {o,i}
 alt + {_,shift + }{1-9,0}
  bspc {desktop -f,window -d} ^{1-9,10}
 alt + p
-  dmenu_run
-alt + {_,shift} + w
- {/home/jake/source/depot_tools/src/out/Release/chrome --user-data-dir=/home/jake/.config/chrome-dev, chromium}
-alt + w
- chromium
+  /usr/local/bin/dmenu_run
+#alt + {_,shift} + w
+# {/home/jake/source/depot_tools/src/out/Release/chrome --user-data-dir=/home/jake/.config/chrome-dev, chromium}
+#alt + w
+# chromium
 #alt + f
 # firefox
+#google-chrome-unstable
+alt + shift + w
+ chromium
 alt + t
  urxvtc -e tmux -2
 alt + m

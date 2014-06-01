@@ -3,16 +3,8 @@ execute pathogen#infect()
 " Color schemes
 
 set t_Co=256
-" set background=dark
 let g:rehash256=1
 colorscheme molokai
-" colorscheme solarized
-
-" Lightline
-
-set laststatus=2
-let g:lightline = { 'colorscheme': 'wombat' }
-" let g:lightline = { 'colorscheme': 'solarized_dark' }
 
 " Indentation
 
@@ -34,7 +26,6 @@ syntax on
 map <silent> <C-h> :nohlsearch<CR>
 
 " Line numbering
-
 " set relativenumber
 set number
 
@@ -79,7 +70,7 @@ set magic
 " Copy/Paste to/from X buffer
 
 vnoremap gy "+y
-nnoremap Y :%y+"<cr>
+nnoremap <C-y> :%y+"<cr>
 nmap gp "+p
 vmap gp "+p
 
@@ -117,7 +108,7 @@ let g:notes_directories=['~/notes']
 
 " Emmet
 
-let g:user_emmet_leader_key='<C-n>'
+let g:user_emmet_leader_key='<C-f>'
 
 " GUI options
 
@@ -131,66 +122,44 @@ if has('gui_running')
   set guioptions-=m
 endif
 
-" Windows
+" Neocomplete / completion menu
 
-function! MapAll(key, mapping)
-  execute 'imap' a:key "<C-o>" . a:mapping
-  execute 'map' a:key a:mapping
-endfunction
-
-" call MapAll("<C-j>", "<C-w>j")
-" call MapAll("<C-k>", "<C-w>k")
-" call MapAll("<C-h>", "<C-w>h")
-" call MapAll("<C-l>", "<C-w>l")
-
-" nmap <silent> [ :vertical res -3<CR>
-" nmap <silent> ] :vertical res +3<CR>
-" nmap <silent> { :res -3<CR>
-" nmap <silent> } :res +3<CR>
-
-"  Miscellaneous
-vnoremap . :normal .<CR>
-set visualbell t_vb=
-set ttimeoutlen=0
-set timeoutlen=500
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 0
 set pumheight=8
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+" Syntastic
+
+let g:syntastic_javascript_jshint_conf='/home/jake/source/chromium-vim/.jshintrc'
+hi SpellCap term=reverse ctermbg=160
+
+"  Miscellaneous
+
+vnoremap . :normal .<CR>
+set visualbell t_vb=
+set ttimeoutlen=0
+set ttyfast
+set timeoutlen=500
+set lazyredraw
+vnoremap <C-e> <C-u>
+nnoremap <C-e> <C-u>
+let g:run_fifo = "/tmp/vim-run_fifo"
+let g:run_exec_on_write = 1
+map <silent> <C-b> :call OutputFifo()<CR>
+imap <silent> <C-b> <C-o>:call OutputFifo()<CR>
+
+" Airline
+
+set laststatus=2
 let g:airline_theme='molokai'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-
-" function Move()
-"   if !pumvisible() && col('.') - 2 >= 0
-"     if v:char =~# "\/" || getline('.')[col('.') - 2] == "/"
-"       call feedkeys("\<C-x>\<C-f>\<C-p>")
-"     elseif v:char =~# "[a-zA-Z.]"
-"       call feedkeys("\<C-x>\<C-o>\<C-p>")
-"     endif
-"   endif
-" endfunction
-" autocmd InsertCharPre * call Move()
-
-vnoremap <C-e> <C-u>
-nnoremap <C-e> <C-u>
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-call MapAll("<C-f>", ":source $MYVIMRC<CR>")
-set ttyfast
-hi SpellCap term=reverse ctermbg=160
-let g:syntastic_javascript_jshint_conf='/home/jake/source/chromium-vim/.jshintrc'
-set lazyredraw
-
-map <C-B> k
-
-" Insert Mode Movement
-
-" imap <C-h> <Esc>bi
-" imap <C-l> <Esc>lwi
-" imap <C-k> <Esc>lki
-" imap <C-j> <Esc>lji
-" imap <C-i> <Esc>I
-" imap <C-e> <Esc>A
-" imap <C-d> <Esc>ddi
-" nmap <C-e> A
-" nmap <C-i> I
+let g:neocomplete#release_cache_time=3600
+let g:multi_cursor_exit_from_insert_mode=0
+let g:multi_cursor_exit_from_visual_mode=0
+set nofoldenable

@@ -3,15 +3,18 @@
 bundle_dir="$HOME/.vim/bundle"
 cd $bundle_dir
 
+# 'https://github.com/1995eaton/vim-notes'
+# 'http://git.code.sf.net/p/vim-latex/vim-latex'
+# 'https://github.com/xolox/vim-misc'
 packages=(
   'https://github.com/tomtom/tcomment_vim'
-  'https://github.com/itchyny/lightline.vim'
-  'https://github.com/1995eaton/vim-notes'
-  'https://github.com/xolox/vim-misc'
+  'https://github.com/bling/vim-airline.git'
   'https://github.com/mattn/emmet-vim'
+  'https://github.com/scrooloose/syntastic'
   'git@github.com:1995eaton/vim-better-javascript-syntax.git'
-  'http://git.code.sf.net/p/vim-latex/vim-latex'
   'https://github.com/Shougo/neocomplete.vim.git'
+  'https://github.com/tpope/vim-surround'
+  'https://github.com/tpope/vim-fugitive'
 )
 
 
