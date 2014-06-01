@@ -1,13 +1,11 @@
 execute pathogen#infect()
 
 " Color schemes
-
 set t_Co=256
 let g:rehash256=1
 colorscheme molokai
 
 " Indentation
-
 function! AlignAll()
   let curline = line(".")
   execute 'normal gg=G'
@@ -16,12 +14,10 @@ endfunction
 map <C-l> :call AlignAll()<CR>
 
 " File settings
-
 filetype plugin indent on
 set fileformats=unix,dos,mac
 
 " Syntax hightlighting
-
 syntax on
 map <silent> <C-h> :nohlsearch<CR>
 
@@ -30,7 +26,6 @@ map <silent> <C-h> :nohlsearch<CR>
 set number
 
 " Cursor movement
-
 set mouse=nicr
 nnoremap j gj
 nnoremap k gk
@@ -41,7 +36,6 @@ map K kzz
 map L zz
 
 " Disable line breaks unless the <Enter> key is hit
-
 set wrap
 set linebreak
 set nolist
@@ -49,18 +43,15 @@ set textwidth=0
 set wrapmargin=0
 
 " Normal backspace behavior (non-Vi)
-
 set backspace=2
 
 " Tab settings
-
 set smarttab
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
 " Searching
-
 set incsearch
 set hlsearch
 set ignorecase
@@ -68,50 +59,40 @@ set smartcase
 set magic
 
 " Copy/Paste to/from X buffer
-
 vnoremap gy "+y
 nnoremap <C-y> :%y+"<cr>
 nmap gp "+p
 vmap gp "+p
 
 " Reload vimrc
-
 nmap <silent> <leader>r :so ~/.vimrc<cr>
 
 " Vim comments
-
-" imap <C-_> <Esc>gcci
 nmap ge gcc
 vmap ge gc
 
 " Bracket highlighting
-
 set showmatch
 set matchtime=2
 
 " Disable file backups + swapfile creation
-
 set noswapfile
 set nobackup
 set nowb
 
 " Command mode settings
-
 set wildmenu
 set wildmode=list:longest
 set shellslash
 set history=100
 
 " Vim notes
-
 let g:notes_directories=['~/notes']
 
 " Emmet
-
 let g:user_emmet_leader_key='<C-f>'
 
 " GUI options
-
 if has('gui_running')
   set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
   autocmd GUIEnter * set vb t_vb=
@@ -123,7 +104,6 @@ if has('gui_running')
 endif
 
 " Neocomplete / completion menu
-
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 0
 set pumheight=8
@@ -134,12 +114,10 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 
 " Syntastic
-
 let g:syntastic_javascript_jshint_conf='/home/jake/source/chromium-vim/.jshintrc'
 hi SpellCap term=reverse ctermbg=160
 
-"  Miscellaneous
-
+" Miscellaneous
 vnoremap . :normal .<CR>
 set visualbell t_vb=
 set ttimeoutlen=0
@@ -154,7 +132,6 @@ map <silent> <C-b> :call OutputFifo()<CR>
 imap <silent> <C-b> <C-o>:call OutputFifo()<CR>
 
 " Airline
-
 set laststatus=2
 let g:airline_theme='molokai'
 let g:airline_left_sep=''

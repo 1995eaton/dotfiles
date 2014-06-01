@@ -17,7 +17,6 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt INTERACTIVE_COMMENTS
 setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
 setopt NO_FLOW_CONTROL
 setopt EXTENDED_GLOB
 setopt HIST_IGNORE_ALL_DUPS
@@ -31,6 +30,9 @@ export CORRECT_IGNORE='_*'
 
 # EXTRA COMPLETIONS ==> https://github.com/zsh-users/zsh-completions
 
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache.zsh
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' menu select
 
@@ -49,7 +51,7 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 
-export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/opt/firefox:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release
+export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release
 export GOOGLE_API_KEY="AIzaSyAIOUE9BrHCDxhMbYkArx357qgW258VYhI"
 export GOOGLE_DEFAULT_CLIENT_ID="12183383802-ed4qc36t32aqvrkjjto17voq6ks19voj.apps.googleusercontent.com"
 export GOOGLE_DEFAULT_CLIENT_SECRET="VWJmeusSKze56W_oWpMA8u6b"
@@ -57,7 +59,7 @@ export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
 
 export EDITOR="vim"
 export PYTHONSTARTUP=~/.python-autocomplete.py
-export BROWSER="chromium"
+export BROWSER="google-chrome-unstable"
 
 alias sl="ls"
 alias d="pwd"
@@ -90,10 +92,6 @@ alias hide="/home/jake/scripts/hide_cursor/hide.sh"
 alias :wq="exit" # Vi has ruined me
 alias :q="exit"
 
-NORMAL_PS1_COLORS=('233' '250')
-ROOT_PS1_COLORS=('233' '118')
-VIM_PS1_COLORS=('254' '161')
-
 function zle-line-init zle-keymap-select {
   if [[ ${KEYMAP/vicmd} == "main" ]]; then
     PROMPT=$'%F{161}%(!.>.%f>)%f '
@@ -102,6 +100,12 @@ function zle-line-init zle-keymap-select {
   fi
   zle reset-prompt
 }
+zle -N zle-keymap-select
+zle -N zle-line-init
+
+# NORMAL_PS1_COLORS=('233' '250')
+# ROOT_PS1_COLORS=('233' '118')
+# VIM_PS1_COLORS=('254' '161')
 
 # function zle-line-init zle-keymap-select {
 #   if [[ ${KEYMAP/vicmd} == "main" ]]; then
@@ -126,22 +130,21 @@ zsh-exit() {
   exit
 }
 zle -N zsh-exit
-bindkey -r '^D'
-bindkey '^D' zsh-exit
-bindkey -rM vicmd ":" # Annoying as shit
-zle -N zle-keymap-select
-zle -N zle-line-init
+bindkey -r "^D"
+bindkey "^D" zsh-exit
+
+bindkey -rM vicmd ":"
 bindkey -v
-bindkey -rpM viins '^['
-bindkey -rpM vicmd '^['
+bindkey -rpM viins "^["
+bindkey -rpM vicmd "^["
 bindkey -M viins "^?" backward-delete-char
 bindkey -M viins "^A" beginning-of-line
 bindkey -M viins "^E" end-of-line
 bindkey -M viins "^N" down-line-or-history
 bindkey -M viins "^P" up-line-or-history
 bindkey -M viins "^H" backward-delete-char
-bindkey -rpM viins '^[[D'
-bindkey -rpM vicmd '^[[D'
+bindkey -rpM viins "^[[D"
+bindkey -rpM vicmd "^[[D"
 bindkey -M viins "^B" _history-complete-newer
 bindkey -M viins "^U" backward-kill-line
 bindkey "^R" history-incremental-search-backward
@@ -150,16 +153,14 @@ bindkey -M viins "^X^L" history-beginning-search-backward-then-append
 bindkey -M viins "^X^H" _complete_help
 bindkey -M viins "^X^L" history-incremental-search-backward
 bindkey -M viins "^Y" push-line
-bindkey -M vicmd "ca" change-around
-bindkey -M vicmd "ci" change-in
-bindkey -M vicmd "cc" vi-change-whole-line
-bindkey -M vicmd "da" delete-around
-bindkey -M vicmd "di" delete-in
 bindkey -M vicmd "dd" kill-whole-line
 bindkey -M vicmd "gg" beginning-of-history
 bindkey -M vicmd "G" end-of-history
 bindkey -M vicmd "^R" redo
 autoload edit-command-line
 zle -N edit-command-line
-bindkey  "^F" edit-command-line
-bindkey -M vicmd v edit-command-line
+bindkey -M vicmd "^V" edit-command-line
+
+# VIM MODE [CD]I COMMANDS ==> https://github.com/hchbaw/opp.zsh
+source ~/.zsh-opp/opp.zsh
+source ~/.visual.zsh
