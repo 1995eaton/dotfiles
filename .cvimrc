@@ -13,6 +13,7 @@ let searchengine stackoverflow = "http://stackoverflow.com/search?q="
 let searchengine gm = "https://www.google.com/maps/search/"
 let searchalias s = "stackoverflow"
 let searchalias g = "google"
+let completionengines = ["google", "wikipedia", "imdb", "amazon", "github", "wolframalpha", "duckduckgo"]
 let qmark a = ["http://www.reddit.com/r/learnjavascript/new", "http://www.reddit.com/r/learnprogramming/new"]
 let qmark b = ["http://www.reddit.com/", "https://github.com/", "https://mail.google.com/mail/u/0/?shva=1#inbox", "https://news.ycombinator.com/"]
 
