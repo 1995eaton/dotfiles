@@ -1,7 +1,5 @@
 alt + {comma,period}
  bspc desktop -C {backward,forward}
-alt + shift q
- killall conky bar; bspc quit
 ~button1
  bspc pointer -g focus
 alt + shift + {h,j,k,l}
@@ -26,8 +24,10 @@ alt + {_,shift} + b
  bspc config -m eDP1 window_gap {0,15}
 alt + button{1-3}
  bspc pointer -g {move,resize_side,resize_corner}
-alt + q
+alt + shift + d
  bspc window -c
+super + q
+ killall conky bar; bspc quit
 alt + {o,i}
  bspc window -t {floating,fullscreen}
 alt + {_,shift + }{1-9,0}
@@ -35,7 +35,7 @@ alt + {_,shift + }{1-9,0}
 alt + p
   /usr/local/bin/dmenu_run
 alt + w
- google-chrome-unstable
+ chrome --test-type --ppapi-flash-path=/usr/lib/PepperFlash/libpepflashplayer.so --ppapi-flash-version=`grep -i version /usr/lib/PepperFlash/manifest.json | grep -oE "[0-9.]+"`
 alt + t
  urxvtc -e tmux -2
 alt + m

@@ -13,8 +13,6 @@ packages=(
   'https://github.com/scrooloose/syntastic'
   'git@github.com:1995eaton/vim-better-javascript-syntax.git'
   'https://github.com/Shougo/neocomplete.vim.git'
-  'https://github.com/tpope/vim-surround'
-  'https://github.com/tpope/vim-fugitive'
 )
 
 

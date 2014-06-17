@@ -5,14 +5,6 @@ set t_Co=256
 let g:rehash256=1
 colorscheme molokai
 
-" Indentation
-function! AlignAll()
-  let curline = line(".")
-  execute 'normal gg=G'
-  execute 'normal ' + curline + 'gg'
-endfunction
-map <C-l> :call AlignAll()<CR>
-
 " File settings
 filetype plugin indent on
 set fileformats=unix,dos,mac
@@ -58,18 +50,25 @@ set ignorecase
 set smartcase
 set magic
 
-" Copy/Paste to/from X buffer
-vnoremap gy "+y
-nnoremap <C-y> :%y+"<cr>
-nmap gp "+p
-vmap gp "+p
-
 " Reload vimrc
 nmap <silent> <leader>r :so ~/.vimrc<cr>
 
 " Vim comments
-nmap ge gcc
-vmap ge gc
+nmap ge gac
+vmap ge ga
+
+" Copy/Paste to/from X buffer
+vnoremap gy "+y
+vnoremap gd "+d
+vnoremap gc "+c
+nnoremap gC "+C
+nnoremap gcc "+cc
+nnoremap gD "+D
+nnoremap gd "+d
+nnoremap gy "+y
+nnoremap <C-y> :%y+"<cr>
+nnoremap gp "+p
+vnoremap gp "+p
 
 " Bracket highlighting
 set showmatch
@@ -104,18 +103,37 @@ if has('gui_running')
 endif
 
 " Neocomplete / completion menu
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 0
-set pumheight=8
+set pumheight=15
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+let g:neocomplete#enable_at_startup=1
+let g:neocomplete#enable_ignore_case=0
+let g:neocomplete#enable_camel_case=0
+let g:neocomplete#enable_refresh_always=1
+let g:neocomplete#enable_prefetch=1
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
+endif
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
 endif
 
 " Syntastic
 let g:syntastic_javascript_jshint_conf='/home/jake/source/chromium-vim/.jshintrc'
+nnoremap <C-s> :SyntasticToggleMode<CR>
 hi SpellCap term=reverse ctermbg=160
+
+" Airline
+set laststatus=2
+let g:airline_theme='molokai'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+let g:tcommentMapLeaderOp1="ga"
+map <C-t> :tabnew<CR>:Explore<CR>
+map <A-q> :q<CR>
+map <C-S-q> :q!<CR>
 
 " Miscellaneous
 vnoremap . :normal .<CR>
@@ -128,15 +146,33 @@ vnoremap <C-e> <C-u>
 nnoremap <C-e> <C-u>
 let g:run_fifo = "/tmp/vim-run_fifo"
 let g:run_exec_on_write = 1
-map <silent> <C-b> :call OutputFifo()<CR>
-imap <silent> <C-b> <C-o>:call OutputFifo()<CR>
 
-" Airline
-set laststatus=2
-let g:airline_theme='molokai'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:neocomplete#release_cache_time=3600
-let g:multi_cursor_exit_from_insert_mode=0
-let g:multi_cursor_exit_from_visual_mode=0
+" Mappings
+nnoremap Q @q
+nnoremap @@ @q
+vmap gq ygvge
+nmap gqq yyge
 set nofoldenable
+nnoremap ' `
+nnoremap ` '
+nnoremap '' ``zz
+nnoremap `` ``zz
+vnoremap < <gv
+vnoremap > >gv
+let loaded_matchparen = 1
+nnoremap <C-p> :SyntasticToggleMode<CR>
+nnoremap <C-n> :NeoCompleteToggle<CR>
+nnoremap go mto<Esc>`t
+nnoremap gO mtO<Esc>`t
+inoremap <C-j> <Space><Esc>T)C {<CR>}<Esc>O
+nnoremap <C-j> :source $MYVIMRC<CR>
+vnoremap ab :normal Va{o^<CR>
+vmap ib :normal Va{o0<CR>
+omap <silent> ab :normal Vab<CR>
+omap <silent> ib i{<CR>
+set cursorline
+hi CursorLine ctermbg=235
+hi CursorLineNr ctermfg=239 ctermbg=234
+hi Search ctermbg=45 ctermfg=234
+
+au BufRead,BufNewFile *.md set filetype=markdown

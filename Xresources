@@ -1,7 +1,7 @@
 ! To list available fonts: fc-list / xlsfonts
 
-*font: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
-*boldFont: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
+! *font: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
+! *boldFont: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 
 ! *font: xft:Fira Mono:pixelsize=10:style=Regular
 ! *boldFont: xft:Fira Mono:pixelsize=10:style=Bold
@@ -17,9 +17,9 @@
 ! *boldFont: xft:Inconsolata:size=9:style=Bold
 ! urxvt.letterSpace: -1
 
-! *font: xft:DejaVu Sans Mono:pixelsize=18:style=Book
-! *boldFont: xft:DejaVu Sans Mono:pixelsize=18:style=Bold
-! urxvt.letterSpace: -1
+*font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
+*boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
+urxvt.letterSpace: -1
 
 ! XFT CONFIG
 
@@ -44,8 +44,8 @@ urxvt.cursorBlink:       1
 urxvt.scrollBar:         0
 urxvt.scrollTtyOutput:   0
 urxvt.scrollTtyKeypress: 1
-urxvt.jumpScroll:        0
-urxvt.saveLines:         4096
+urxvt.jumpScroll:        1
+urxvt.saveLines:         0
 urxvt.boldMode:          0
 urxvt.inheritPixmap:     0
 urxvt.perl-ext-common:   default,clipboard,matcher,keyboard-select

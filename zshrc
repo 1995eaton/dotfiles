@@ -28,16 +28,27 @@ setopt COMPLETE_ALIASES
 KEYTIMEOUT=1
 export CORRECT_IGNORE='_*'
 
+autoload up-line-or-beginning-search
+autoload down-line-or-beginning-search
+
 # EXTRA COMPLETIONS ==> https://github.com/zsh-users/zsh-completions
+
+fpath=(/home/jake/.zsh-completions/src $fpath)
+autoload -U compinit && compinit -C
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache.zsh
-zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' menu select
 
-fpath=(/home/jake/.zsh-completions/src $fpath)
-autoload -U compinit && compinit -C
+# LS COLORS ==> https://github.com/twam/.dotfiles/blob/master/ls_colors/ls_colors.zsh
+autoload colors; colors;
+LS_COLORS="di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32";
+LSCOLORS="ExGxFxDxCxDxDxhbhdacEc";
+zmodload -a colors
+zmodload -a autocomplete
+zmodload -a complist
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # PROFILE OPTIONS
 
@@ -45,9 +56,12 @@ if [ $COLORTERM ]; then
   export TERM="xterm-256color"
 fi
 
-if [[ $(uname) == "Darwin" ]]; then
+if ls --color -d . &>/dev/null 2>&1; then
+  export LS_COLORS=$LS_COLORS
+  alias ls='ls --color=tty'
+else
+  export LSCOLORS=$LSCOLORS
   alias ls='ls -G'
-  else alias ls='ls --color=auto'
 fi
 
 
@@ -78,6 +92,7 @@ alias gc="git clone"
 alias gd="git diff"
 alias gdh="git diff HEAD~1"
 alias gds="git diff --stat"
+alias cwdtopath="export PATH=$(pwd):$PATH"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gcm="git commit -a -m"
 alias gco="git commit"
@@ -87,21 +102,17 @@ alias emacs="emacs -nw"
 alias c="cd"
 alias v="vim"
 alias z="source ~/.zshrc"
-alias vi="vim"
 alias hide="/home/jake/scripts/hide_cursor/hide.sh"
 alias :wq="exit" # Vi has ruined me
 alias :q="exit"
+alias .="xsel -b"
 
-function zle-line-init zle-keymap-select {
-  if [[ ${KEYMAP/vicmd} == "main" ]]; then
-    PROMPT=$'%F{161}%(!.>.%f>)%f '
-  else
-    PROMPT=$'%F{161}%(!.<.%f<)%f '
-  fi
-  zle reset-prompt
-}
-zle -N zle-keymap-select
-zle -N zle-line-init
+alias -g L="|& less"
+alias -g SP="|& tr \"\n\" \",\" |& sed 's/,$/\n/'"
+alias -g H="|& head -n20"
+alias -g T="|& tail -n20"
+alias -g V="|& view -"
+alias -g C="|& column -t -s"
 
 # NORMAL_PS1_COLORS=('233' '250')
 # ROOT_PS1_COLORS=('233' '118')
@@ -129,6 +140,23 @@ zle -N zle-line-init
 zsh-exit() {
   exit
 }
+
+# ZLE INITS
+
+function zle-line-init zle-keymap-select {
+  if [[ ${KEYMAP/vicmd} == "main" ]]; then
+    PROMPT=$'%F{161}%(!.>.%f>)%f '
+  else
+    PROMPT=$'%F{161}%(!.<.%f<)%f '
+  fi
+  zle reset-prompt
+}
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+zle -N zle-keymap-select
+zle -N zle-line-init
+
+zle -N edit-command-line
 zle -N zsh-exit
 bindkey -r "^D"
 bindkey "^D" zsh-exit
@@ -145,22 +173,26 @@ bindkey -M viins "^P" up-line-or-history
 bindkey -M viins "^H" backward-delete-char
 bindkey -rpM viins "^[[D"
 bindkey -rpM vicmd "^[[D"
-bindkey -M viins "^B" _history-complete-newer
 bindkey -M viins "^U" backward-kill-line
 bindkey "^R" history-incremental-search-backward
 bindkey -M viins "^W" backward-kill-word
-bindkey -M viins "^X^L" history-beginning-search-backward-then-append
-bindkey -M viins "^X^H" _complete_help
-bindkey -M viins "^X^L" history-incremental-search-backward
-bindkey -M viins "^Y" push-line
 bindkey -M vicmd "dd" kill-whole-line
 bindkey -M vicmd "gg" beginning-of-history
 bindkey -M vicmd "G" end-of-history
 bindkey -M vicmd "^R" redo
 autoload edit-command-line
-zle -N edit-command-line
 bindkey -M vicmd "^V" edit-command-line
+bindkey -M vicmd "^K" up-line-or-beginning-search
+bindkey -M vicmd "^J" down-line-or-beginning-search
 
+bindkey '^[[Z' reverse-menu-complete
+bindkey "^K" up-line-or-beginning-search
+bindkey "^J" down-line-or-beginning-search
 # VIM MODE [CD]I COMMANDS ==> https://github.com/hchbaw/opp.zsh
-source ~/.zsh-opp/opp.zsh
-source ~/.visual.zsh
+source /home/jake/.zsh-opp/opp.zsh
+source /home/jake/.visual.zsh
+# STARTUP COMMANDS
+stty -ixon # disables flow control (C-s and C-q)
+bindkey -s '^G' 'echo -e -n \"\\033(0\"'
+alias sane='echo -n ""'
+source /home/jake/.vimfifo
