@@ -1,16 +1,16 @@
 " Settings
 
+" set nosmoothscroll
 set noautofocus
 set cncpcompletion
-set nosmoothscroll
 set nohud
 set autohidecursor
 set typelinkhints
-let scrollduration = 10
-let defaultengine = "duckduckgo"
-let searchlimit = 40
+let scrollduration = 15
+let searchlimit = 25
 let searchengine mdn = "https://developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js"
 let searchengine stackoverflow = "http://stackoverflow.com/search?q="
+let searchengine gm = "https://www.google.com/maps/search/"
 let searchalias s = "stackoverflow"
 let searchalias g = "google"
 let qmark a = ["http://www.reddit.com/r/learnjavascript/new", "http://www.reddit.com/r/learnprogramming/new"]
@@ -19,6 +19,9 @@ let qmark b = ["http://www.reddit.com/", "https://github.com/", "https://mail.go
 " Mappings
 
 unmap a
+map I gI
+map gi insertMode
+map i goToInput
 map as :tabopen github @1995eaton/
 map g> :execute 50><CR>
 map g< :execute 50<<CR>
@@ -31,7 +34,8 @@ map <C-s> openLastHint
 map <C-Space> :execute gfgf<CR>
 map <C-g> :set smoothscroll!<CR>
 map <C-u> rootFrame
-map <C-h> :set hud!<CR>
+map <C-h> :nohl<CR>
+map cc :set hud!<CR>
 map gb :buffers<Space>
 map aa :tabopen g<Space>
 map W l
@@ -43,4 +47,4 @@ map ad z<Enter>
 map T :tabopen<CR>
 map , :set numerichints!<CR>
 map ga :settings<CR>
-let blacklists = ["http://hellorun.helloenjoy.com/*","http://crypt-webgl.unigine.com/*","http://dmauro.github.io/*"]
+let blacklists = ["http://hellorun.helloenjoy.com/*,http://crypt-webgl.unigine.com/*,http://dmauro.github.io/*,http://coolwanglu.github.io/*"]
