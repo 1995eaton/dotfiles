@@ -26,6 +26,8 @@ map i goToInput
 map as :tabopen github @1995eaton/
 map g> :execute 50><CR>
 map g< :execute 50<<CR>
+map <C-k> nextTab
+map <C-j> previousTab
 map <C-d> scrollDown
 map <C-e> scrollUp
 map <A-r> nextTab
