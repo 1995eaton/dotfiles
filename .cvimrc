@@ -1,0 +1,46 @@
+" Settings
+
+set noautofocus
+set cncpcompletion
+set nosmoothscroll
+set nohud
+set autohidecursor
+set typelinkhints
+let scrollduration = 10
+let defaultengine = "duckduckgo"
+let searchlimit = 40
+let searchengine mdn = "https://developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js"
+let searchengine stackoverflow = "http://stackoverflow.com/search?q="
+let searchalias s = "stackoverflow"
+let searchalias g = "google"
+let qmark a = ["http://www.reddit.com/r/learnjavascript/new", "http://www.reddit.com/r/learnprogramming/new"]
+let qmark b = ["http://www.reddit.com/", "https://github.com/", "https://mail.google.com/mail/u/0/?shva=1#inbox", "https://news.ycombinator.com/"]
+
+" Mappings
+
+unmap a
+map as :tabopen github @1995eaton/
+map g> :execute 50><CR>
+map g< :execute 50<<CR>
+map <C-d> scrollDown
+map <C-e> scrollUp
+map <A-r> nextTab
+map <A-e> previousTab
+map <C-f> :file /home/jake/
+map <C-s> openLastHint
+map <C-Space> :execute gfgf<CR>
+map <C-g> :set smoothscroll!<CR>
+map <C-u> rootFrame
+map <C-h> :set hud!<CR>
+map gb :buffers<Space>
+map aa :tabopen g<Space>
+map W l
+map Q h
+map af F
+map <Space> l
+map <S-Space> h
+map ad z<Enter>
+map T :tabopen<CR>
+map , :set numerichints!<CR>
+map ga :settings<CR>
+let blacklists = ["http://hellorun.helloenjoy.com/*","http://crypt-webgl.unigine.com/*","http://dmauro.github.io/*"]
