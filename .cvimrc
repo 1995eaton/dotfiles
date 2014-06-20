@@ -20,9 +20,6 @@ let qmark b = ["http://www.reddit.com/", "https://github.com/", "https://mail.go
 " Mappings
 
 unmap a
-map I gI
-map gi insertMode
-map i goToInput
 map as :tabopen github @1995eaton/
 map g> :execute 50><CR>
 map g< :execute 50<<CR>

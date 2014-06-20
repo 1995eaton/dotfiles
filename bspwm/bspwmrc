@@ -20,4 +20,5 @@ xmodmap /home/jake/.macros &
 nitrogen --restore &
 xset r rate 300 40 &
 xset m 3/2.5 &
+python ~/source/chromium-vim/cvim_socket.py &
 ~/.config/bspwm/panel/init.sh &

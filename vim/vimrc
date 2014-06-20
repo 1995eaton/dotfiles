@@ -104,8 +104,10 @@ endif
 
 " Neocomplete / completion menu
 set pumheight=15
+set completeopt=menu
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+nnoremap <C-n> :NeoCompleteToggle<CR>
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_ignore_case=0
 let g:neocomplete#enable_camel_case=0
@@ -161,7 +163,6 @@ vnoremap < <gv
 vnoremap > >gv
 let loaded_matchparen = 1
 nnoremap <C-p> :SyntasticToggleMode<CR>
-nnoremap <C-n> :NeoCompleteToggle<CR>
 nnoremap go mto<Esc>`t
 nnoremap gO mtO<Esc>`t
 inoremap <C-j> <Space><Esc>T)C {<CR>}<Esc>O
