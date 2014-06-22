@@ -102,23 +102,43 @@ if has('gui_running')
   set guioptions-=m
 endif
 
-" Neocomplete / completion menu
 set pumheight=15
-set completeopt=menu
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-nnoremap <C-n> :NeoCompleteToggle<CR>
-let g:neocomplete#enable_at_startup=1
-let g:neocomplete#enable_ignore_case=0
-let g:neocomplete#enable_camel_case=0
-let g:neocomplete#enable_refresh_always=1
-let g:neocomplete#enable_prefetch=1
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
+set completeopt=menuone
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<C-x><C-o><C-p>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-x><C-o><C-p>"
+function! OmniComplete()
+  if !pumvisible() && v:char == '/'
+    call feedkeys("\<C-x>\<C-f>\<C-p>")
+  elseif (!pumvisible() || v:char == '.') && v:char =~ '[a-zA-Z./]'
+    if v:char == '/'
+      call feedkeys("\<C-x>\<C-f>\<C-p>")
+    elseif &omnifunc != ''
+      call feedkeys("\<C-x>\<C-o>\<C-p>")
+    else
+      call feedkeys("\<C-n>\<C-p>")
+    endif
+  endif
+endfunction
+function! SetupCompletion()
+  autocmd InsertCharPre * call OmniComplete()
+endfunction
+au BufRead,BufNewFile * call SetupCompletion()
+
+" Neocomplete / completion menu
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" nnoremap <C-n> :NeoCompleteToggle<CR>
+" let g:neocomplete#enable_at_startup=1
+" let g:neocomplete#enable_ignore_case=0
+" let g:neocomplete#enable_camel_case=0
+" let g:neocomplete#enable_refresh_always=1
+" let g:neocomplete#enable_prefetch=1
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"   let g:neocomplete#force_omni_input_patterns = {}
+" endif
 
 " Syntastic
 let g:syntastic_javascript_jshint_conf='/home/jake/source/chromium-vim/.jshintrc'

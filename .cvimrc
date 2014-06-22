@@ -1,16 +1,16 @@
 " Settings
 
-" set nosmoothscroll
+set nosmoothscroll
 set noautofocus
 set cncpcompletion
 set nohud
-set autohidecursor
+"set autohidecursor
 set typelinkhints
 let scrollduration = 15
+let homedirectory = "/home/jake"
 let searchlimit = 25
 let searchengine mdn = "https://developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js"
 let searchengine stackoverflow = "http://stackoverflow.com/search?q="
-let searchengine gm = "https://www.google.com/maps/search/"
 let searchalias s = "stackoverflow"
 let searchalias g = "google"
 let completionengines = ["google", "wikipedia", "imdb", "amazon", "github", "wolframalpha", "duckduckgo"]
@@ -23,28 +23,30 @@ unmap a
 map as :tabopen github @1995eaton/
 map g> :execute 50><CR>
 map g< :execute 50<<CR>
+unmap q
+map qq previousMatchPattern
+map qw nextMatchPattern
+map ad :file ~/
 map <C-k> nextTab
 map <C-j> previousTab
 map <C-d> scrollDown
 map <C-e> scrollUp
 map <A-r> nextTab
 map <A-e> previousTab
-map <C-f> :file /home/jake/
+map <C-f> createActiveTabbedHint
 map <C-s> openLastHint
 map <C-Space> :execute gfgf<CR>
 map <C-g> :set smoothscroll!<CR>
 map <C-u> rootFrame
 map <C-h> :nohl<CR>
 map cc :set hud!<CR>
-map gb :buffers<Space>
+map gb :buffer<Space>
 map aa :tabopen g<Space>
-map W l
-map Q h
 map af F
 map <Space> l
 map <S-Space> h
-map ad z<Enter>
+map ad z<Space>
 map T :tabopen<CR>
 map , :set numerichints!<CR>
 map ga :settings<CR>
-let blacklists = ["http://hellorun.helloenjoy.com/*,http://crypt-webgl.unigine.com/*,http://dmauro.github.io/*,http://coolwanglu.github.io/*"]
+let blacklists = ["http://hellorun.helloenjoy.com/*,http://crypt-webgl.unigine.com/*,http://dmauro.github.io/*,http://coolwanglu.github.io/*","http://localhost/*"]

@@ -190,7 +190,6 @@ bindkey "^K" up-line-or-beginning-search
 bindkey "^J" down-line-or-beginning-search
 # VIM MODE [CD]I COMMANDS ==> https://github.com/hchbaw/opp.zsh
 source /home/jake/.zsh-opp/opp.zsh
-source /home/jake/.visual.zsh
 # STARTUP COMMANDS
 stty -ixon # disables flow control (C-s and C-q)
 bindkey -s '^G' 'echo -e -n \"\\033(0\"'
