@@ -81,7 +81,7 @@ set nowb
 
 " Command mode settings
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest:list,full
 set shellslash
 set history=100
 
@@ -102,48 +102,33 @@ if has('gui_running')
   set guioptions-=m
 endif
 
-set pumheight=15
+set pumheight=20
 set completeopt=menuone
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<C-x><C-o><C-p>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-x><C-o><C-p>"
-function! OmniComplete()
-  if !pumvisible() && v:char == '/'
-    call feedkeys("\<C-x>\<C-f>\<C-p>")
-  elseif (!pumvisible() || v:char == '.') && v:char =~ '[a-zA-Z./]'
-    if v:char == '/'
-      call feedkeys("\<C-x>\<C-f>\<C-p>")
-    elseif &omnifunc != ''
-      call feedkeys("\<C-x>\<C-o>\<C-p>")
-    else
-      call feedkeys("\<C-n>\<C-p>")
-    endif
-  endif
-endfunction
-function! SetupCompletion()
-  autocmd InsertCharPre * call OmniComplete()
-endfunction
-au BufRead,BufNewFile * call SetupCompletion()
 
 " Neocomplete / completion menu
-" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-" nnoremap <C-n> :NeoCompleteToggle<CR>
-" let g:neocomplete#enable_at_startup=1
-" let g:neocomplete#enable_ignore_case=0
-" let g:neocomplete#enable_camel_case=0
-" let g:neocomplete#enable_refresh_always=1
-" let g:neocomplete#enable_prefetch=1
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" if !exists('g:neocomplete#force_omni_input_patterns')
-"   let g:neocomplete#force_omni_input_patterns = {}
-" endif
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+nnoremap <C-n> :NeoCompleteToggle<CR>
+let g:neocomplete#enable_at_startup=1
+let g:neocomplete#enable_ignore_case=0
+let g:neocomplete#enable_camel_case=0
+let g:neocomplete#enable_refresh_always=1
+let g:neocomplete#enable_prefetch=1
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
 
 " Syntastic
 let g:syntastic_javascript_jshint_conf='/home/jake/source/chromium-vim/.jshintrc'
 nnoremap <C-s> :SyntasticToggleMode<CR>
 hi SpellCap term=reverse ctermbg=160
+let g:neocomplete#auto_completion_start_length=2
+let g:neocomplete#force_overwrite_completefunc=1
+let g:neocomplete#max_keyword_width=80
+let g:neocomplete#sources#tags#cache_limit_size=5000000
 
 " Airline
 set laststatus=2
@@ -197,3 +182,6 @@ hi CursorLineNr ctermfg=239 ctermbg=234
 hi Search ctermbg=45 ctermfg=234
 
 au BufRead,BufNewFile *.md set filetype=markdown
+autocmd FileType javascript setlocal omnifunc=js#CompleteJS
+map <C-j> :source ~/.vimrc<CR>
+let g:jschromeapis = 1

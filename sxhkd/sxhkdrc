@@ -34,10 +34,10 @@ alt + {_,shift + }{1-9,0}
  bspc {desktop -f,window -d} ^{1-9,10}
 alt + p
   /usr/local/bin/dmenu_run
-#alt + w
-# chrome --test-type --ppapi-flash-path=/usr/lib/PepperFlash/libpepflashplayer.so --ppapi-flash-version=`grep -i version /usr/lib/PepperFlash/manifest.json | grep -oE "[0-9.]+"`
 alt + w
- google-chrome-unstable --test-type
+ chrome --test-type --ppapi-flash-path=/usr/lib/PepperFlash/libpepflashplayer.so --ppapi-flash-version=`grep -i version /usr/lib/PepperFlash/manifest.json | grep -oE "[0-9.]+"`
+#alt + w
+# google-chrome-unstable --test-type
 alt + t
  urxvtc -e tmux -2
 alt + m
@@ -50,3 +50,9 @@ alt + Right
  amixer -c 0 set Master 2+
 alt + Down
  amixer -c 0 set Master 0+ toggle
+ctrl + alt + {j,l,k,h}
+ /home/jake/scripts/move.sh {down,right,up,left}
+ctrl + space
+ mloc=`xdotool getmouselocation` && x=`echo $mloc | egrep -o "x:([0-9])+" | cut -c3-` && y=`echo $mloc | egrep -o "y:([0-9])+" | cut -c3-` && xdotool mousemove 1919 1079 && xdotool click 3 && xdotool mousemove $x $y
+ctrl + alt + f
+ xdotool mousemove_relative 0 0 && xdotool click 1

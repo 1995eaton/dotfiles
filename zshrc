@@ -195,3 +195,4 @@ stty -ixon # disables flow control (C-s and C-q)
 bindkey -s '^G' 'echo -e -n \"\\033(0\"'
 alias sane='echo -n ""'
 source /home/jake/.vimfifo
+source /home/jake/.zsh-npmcompletions
