@@ -106,23 +106,23 @@ set pumheight=20
 set completeopt=menuone
 
 " Neocomplete / completion menu
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-nnoremap <C-n> :NeoCompleteToggle<CR>
-let g:neocomplete#enable_at_startup=1
-let g:neocomplete#enable_ignore_case=0
-let g:neocomplete#enable_camel_case=0
-let g:neocomplete#enable_refresh_always=1
-let g:neocomplete#enable_prefetch=1
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" nnoremap <C-n> :NeoCompleteToggle<CR>
+" let g:neocomplete#enable_at_startup=1
+" let g:neocomplete#enable_ignore_case=0
+" let g:neocomplete#enable_camel_case=0
+" let g:neocomplete#enable_refresh_always=1
+" let g:neocomplete#enable_prefetch=1
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"   let g:neocomplete#force_omni_input_patterns = {}
+" endif
 
 " Syntastic
-let g:syntastic_javascript_jshint_conf='/home/jake/source/chromium-vim/.jshintrc'
+let g:syntastic_javascript_jshint_args = '--config /home/jake/source/chromium-vim/.jshintrc'
 nnoremap <C-s> :SyntasticToggleMode<CR>
 hi SpellCap term=reverse ctermbg=160
 let g:neocomplete#auto_completion_start_length=2
@@ -177,11 +177,14 @@ vmap ib :normal Va{o0<CR>
 omap <silent> ab :normal Vab<CR>
 omap <silent> ib i{<CR>
 set cursorline
-hi CursorLine ctermbg=235
+hi CursorLine ctermbg=235 ctermfg=none cterm=none
+" hi CursorLine ctermbg=none ctermfg=none
 hi CursorLineNr ctermfg=239 ctermbg=234
-hi Search ctermbg=45 ctermfg=234
+hi Search ctermbg=252 ctermfg=232
 
 au BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType javascript setlocal omnifunc=js#CompleteJS
 map <C-j> :source ~/.vimrc<CR>
 let g:jschromeapis = 1
+let g:javascript#bracehi = 1
+" let g:javascript#equalhi = 1

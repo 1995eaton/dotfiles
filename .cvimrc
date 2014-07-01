@@ -4,7 +4,6 @@ set nosmoothscroll
 set noautofocus
 set cncpcompletion
 set nohud
-"set autohidecursor
 set typelinkhints
 let scrollduration = 15
 let homedirectory = "/home/jake"
@@ -21,10 +20,9 @@ let qmark b = ["http://www.reddit.com/", "https://github.com/", "https://mail.go
 
 unmap a
 map as :tabopen github @1995eaton/
-map q :restore<Space>
+map gq :restore<Space>
 map qq previousMatchPattern
 map qw nextMatchPattern
-map ad :file ~/
 map a<Space> z<Enter>
 map ab :bookmarks&<Space>
 map <A-q> X
@@ -32,7 +30,7 @@ map <C-k> nextTab
 map <C-j> previousTab
 map cn :execute nzz<CR>
 map cN :execute Nzz<CR>
-map <C-d> scrollDown
+map <C-d> :file ~/
 map <C-e> scrollUp
 map <A-r> nextTab
 map <A-e> previousTab
@@ -54,4 +52,4 @@ map ad z<Space>
 map T :tabopen<CR>
 map , :set numerichints!<CR>
 map ga :settings<CR>
-let blacklists = ["http://hellorun.helloenjoy.com/*,http://crypt-webgl.unigine.com/*,http://dmauro.github.io/*,http://coolwanglu.github.io/*","http://localhost/*","file:///*"]
+let blacklists = ["http://hellorun.helloenjoy.com/*,http://crypt-webgl.unigine.com/*,http://dmauro.github.io/*,http://coolwanglu.github.io/*","file:///home/jake/minesweeper/index.html","http://coolwanglu.github.io/*","http://bellard.org/*"]

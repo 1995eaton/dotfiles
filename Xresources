@@ -3,13 +3,6 @@
 ! *font: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 ! *boldFont: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 
-! *font: xft:Fira Mono:pixelsize=10:style=Regular
-! *boldFont: xft:Fira Mono:pixelsize=10:style=Bold
-! *letterSpace: -1
-
-! *font: -Gohu-GohuFont-Medium-R-Normal--11-80-100-100-C-60-ISO8859-1
-! *boldFont: -Gohu-GohuFont-Medium-R-Normal--11-80-100-100-C-60-ISO8859-1
-
 ! *font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
 ! *boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
 
@@ -21,14 +14,18 @@
 *boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
 urxvt.letterSpace: -1
 
+! *font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
+! *boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
+! urxvt.letterSpace: -1
+
 ! XFT CONFIG
 
 Xft.dpi:       96
 Xft.rgba:      rgb
 Xft.antialias: 1
 Xft.hinting:   1
-Xft.autohint:  1
-Xft.hintstyle: hintfull
+Xft.autohint:  0
+Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
 ! URXVT CONFIG

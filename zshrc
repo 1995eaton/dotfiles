@@ -31,6 +31,10 @@ export CORRECT_IGNORE='_*'
 autoload up-line-or-beginning-search
 autoload down-line-or-beginning-search
 
+# bash-like ^W kill-word
+autoload -U select-word-style
+select-word-style bash
+
 # EXTRA COMPLETIONS ==> https://github.com/zsh-users/zsh-completions
 
 fpath=(/home/jake/.zsh-completions/src $fpath)
@@ -76,6 +80,7 @@ export PYTHONSTARTUP=~/.python-autocomplete.py
 export BROWSER="google-chrome-unstable"
 
 alias sl="ls"
+alias s="ls"
 alias d="pwd"
 alias p="netstat -plantu" # netstat apparently deprecated by ss
 alias killvim='$(kill -9 `ps -eo pid,comm | grep vim | egrep -o "[0-9]+" | tr "\n" " "`)'
