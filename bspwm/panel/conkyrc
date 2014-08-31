@@ -9,7 +9,7 @@ TEXT
 \
 %{B\#fff333333}${execi 0.5 ~/.config/bspwm/panel/bspwm.sh}\
 %{F\#fff333333}%{B\#fff888888}%{B\#fff1c1c1c}%{F\#fff888888}\
-%{r}%{F\#fffb9b9b9}%{F\#fff333333d}%{B\#fffb9b9b9} ${exec echo -ne "\ue100 "}${execi 5 ~/.config/bspwm/panel/vol.sh}  \
+%{r}%{F\#fffb9b9b9}%{F\#fff333333d}%{B\#fffb9b9b9} ${execi 5 ~/.config/bspwm/panel/vol.sh}  \
 ${execi 5 ~/.config/bspwm/panel/bat.sh}  \
 ${cpu cpu0}%%  ${execi 5 ~/.config/bspwm/panel/thermal.sh}${iconv_start UTF-8 ISO_8859-1}°C${iconv_stop} %{B\#fff333333}%{F\#fffbbbbbb}\
 %{B\#fffb9b9b9}%{F\#fff333333}%{F\#fffbbbbbb}%{B\#fff333333} \

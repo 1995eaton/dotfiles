@@ -1,0 +1,52 @@
+#!/bin/sh
+
+if [[ $1 != '' ]]; then
+  ROOT_DIR=$1
+  if [[ ! -e $ROOT_DIR ]]; then
+    mkdir -p $ROOT_DIR
+  else
+    echo "Error: \"$ROOT_DIR\" exists"
+    exit
+  fi
+else
+  ROOT_DIR=`pwd`
+fi
+
+cd $ROOT_DIR
+
+cat <<EOF > index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    var scripts = ['main.js'];
+    document.addEventListener('DOMContentLoaded', function() {
+      scripts.forEach(function(e) {
+        var scriptEl = document.createElement('script');
+        scriptEl.src = e;
+        document.head.appendChild(scriptEl);
+      });
+    });
+  </script>
+</head>
+<body>
+</body>
+</html>
+EOF
+
+cat <<EOF > main.js
+log = console.log.bind(console);
+
+document.body.innerHTML += '<h1>Template body</h1>';
+EOF
+
+cat <<EOF > style.css
+html, body {
+  font-family: Helvetica, 'Helvetica Neue', Neue, sans-serif, Arial;
+}
+EOF

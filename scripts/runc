@@ -1,0 +1,5 @@
+#!/bin/sh
+
+tmp=`mktemp`
+gcc -std=c11 -Wall -O2 $1 -o $tmp && $tmp ${@:2}
+rm $tmp
