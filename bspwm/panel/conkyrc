@@ -11,6 +11,6 @@ TEXT
 %{F\#fff333333}%{B\#fff888888}%{B\#fff1c1c1c}%{F\#fff888888}\
 %{r}%{F\#fffb9b9b9}%{F\#fff333333d}%{B\#fffb9b9b9} ${execi 5 ~/.config/bspwm/panel/vol.sh}  \
 ${execi 5 ~/.config/bspwm/panel/bat.sh}  \
-${cpu cpu0}%%  ${execi 5 ~/.config/bspwm/panel/thermal.sh}${iconv_start UTF-8 ISO_8859-1}°C${iconv_stop} %{B\#fff333333}%{F\#fffbbbbbb}\
+${cpu cpu0}%%  ${execi 5 /home/jake/scripts/cputemp} %{B\#fff333333}%{F\#fffbbbbbb}\
 %{B\#fffb9b9b9}%{F\#fff333333}%{F\#fffbbbbbb}%{B\#fff333333} \
 ${execi 30 date +%I:%M\ %P | sed 's/^0//'} %{B\#fff1c1c1c}

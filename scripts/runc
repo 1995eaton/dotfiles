@@ -1,5 +1,5 @@
 #!/bin/sh
 
 tmp=`mktemp`
-gcc -std=c11 -Wall -O2 $1 -o $tmp && $tmp ${@:2}
+gcc -Wall -pedantic -std=gnu11 -lm -Ofast -march=native $1 ${@:2} -o $tmp && $tmp ${@:2}
 rm $tmp

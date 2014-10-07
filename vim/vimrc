@@ -7,11 +7,12 @@ set t_Co=256
 
 " File settings
 filetype plugin indent on
+au BufReadPost * call vimcomplete#init()
 set fileformats=unix,dos,mac
 
 " Syntax hightlighting
 syntax on
-map <silent> <C-h> :nohlsearch<CR>
+nnoremap <silent> <C-h> :nohlsearch<CR>
 colorscheme mine
 
 
@@ -168,7 +169,7 @@ vmap ib :normal Va{o0<CR>
 omap <silent> ab :normal Vab<CR>
 omap <silent> ib i{<CR>
 au BufRead,BufNewFile *.md set filetype=markdown
-autocmd FileType javascript setlocal omnifunc=js#CompleteJS
+" autocmd FileType javascript setlocal omnifunc=js#CompleteJS
 map <C-j> :source ~/.vimrc<CR>
 let g:jschromeapis = 1
 let g:javascript#bracehi = 1
@@ -195,4 +196,15 @@ if has('gui_running')
   set guioptions-=m
   set guioptions+=m
 endif
-set tags+=~/.vim/tags/cpp
+
+nnoremap <C-f> :NERDTree<CR>
+
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_always_populate_location_list = 1
+let g:ycm_show_diagnostics_ui = 0
+
+func! HighlightInstances()
+  let @/ = expand("<cword>")
+  set hlsearch
+endfunc
+nnoremap <silent> <C-k> :set nohlsearch\|:call HighlightInstances()<CR>

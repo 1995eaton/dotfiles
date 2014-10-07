@@ -37,5 +37,18 @@ xset +fp /usr/share/fonts/local
 xset +fp /home/jake/.fonts
 xset fp rehash
 
+# exec mcwm
+
+# compton &
+# urxvtd -q &
+# xsetroot -cursor_name left_ptr &
+# xrdb ~/.Xresources &
+# xmodmap /home/jake/.macros &
+# nitrogen --restore &
+# xset r rate 300 40 &
+# xset m 3/2.5 &
+# python3 ~/source/chromium-vim/cvim_socket.py &
+# exec /home/jake/window
+
 sxhkd &
 exec bspwm

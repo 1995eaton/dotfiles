@@ -34,6 +34,8 @@ super + q
  killall conky bar; bspc quit
 alt + {o,i}
  bspc window -t {floating,fullscreen}
+alt + f
+ bspc window -t floating
 alt + {_,shift + }{1-9,0}
  bspc {desktop -f,window -d} ^{1-9,10}
 alt + p
@@ -43,7 +45,7 @@ alt + w
 #alt + w
 # google-chrome-unstable --test-type
 alt + t
- urxvtc -e tmux -2
+ urxvtc -geometry 120x40 -e tmux -2 -q
 alt + m
  /home/jake/scripts/hide_cursor/hide.sh
 alt + Escape

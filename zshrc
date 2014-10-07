@@ -65,12 +65,13 @@ else
   alias ls='ls -G'
 fi
 
-export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release:/home/jake/.npm/bin:$GOPATH/bin
+export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release:/home/jake/.npm/bin:$GOPATH/bin:/home/jake/source/templates/bin
 export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
 export EDITOR='vim'
 export PYTHONSTARTUP=~/.python-autocomplete.py
 export BROWSER='google-chrome-unstable'
 export GOPATH=~/.go
+export GCC_COLORS=always
 
 alias ns='ss -plantu | sed "s/\S\+:((\|))$//g" | tr "," "	" | column -t -s"	"'
 alias -g C='|& column -t -s'
@@ -113,8 +114,20 @@ alias su='sudo su'
 alias js='node'
 alias u='id -u -n'
 alias v='vim'
+alias quiet='sudo cpupower -g powersave --min=0.8 --max=1.8 -i'
 alias help='echo -n ""'
 alias z='source ~/.zshrc'
+alias cpui='sudo cpupower -i'
+alias cpuh='sudo cpupower --high -i'
+alias gcc='gcc -std=c11 -Wall -Wextra -pedantic'
+alias g++='g++ -std=c++14 -Wall -Wextra -pedantic'
+alias html='template html'
+
+function cpul() {
+  xrandr --output eDP1 --brightness 0.8
+  sudo cpupower -g powersave --min=0.8 --max=1.6
+  sudo cpupower -i
+}
 
 function zle-line-init zle-keymap-select {
   if [[ ${KEYMAP/vicmd} == "main" ]]; then
