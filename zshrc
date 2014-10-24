@@ -36,7 +36,7 @@ select-word-style bash
 # EXTRA COMPLETIONS ==> https://github.com/zsh-users/zsh-completions
 
 fpath=(/home/jake/.zsh-completions/src $fpath)
-autoload -U compinit && compinit -C
+autoload -U compinit && compinit
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
@@ -53,19 +53,17 @@ zmodload -a autocomplete
 zmodload -a complist
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-if [ $COLORTERM ]; then
-  export TERM='xterm-256color'
-fi
+[ $COLORTERM ] && export TERM='xterm-256color'
 
 if ls --color -d . &>/dev/null 2>&1; then
   export LS_COLORS=$LS_COLORS
-  alias ls='ls --color=tty'
+  alias ls='ls --color=always'
 else
   export LSCOLORS=$LSCOLORS
   alias ls='ls -G'
 fi
 
-export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release:/home/jake/.npm/bin:$GOPATH/bin:/home/jake/source/templates/bin
+export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release:/home/jake/.npm/bin:$GOPATH/bin
 export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
 export EDITOR='vim'
 export PYTHONSTARTUP=~/.python-autocomplete.py
@@ -74,7 +72,6 @@ export GOPATH=~/.go
 export GCC_COLORS=always
 
 alias ns='ss -plantu | sed "s/\S\+:((\|))$//g" | tr "," "	" | column -t -s"	"'
-alias -g C='|& column -t -s'
 alias -g H='|& head -n20'
 alias -g L='|& less'
 alias -g SP='|& tr \"\n\" \",\" |& sed "s/,$/\n/"'
@@ -122,6 +119,7 @@ alias cpuh='sudo cpupower --high -i'
 alias gcc='gcc -std=c11 -Wall -Wextra -pedantic'
 alias g++='g++ -std=c++14 -Wall -Wextra -pedantic'
 alias html='template html'
+alias find='noglob find'
 
 function cpul() {
   xrandr --output eDP1 --brightness 0.8

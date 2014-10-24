@@ -7,11 +7,11 @@ cd $bundle_dir
 # 'http://git.code.sf.net/p/vim-latex/vim-latex'
 # 'https://github.com/xolox/vim-misc'
 # 'https://github.com/Shougo/neocomplete.vim.git'
+# 'https://github.com/mattn/emmet-vim'
 packages=(
   'https://github.com/godlygeek/tabular'
   'https://github.com/tomtom/tcomment_vim'
   'https://github.com/bling/vim-airline.git'
-  'https://github.com/mattn/emmet-vim'
   'https://github.com/scrooloose/syntastic'
   'git@github.com:1995eaton/vim-better-javascript-syntax.git'
 )
