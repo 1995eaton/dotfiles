@@ -36,7 +36,7 @@ select-word-style bash
 # EXTRA COMPLETIONS ==> https://github.com/zsh-users/zsh-completions
 
 fpath=(/home/jake/.zsh-completions/src $fpath)
-autoload -U compinit && compinit
+autoload -U compinit && compinit -C
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
@@ -71,6 +71,11 @@ export BROWSER='google-chrome-unstable'
 export GOPATH=~/.go
 export GCC_COLORS=always
 
+function tcp() {
+  traceur --array-comprehension true --spread true --classes true --generators true \
+    --for-of true --rest-parameters true --destructuring true --arrow-functions true \
+    --script $1 --out $2;
+}
 alias ns='ss -plantu | sed "s/\S\+:((\|))$//g" | tr "," "	" | column -t -s"	"'
 alias -g H='|& head -n20'
 alias -g L='|& less'
@@ -121,8 +126,11 @@ alias g++='g++ -std=c++14 -Wall -Wextra -pedantic'
 alias html='template html'
 alias find='noglob find'
 
+function cpull() {
+  sudo cpupower -g powersave --min=0.8 --max=0.8
+  sudo cpupower -i
+}
 function cpul() {
-  xrandr --output eDP1 --brightness 0.8
   sudo cpupower -g powersave --min=0.8 --max=1.6
   sudo cpupower -i
 }
