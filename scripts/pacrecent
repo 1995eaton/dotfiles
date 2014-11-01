@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+
+var log = fs.readFileSync('/var/log/pacman.log', 'utf8')
+  .split('\n').filter(function(e) { return e.trim(); });
+
+var recent = [];
+
+log.forEach(function(line, i) {
+  if (/Running 'pacman/.test(line) &&
+      ~(log[i+1] || '').indexOf('[PACMAN] installed')) {
+    line = log[i+1];
+    recent.push(line.replace(/.*installed ([^ ]+).*/, '$1'));
+  }
+});
+
+log.forEach(function(line) {
+  if (~line.indexOf('[PACMAN] removed ')) {
+    var package = line.replace(/.*removed ([^ ]+).*/, '$1');
+    var index = recent.indexOf(package);
+    if (~index) {
+      recent.splice(index, 1);
+    }
+  }
+});
+
+recent.forEach(function(e) {
+  console.log(e);
+});
