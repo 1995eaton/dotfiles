@@ -222,3 +222,18 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
+
+hi LineMax cterm=none
+match LineMax /\%81v.*/
+let s:line_max_enabled = 0
+func ToggleLineMax()
+  let s:line_max_enabled = !s:line_max_enabled
+  if s:line_max_enabled
+    hi LineMax cterm=reverse
+  else
+    hi clear LineMax
+  endif
+endfunc
+call ToggleLineMax()
+nnoremap <silent> <C-f> :call ToggleLineMax()<CR>
+inoremap <silent> <C-f> <C-o>:call ToggleLineMax()<CR>

@@ -86,7 +86,6 @@ alias .='xsel -b'
 alias :q='exit'
 alias :wq='exit' # Vi has ruined me
 alias c='cd'
-alias cvim='cd ~/source/chromium-vim'
 alias cwdtopath='export PATH=$(pwd):$PATH'
 alias d='pwd'
 alias dl='cd ~/downloads'
