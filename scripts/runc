@@ -1,5 +1,0 @@
-#!/bin/sh
-
-tmp=`mktemp`
-gcc -Wall -pedantic -std=gnu11 -lm -Ofast -march=native $1 ${@:2} -o $tmp && $tmp ${@:2}
-rm $tmp

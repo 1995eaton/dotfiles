@@ -3,12 +3,8 @@
 bundle_dir="$HOME/.vim/bundle"
 cd $bundle_dir
 
-# 'https://github.com/1995eaton/vim-notes'
-# 'http://git.code.sf.net/p/vim-latex/vim-latex'
-# 'https://github.com/xolox/vim-misc'
-# 'https://github.com/Shougo/neocomplete.vim.git'
-# 'https://github.com/mattn/emmet-vim'
 packages=(
+  'https://github.com/Shougo/neocomplete.vim.git'
   'https://github.com/godlygeek/tabular'
   'https://github.com/tomtom/tcomment_vim'
   'https://github.com/bling/vim-airline.git'

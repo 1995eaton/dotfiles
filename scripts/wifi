@@ -1,22 +1,15 @@
 #!/bin/sh
 
-wldev=`iw dev | grep "Interface" | head -n 1 | egrep -o "\S+$"`
-profiles=`ls /etc/netctl | grep $wldev`;
-c=1; echo
+DEV=`iw dev | sed -n 2p | grep -oE '\S+$'`
+PROFILES=(`ls /etc/netctl | grep $DEV`)
 
-for i in $profiles; do
-	echo -e "\e[92m[$c]\e[0m" $i
-	profile_arr[c]=$i
-	c=`expr $c + 1`
+for ((i = 0; i < ${#PROFILES[@]}; i++)); do
+  echo -e "\e[92m[$i]\e[0m" ${PROFILES[$i]}
 done
 
 read -p "Choose a network profile: " choice
-if [[ `echo $choice | grep -E "^[0-9]{,}$"` -eq "" ]]; then
-	exit
-fi
+[[ $choice =~ '[^0-9]' || $choice -ge $i ]] && exit
 
-if [[ $choice -lt c ]]; then
-	sudo ip link set $wldev down
-	sudo netctl stop-all
-	sudo netctl start ${profile_arr[$choice]}
-fi
+sudo netctl stop-all
+sudo ip link set $DEV down
+sudo netctl start ${PROFILES[$choice]}

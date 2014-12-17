@@ -3,16 +3,16 @@
 ! *font: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 ! *boldFont: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 
-! *font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
-! *boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
+*font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
+*boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
 
 ! *font: xft:Inconsolata:size=9:style=Regular
 ! *boldFont: xft:Inconsolata:size=9:style=Bold
 ! urxvt.letterSpace: -1
 
-*font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
-*boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
-urxvt.letterSpace: -1
+! *font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
+! *boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
+! urxvt.letterSpace: -1
 
 ! *font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
 ! *boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold

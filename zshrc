@@ -76,6 +76,10 @@ function tcp() {
     --for-of true --rest-parameters true --destructuring true --arrow-functions true \
     --script $1 --out $2;
 }
+
+alias 6to5='6to5 -b generators --experimental'
+alias 6to5-node='6to5-node --experimental'
+alias mac="echo -e \$(hexdump -ve '/1 \"%02x:\"' /dev/urandom | fold -w18 | head -c17)"
 alias ns='ss -plantu | sed "s/\S\+:((\|))$//g" | tr "," "	" | column -t -s"	"'
 alias -g H='|& head -n20'
 alias -g L='|& less'
@@ -136,7 +140,7 @@ function cpul() {
 
 function zle-line-init zle-keymap-select {
   if [[ ${KEYMAP/vicmd} == "main" ]]; then
-    PROMPT=$'%F{161}%(!.>.%f>)%f '
+    PROMPT=$'%F{161}%(!.$.%f$)%f '
   else
     PROMPT=$'%F{161}%(!.<.%f<)%f '
   fi
@@ -194,3 +198,4 @@ source /home/jake/.zsh-opp/opp.zsh
 stty -ixon # disables flow control (C-s and C-q)
 #source /home/jake/.vimfifo
 source /home/jake/.zsh-npmcompletions
+source /home/jake/scripts/cmp.zsh

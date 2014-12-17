@@ -40,8 +40,10 @@ alt + {_,shift + }{1-9,0}
  bspc {desktop -f,window -d} ^{1-9,10}
 alt + p
   dmenu_run
+alt + shift + w
+ google-chrome-unstable --test-type
 alt + w
- chromium
+ chromium --test-type
 alt + t
  urxvtc -geometry 120x40 -e tmux -2 -q 
 alt + m

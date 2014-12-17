@@ -7,8 +7,11 @@ set typelinkhints
 let scrollduration = 250
 let homedirectory = '/home/jake'
 let searchlimit = 25
-let completionengines = ['google', 'wikipedia', 'imdb', 'amazon', 'wolframalpha', 'duckduckgo']
-let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new', 'http://www.reddit.com/r/learnpython/new/', 'http://www.reddit.com/r/learnprogramming/new']
+let completionengines = ['google', 'wikipedia', 'imdb',
+      \ 'amazon', 'wolframalpha', 'duckduckgo']
+let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
+      \ 'http://www.reddit.com/r/learnpython/new/',
+      \ 'http://www.reddit.com/r/learnprogramming/new']
 
 imap <C-o> editWithVim
 map af createActiveTabbedHint
@@ -17,6 +20,8 @@ map $ lastTab
 map 0 firstTab
 map g0 scrollToLeft
 map g$ scrollToRight
+map <Space> l
+map <S-Space> h
 map gS :viewsource&<CR>
 map qq closeTab
 map gs fullImageHint
@@ -27,6 +32,7 @@ map <C-j> previousTab
 map cn :execute nzz<CR>
 map cN :execute Nzz<CR>
 map <C-d> :file ~/
+map mm ;m
 map <C-s> openLastHint
 map <C-g> :set smoothscroll!<CR>
 map <C-h> :nohl<CR>
@@ -38,4 +44,10 @@ map ga :settings<CR>
 site '*://*/*' {
   call :script [].slice.call(document.querySelectorAll('*[accesskey]')).forEach(function(e){e.removeAttribute('accesskey')});
 }
+
+site '*://gist.github.com/*' {
+  let nextmatchpattern = 'Older'
+  let previousmatchpattern = 'Newer'
+}
+
 let blacklists = ["http://localhost/*","http://lo-th.github.io/*"]

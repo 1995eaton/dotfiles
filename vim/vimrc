@@ -101,10 +101,6 @@ set completeopt=menuone
 nnoremap <C-s> :SyntasticToggleMode<CR>
 let g:syntastic_javascript_checkers = ['jshint']
 hi SpellCap term=reverse ctermbg=160
-let g:neocomplete#auto_completion_start_length=2
-let g:neocomplete#force_overwrite_completefunc=1
-let g:neocomplete#max_keyword_width=80
-let g:neocomplete#sources#tags#cache_limit_size=5000000
 
 " Airline
 set laststatus=2
@@ -146,14 +142,11 @@ let loaded_matchparen = 1
 nnoremap <C-p> :SyntasticToggleMode<CR>
 nnoremap go mto<Esc>`t
 nnoremap gO mtO<Esc>`t
-inoremap <C-j> <Space><Esc>T)C {<CR>}<Esc>O
-nnoremap <C-j> :source $MYVIMRC<CR>
 vnoremap ab :normal Va{o^<CR>
 vmap ib :normal Va{o0<CR>
 omap <silent> ab :normal Vab<CR>
 omap <silent> ib i{<CR>
 au BufRead,BufNewFile *.md set filetype=markdown
-map <C-j> :source ~/.vimrc<CR>
 let g:jschromeapis = 1
 let g:javascript#bracehi = 1
 " let g:javascript#equalhi = 1
@@ -194,31 +187,37 @@ nnoremap <silent> <C-k> :set nohlsearch\|:call HighlightInstances()<CR>
 au BufRead,BufNewFile *.peg set filetype=javascript
 
 let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-endfunction
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+" let g:neocomplete#auto_completion_start_length=2
+" let g:neocomplete#force_overwrite_completefunc=1
+" let g:neocomplete#max_keyword_width=80
+" let g:neocomplete#sources#tags#cache_limit_size=5000000
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return neocomplete#close_popup() . "\<CR>"
+" endfunction
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplete#close_popup()
+" inoremap <expr><C-e>  neocomplete#cancel_popup()
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript setlocal omnifunc=js#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+au FileType c set ts=4 sw=4
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
@@ -237,3 +236,22 @@ endfunc
 call ToggleLineMax()
 nnoremap <silent> <C-f> :call ToggleLineMax()<CR>
 inoremap <silent> <C-f> <C-o>:call ToggleLineMax()<CR>
+
+func! ClangFormat()
+  let a:cursor = [0, line('.'), col('.')]
+  exe '0,$!clang-format %'
+  call setpos('.', a:cursor)
+endfunc
+au FileType cpp,c map <silent><C-k> :call ClangFormat()<CR>
+
+func! TrimWhiteSpace()
+  let a:cursor = [0, line('.'), col('.')]
+  exe '%s/\s\+$//'
+  call setpos('.', a:cursor)
+endfunc
+
+nnoremap <C-j> :call TrimWhiteSpace()<CR>
+
+cnoremap <C-a> <C-b>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
