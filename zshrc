@@ -2,8 +2,8 @@
 #  rsync -aAXv /* /path/to/backup/folder --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found}
 
 HISTFILE=~/.history.zsh
-HISTSIZE=50000
-SAVEHIST=50000
+HISTSIZE=500000
+SAVEHIST=500000
 KEYTIMEOUT=1
 
 setopt APPEND_HISTORY
@@ -86,7 +86,7 @@ alias -g L='|& less'
 alias -g SP='|& tr \"\n\" \",\" |& sed "s/,$/\n/"'
 alias -g T='|& tail -n20'
 alias -g V='|& view -'
-alias .='xsel -b'
+alias -g @='|xsel -b'
 alias :q='exit'
 alias :wq='exit' # Vi has ruined me
 alias c='cd'
@@ -116,7 +116,6 @@ alias s='ls'
 alias sc='cd ~/source'
 alias sl='ls'
 alias su='sudo su'
-alias js='node'
 alias u='id -u -n'
 alias v='vim'
 alias quiet='sudo cpupower -g powersave --min=0.8 --max=1.8 -i'
@@ -128,6 +127,7 @@ alias gcc='gcc -std=c11 -Wall -Wextra -pedantic'
 alias g++='g++ -std=c++14 -Wall -Wextra -pedantic'
 alias html='template html'
 alias find='noglob find'
+alias csc='cd /home/jake/source/CSC/CSC-151'
 
 function cpull() {
   sudo cpupower -g powersave --min=0.8 --max=0.8

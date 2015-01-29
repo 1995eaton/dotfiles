@@ -7,7 +7,6 @@ cd $repo_dir
 repositories=(
  'git|https://github.com/baskerville/bspwm|bspwm'
  'git|https://github.com/baskerville/sxhkd|sxhdkd'
- 'git|https://github.com/pypa/pip|pip'
  'hg|https://vim.googlecode.com/hg|vim'
 )
 

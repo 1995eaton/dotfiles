@@ -7,10 +7,9 @@ use_spacer none
 
 TEXT
 \
-%{B\#fff333333}${execi 0.5 ~/.config/bspwm/panel/bspwm.sh}\
-%{F\#fff333333}%{B\#fff888888}%{B\#fff1c1c1c}%{F\#fff888888}\
-%{r}%{F\#fffb9b9b9}%{F\#fff333333d}%{B\#fffb9b9b9} ${execi 5 ~/.config/bspwm/panel/vol.sh}  \
-${execi 5 ~/.config/bspwm/panel/bat.sh}  \
-${cpu cpu0}%%  ${execi 5 /home/jake/scripts/cputemp} %{B\#fff333333}%{F\#fffbbbbbb}\
-%{B\#fffb9b9b9}%{F\#fff333333}%{F\#fffbbbbbb}%{B\#fff333333} \
-${execi 30 date +%I:%M\ %P | sed 's/^0//'} %{B\#fff1c1c1c}
+${execi 0.5 ~/.config/bspwm/panel/bspwm.sh}\
+%{r}${execi 5 ~/.config/bspwm/panel/vol.sh} | \
+${execi 5 ~/.config/bspwm/panel/bat.sh} | \
+${cpu cpu0}%% | \
+${execi 5 /home/jake/scripts/cputemp} | \
+${execi 30 date +%I:%M\ %P | sed 's/^0//'} 

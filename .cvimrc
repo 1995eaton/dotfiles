@@ -4,7 +4,8 @@ set noautofocus
 set cncpcompletion
 set nohud
 set typelinkhints
-let scrollduration = 250
+
+let scrollduration = 300
 let homedirectory = '/home/jake'
 let searchlimit = 25
 let completionengines = ['google', 'wikipedia', 'imdb',
@@ -12,18 +13,18 @@ let completionengines = ['google', 'wikipedia', 'imdb',
 let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
       \ 'http://www.reddit.com/r/learnpython/new/',
       \ 'http://www.reddit.com/r/learnprogramming/new']
+let vimcommand = 'urxvt -e vim'
 
 imap <C-o> editWithVim
 map af createActiveTabbedHint
-map xx closeTab
 map $ lastTab
 map 0 firstTab
-map g0 scrollToLeft
-map g$ scrollToRight
 map <Space> l
 map <S-Space> h
 map gS :viewsource&<CR>
-map qq closeTab
+unmap x
+map xx closeTab
+map qq xx
 map gs fullImageHint
 map gq :restore<Space>
 map a<Space> z<Enter>
@@ -40,6 +41,8 @@ map cc :set hud!<CR>
 map aa :tabopen g<Space>
 map , :set numerichints!<CR>
 map ga :settings<CR>
+map g0 scrollToLeft
+map g$ scrollToRight
 
 site '*://*/*' {
   call :script [].slice.call(document.querySelectorAll('*[accesskey]')).forEach(function(e){e.removeAttribute('accesskey')});
@@ -49,5 +52,3 @@ site '*://gist.github.com/*' {
   let nextmatchpattern = 'Older'
   let previousmatchpattern = 'Newer'
 }
-
-let blacklists = ["http://localhost/*","http://lo-th.github.io/*"]

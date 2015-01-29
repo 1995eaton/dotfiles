@@ -19,6 +19,7 @@ colorscheme mine
 " Line numbering
 " set relativenumber
 set number
+set cursorline
 
 " Cursor movement
 set mouse=nicr
@@ -26,8 +27,12 @@ nnoremap j gj
 nnoremap k gk
 nnoremap 0 g^
 nnoremap $ g$
-map J jzz
-map K kzz
+nnoremap <silent> <C-j> :bn<CR>
+nnoremap <silent> <C-K> :bN<CR>
+nnoremap J jzz
+nnoremap K kzz
+vnoremap K k
+vnoremap J j
 map L zz
 
 " Disable line breaks unless the <Enter> key is hit
@@ -88,15 +93,6 @@ set wildmode=longest:list,full
 set shellslash
 set history=100
 
-" Vim notes
-let g:notes_directories=['~/notes']
-
-" Emmet
-let g:user_emmet_leader_key='<C-f>'
-
-set pumheight=20
-set completeopt=menuone
-
 " Syntastic
 nnoremap <C-s> :SyntasticToggleMode<CR>
 let g:syntastic_javascript_checkers = ['jshint']
@@ -107,8 +103,6 @@ set laststatus=2
 let g:airline_theme='molokai'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-" let g:airline_left_sep=''
-" let g:airline_right_sep=''
 let g:tcommentMapLeaderOp1="ga"
 map <C-t> :tabnew<CR>:Explore<CR>
 map <A-q> :q<CR>
@@ -116,6 +110,7 @@ map <C-S-q> :q!<CR>
 
 " Miscellaneous
 vnoremap . :normal .<CR>
+set expandtab
 set visualbell t_vb=
 set ttimeoutlen=0
 set ttyfast
@@ -140,24 +135,27 @@ vnoremap < <gv
 vnoremap > >gv
 let loaded_matchparen = 1
 nnoremap <C-p> :SyntasticToggleMode<CR>
+inoremap <C-e> <C-o>:NeoCompleteToggle<CR>
 nnoremap go mto<Esc>`t
 nnoremap gO mtO<Esc>`t
 vnoremap ab :normal Va{o^<CR>
 vmap ib :normal Va{o0<CR>
 omap <silent> ab :normal Vab<CR>
 omap <silent> ib i{<CR>
-au BufRead,BufNewFile *.md set filetype=markdown
-let g:jschromeapis = 1
-let g:javascript#bracehi = 1
-" let g:javascript#equalhi = 1
+cnoremap <C-a> <C-b>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+nnoremap <silent> <C-f> :call ToggleLineMax()<CR>
+inoremap <silent> <C-f> <C-o>:call ToggleLineMax()<CR>
+
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++14'
-" set cursorline
-set expandtab
+hi CursorLine ctermbg=233
+hi CursorLineNr ctermbg=233
 
 " GUI options
 if has('gui_running')
@@ -173,54 +171,11 @@ if has('gui_running')
   set guioptions+=m
 endif
 
-nnoremap <C-f> :NERDTree<CR>
-
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_always_populate_location_list = 1
-let g:ycm_show_diagnostics_ui = 0
-
 func! HighlightInstances()
   let @/ = expand("<cword>")
   set hlsearch
 endfunc
-nnoremap <silent> <C-k> :set nohlsearch\|:call HighlightInstances()<CR>
-au BufRead,BufNewFile *.peg set filetype=javascript
-
-let g:acp_enableAtStartup = 0
-
-" let g:neocomplete#auto_completion_start_length=2
-" let g:neocomplete#force_overwrite_completefunc=1
-" let g:neocomplete#max_keyword_width=80
-" let g:neocomplete#sources#tags#cache_limit_size=5000000
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_smart_case = 1
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" if !exists('g:neocomplete#keyword_patterns')
-"     let g:neocomplete#keyword_patterns = {}
-" endif
-" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" inoremap <expr><C-g>     neocomplete#undo_completion()
-" inoremap <expr><C-l>     neocomplete#complete_common_string()
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"   return neocomplete#close_popup() . "\<CR>"
-" endfunction
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><C-y>  neocomplete#close_popup()
-" inoremap <expr><C-e>  neocomplete#cancel_popup()
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=js#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-au FileType c set ts=4 sw=4
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
+nnoremap <silent> <C-l> :set nohlsearch\|:call HighlightInstances()<CR>
 
 hi LineMax cterm=none
 match LineMax /\%81v.*/
@@ -228,30 +183,55 @@ let s:line_max_enabled = 0
 func ToggleLineMax()
   let s:line_max_enabled = !s:line_max_enabled
   if s:line_max_enabled
-    hi LineMax cterm=reverse
+    " hi LineMax cterm=reverse
+    hi LineMax cterm=underline
   else
     hi clear LineMax
   endif
 endfunc
 call ToggleLineMax()
-nnoremap <silent> <C-f> :call ToggleLineMax()<CR>
-inoremap <silent> <C-f> <C-o>:call ToggleLineMax()<CR>
 
-func! ClangFormat()
-  let a:cursor = [0, line('.'), col('.')]
-  exe '0,$!clang-format %'
-  call setpos('.', a:cursor)
-endfunc
-au FileType cpp,c map <silent><C-k> :call ClangFormat()<CR>
+au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.peg,*.jison set ft=javascript
+au FileType python set ts=2 sw=2
+" au Filetype java setlocal omnifunc=javacomplete#Complete
+" au BufRead,BufNewFile *.java call javacomplete#SetSourcePath('.')
+" au BufRead,BufNewFile *.java call javacomplete#AddClassPath('/home/jake/.java8-src/out')
 
-func! TrimWhiteSpace()
-  let a:cursor = [0, line('.'), col('.')]
-  exe '%s/\s\+$//'
-  call setpos('.', a:cursor)
-endfunc
+" Neocomplete
+let g:acp_enableAtStartup = 0
+let g:neocomplete#auto_completion_start_length=2
+let g:neocomplete#force_overwrite_completefunc=0
+let g:neocomplete#max_keyword_width=80
+let g:neocomplete#sources#tags#cache_limit_size=5000000
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 0
+let g:neocomplete#sources#syntax#min_keyword_length = 2
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+endfunction
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=js#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.javascript = '[a-zA-Z_$]\{3,}\|\.[a-zA-Z_$]*'
+set pumheight=8
+set completeopt=menu
 
-nnoremap <C-j> :call TrimWhiteSpace()<CR>
-
-cnoremap <C-a> <C-b>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
+let g:syntastic_java_javac_config_file_enabled = 1
+let g:syntastic_java_javac_config_file = '/home/jake/.syntastic_javac_config'
+silent
+let g:Omnisharp_start_server = 0
+au FileType cs setlocal cinoptions+=j1,J1

@@ -10,8 +10,8 @@
 ! *boldFont: xft:Inconsolata:size=9:style=Bold
 ! urxvt.letterSpace: -1
 
-! *font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
-! *boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
+! *font: xft:DejaVu Sans Mono:pixelsize=12:style=Book
+! *boldFont: xft:DejaVu Sans Mono:pixelsize=12:style=Bold
 ! urxvt.letterSpace: -1
 
 ! *font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
@@ -62,8 +62,8 @@ urxvt.keysym.M-v:        perl:clipboard:paste
 *colorUL: #87afd7
 
 *foreground: #8F8F8F
-! *background: [98]#1c1c1c
-*background: #1c1c1c
+urxvt.background: [90]#1c1c1c
+! *background: #1c1c1c
 urxvt.depth: 32
 ! Dark Yellow + Yellow
 *color3:  #E6DB74

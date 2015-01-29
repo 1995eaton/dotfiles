@@ -1,13 +1,14 @@
-hi Normal ctermbg=234 ctermfg=250 guibg=#1c1c1c guifg=#bcbcbc
+" hi Normal ctermbg=234 ctermfg=250 guibg=#1c1c1c guifg=#bcbcbc
+hi Normal ctermbg=none ctermfg=250 guibg=#1c1c1c guifg=#bcbcbc
 hi PreProc ctermfg=141 guifg=#af87ff
 hi Comment ctermfg=241 guifg=#606060
 hi Visual ctermbg=237 guibg=#3a3a3a
 hi CursorLine ctermbg=235 cterm=none guibg=#262626 gui=none
 hi LineNr ctermbg=233 ctermfg=236 guibg=#121212 guifg=#303030
-hi CursorLineNr ctermbg=234 ctermfg=249 guibg=#1c1c1c guifg=#b2b2b2
+hi CursorLineNr ctermbg=none ctermfg=249 guibg=#1c1c1c guifg=#b2b2b2
 hi Boolean ctermfg=141 guifg=#af87ff
 hi String ctermfg=222 guifg=#ffd787
-hi NonText ctermfg=234 ctermbg=234 guibg=#1c1c1c guifg=#1c1c1c
+hi NonText ctermfg=none ctermbg=none guibg=#1c1c1c guifg=#1c1c1c
 hi Constant ctermfg=104 guifg=#8787d7
 hi Delimiter ctermfg=241 guifg=#606060
 hi Special ctermbg=none ctermfg=37 guifg=#00afaf
