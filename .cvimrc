@@ -1,20 +1,23 @@
 set nosmoothscroll
-set nodimhintcharacters
+"set nodimhintcharacters
 set noautofocus
 set cncpcompletion
 set nohud
 set typelinkhints
-
-let scrollduration = 300
+let zoomfactor = 0.05
+map <C-=> zoomPageIn
+map <C--> zoomPageOut
+let scrollduration = 350
 let homedirectory = '/home/jake'
 let searchlimit = 25
+let searchengine sgoogle = 'https://www.google.com/search?q=%s&pws=0&cad=h&gl=us'
+let searchalias sg = 'sgoogle'
 let completionengines = ['google', 'wikipedia', 'imdb',
       \ 'amazon', 'wolframalpha', 'duckduckgo']
 let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
       \ 'http://www.reddit.com/r/learnpython/new/',
       \ 'http://www.reddit.com/r/learnprogramming/new']
 let vimcommand = 'urxvt -e vim'
-
 imap <C-o> editWithVim
 map af createActiveTabbedHint
 map $ lastTab
@@ -26,8 +29,10 @@ unmap x
 map xx closeTab
 map qq xx
 map gs fullImageHint
+map Q createHoverHint
 map gq :restore<Space>
 map a<Space> z<Enter>
+map <C-e> z<Enter>
 map <C-k> nextTab
 map <C-j> previousTab
 map cn :execute nzz<CR>
@@ -43,12 +48,25 @@ map , :set numerichints!<CR>
 map ga :settings<CR>
 map g0 scrollToLeft
 map g$ scrollToRight
-
 site '*://*/*' {
   call :script [].slice.call(document.querySelectorAll('*[accesskey]')).forEach(function(e){e.removeAttribute('accesskey')});
 }
-
 site '*://gist.github.com/*' {
   let nextmatchpattern = 'Older'
   let previousmatchpattern = 'Newer'
 }
+map E createEditHint
+imap <C-y> selectAll
+imap <C-a> <C-i>
+imap <C-l> forwardChar
+imap <C-h> backwardChar
+imap <C-f> forwardWord
+imap <C-b> backwardWord
+map <BS> <Nop>
+map , passKeys
+
+getIP() -> {{
+httpRequest({url: 'http://api.ipify.org/?format=json', json: true},
+            function(res) { Status.setMessage('IP: ' + res.ip); });
+}}
+map ci :call getIP<CR>

@@ -23,7 +23,7 @@ ctrl + shift + k
 ctrl + shift + j
   bspc window -e up +20 || bspc window -e down +20
 alt + {_,shift} + s
-  {killall -9 conky bar; bspc config -m eDP1 top_padding 0,bspc config top_padding 12; /home/jake/.config/bspwm/panel/init.sh}
+  {killall -9 conky bar; bspc config -m eDP1 top_padding 0,bspc config top_padding 15; /home/jake/.config/bspwm/panel/init.sh}
 alt + {_,shift} + b
   bspc config -m eDP1 window_gap {0,15}
 alt + button{1-3}

@@ -1,36 +1,37 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-bundle_dir="$HOME/.vim/bundle"
-cd $bundle_dir
+set -ue
 
 packages=(
-  'https://github.com/Shougo/neocomplete.vim.git'
-  'https://github.com/godlygeek/tabular'
-  'https://github.com/tomtom/tcomment_vim'
-  'https://github.com/bling/vim-airline.git'
-  'https://github.com/scrooloose/syntastic'
-  'git@github.com:1995eaton/vim-better-javascript-syntax.git'
+'https://github.com/Shougo/neocomplete.vim.git'
+'https://github.com/godlygeek/tabular'
+'https://github.com/tomtom/tcomment_vim'
+'https://github.com/bling/vim-airline.git'
+'https://github.com/scrooloose/syntastic'
+'git@github.com:1995eaton/vim-better-javascript-syntax.git'
 )
 
-
-if [[ $1 == '-p' ]]; then
-  cd ..
-  rm -rf autoload
-  git clone 'https://github.com/tpope/vim-pathogen'
-  mv vim-pathogen/autoload .
-  rm -rf vim-pathogen
-else
-  for i in ${packages[*]}; do
-    _dir=`echo $i | sed 's/^.*\///' | sed 's/\.git$//'`
-    if [[ ! -e $_dir ]]; then
-      echo -e "\033[36;1;31mCloning $_dir:\033[0;0m\n"
-      git clone $i
-    else
-      cd $_dir && echo -e "\033[36;1;31mUpgrading $_dir:\033[0;0m\n"
-      if [[ -d .git ]]; then
-        git pull
-      fi
-      echo && cd $bundle_dir
+update_packages() {
+  cd ~/.vim/bundle
+  for e in ${packages[*]}; do
+    base=$(echo "$e" | sed 's/.*\///' | sed 's/\.git$//')
+    if [ ! -e "$base" ]; then
+      echo -e "\033[36;1;31mCloning $base:\033[0;0m\n\n"
+      git clone "$e"
     fi
   done
-fi
+  cd - &> /dev/null
+}
+
+git_pull() {
+  cd ~/.vim/bundle
+  for repo in $(find . -maxdepth 2 -name '.git' -printf '%h\n'); do
+    cd "$repo"
+    echo -e "\033[36;1;31mUpgrading $(basename $(pwd)):\033[0;0m\n\n"
+    git pull origin master
+    cd -
+  done
+}
+
+update_packages
+git_pull

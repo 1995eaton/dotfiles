@@ -8,10 +8,9 @@ KEYTIMEOUT=1
 
 setopt APPEND_HISTORY
 setopt AUTO_CD
-setopt COMPLETE_ALIASES
+setopt HIST_IGNORE_SPACE
 setopt EXTENDED_GLOB
 setopt EXTENDED_HISTORY
-setopt GLOB_COMPLETE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_DUPS
@@ -36,7 +35,7 @@ select-word-style bash
 # EXTRA COMPLETIONS ==> https://github.com/zsh-users/zsh-completions
 
 fpath=(/home/jake/.zsh-completions/src $fpath)
-autoload -U compinit && compinit -C
+autoload -Uz compinit && compinit -C
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
@@ -63,6 +62,7 @@ else
   alias ls='ls -G'
 fi
 
+export LISTMAX=0
 export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release:/home/jake/.npm/bin:$GOPATH/bin:/home/jake/source/templates/bin
 export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
 export EDITOR='vim'
@@ -75,6 +75,15 @@ function tcp() {
   traceur --array-comprehension true --spread true --classes true --generators true \
     --for-of true --rest-parameters true --destructuring true --arrow-functions true \
     --script $1 --out $2;
+}
+
+vpn() {
+  case $1 in
+    0) sudo systemctl stop openvpn@pia  ;;
+    1) sudo systemctl start openvpn@pia ;;
+    *) [[ `systemctl status openvpn@pia` =~ inactive ]] &&
+         echo 'inactive' || echo 'active'
+  esac
 }
 
 alias 6to5='6to5 -b generators --experimental'
@@ -96,6 +105,7 @@ alias dl='cd ~/downloads'
 alias ed='ed -p "-> "'
 alias emacs='emacs -nw'
 alias gc='git clone'
+alias gu='git ls-files --others --exclude-standard'
 alias gcm='git commit -a -m'
 alias gco='git commit'
 alias gd='git diff'
@@ -128,6 +138,8 @@ alias g++='g++ -std=c++14 -Wall -Wextra -pedantic'
 alias html='template html'
 alias find='noglob find'
 alias csc='cd /home/jake/source/CSC/CSC-151'
+alias size='du -h --apparent-size'
+alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 
 function cpull() {
   sudo cpupower -g powersave --min=0.8 --max=0.8
@@ -135,6 +147,10 @@ function cpull() {
 }
 function cpul() {
   sudo cpupower -g powersave --min=0.8 --max=1.6
+  sudo cpupower -i
+}
+function cpun() {
+  sudo cpupower -g powersave --min=0.8 --max=2.4
   sudo cpupower -i
 }
 
@@ -199,3 +215,21 @@ stty -ixon # disables flow control (C-s and C-q)
 #source /home/jake/.vimfifo
 source /home/jake/.zsh-npmcompletions
 source /home/jake/scripts/cmp.zsh
+
+compgen() {
+  EXECDIRS=($(echo $PATH | tr ':' ' '))
+
+  FILTERED=()
+
+  for dir in ${EXECDIRS[*]}; do
+    if [[ -d $dir ]]; then
+      FILTERED+=($dir)
+    fi
+  done
+
+  find ${FILTERED[*]} -type f -executable -printf "%f\n"
+}
+
+encrypt() {
+  7z a $1.7z -mhe -p $1
+}

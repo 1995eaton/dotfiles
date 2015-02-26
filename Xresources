@@ -3,8 +3,12 @@
 ! *font: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 ! *boldFont: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 
-*font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
-*boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
+! *font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
+! *boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
+
+*font: xft:Source Code Pro:pixelsize=11:style=Regular
+*boldFont: xft:Source Code Pro:pixelsize=11:style=Bold
+*letterSpace: -1
 
 ! *font: xft:Inconsolata:size=9:style=Regular
 ! *boldFont: xft:Inconsolata:size=9:style=Bold
@@ -62,8 +66,8 @@ urxvt.keysym.M-v:        perl:clipboard:paste
 *colorUL: #87afd7
 
 *foreground: #8F8F8F
-urxvt.background: [90]#1c1c1c
-! *background: #1c1c1c
+! urxvt.background: [95]#1c1c1c
+*background: #1c1c1c
 urxvt.depth: 32
 ! Dark Yellow + Yellow
 *color3:  #E6DB74

@@ -19,7 +19,7 @@ colorscheme mine
 " Line numbering
 " set relativenumber
 set number
-set cursorline
+" set cursorline
 
 " Cursor movement
 set mouse=nicr
@@ -118,12 +118,16 @@ set timeoutlen=500
 set lazyredraw
 vnoremap <C-e> <C-u>
 nnoremap <C-e> <C-u>
-let g:run_fifo = "/tmp/vim-run_fifo"
-let g:run_exec_on_write = 1
 
 " Mappings
 nnoremap Q @q
+vnoremap Q :norm @q<CR>
 nnoremap @@ @q
+inoremap <C-i> <C-o>:NeoCompleteToggle<CR>
+inoremap <C-e> <C-o>A
+inoremap <C-a> <C-o>I
+inoremap <C-b> <C-o><BS>
+inoremap <C-f> <C-o><Space>
 vmap gq ygvge
 nmap gqq yyge
 set nofoldenable
@@ -135,7 +139,6 @@ vnoremap < <gv
 vnoremap > >gv
 let loaded_matchparen = 1
 nnoremap <C-p> :SyntasticToggleMode<CR>
-inoremap <C-e> <C-o>:NeoCompleteToggle<CR>
 nnoremap go mto<Esc>`t
 nnoremap gO mtO<Esc>`t
 vnoremap ab :normal Va{o^<CR>
@@ -145,8 +148,8 @@ omap <silent> ib i{<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
-nnoremap <silent> <C-f> :call ToggleLineMax()<CR>
-inoremap <silent> <C-f> <C-o>:call ToggleLineMax()<CR>
+nnoremap <silent> <C-j> :call ToggleLineMax()<CR>
+inoremap <silent> <C-j> <C-o>:call ToggleLineMax()<CR>
 
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -194,6 +197,7 @@ call ToggleLineMax()
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.peg,*.jison set ft=javascript
 au FileType python set ts=2 sw=2
+au FileType java set ts=4 sw=4
 " au Filetype java setlocal omnifunc=javacomplete#Complete
 " au BufRead,BufNewFile *.java call javacomplete#SetSourcePath('.')
 " au BufRead,BufNewFile *.java call javacomplete#AddClassPath('/home/jake/.java8-src/out')
@@ -235,3 +239,5 @@ let g:syntastic_java_javac_config_file = '/home/jake/.syntastic_javac_config'
 silent
 let g:Omnisharp_start_server = 0
 au FileType cs setlocal cinoptions+=j1,J1
+set statusline=%f\ %m%=%{&filetype}\ \|\ %{&encoding}[%{&fileformat}]
+set statusline+=\ \|\ %3l/%L\ %3c\ \ 
