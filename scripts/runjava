@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+
+CLASS_PATH='.:/usr/share/java/junit.jar'
+TMP=`mktemp -d`
+
+javac -cp $CLASS_PATH -d $TMP /home/jake/.jars/Log.java "${@:1}"
+
+MAIN=`grep -lE 'import\s+org\s*\.\s*junit' ${@:1} | head -1 | sed 's/\..*//'`
+
+if [[ $MAIN != '' ]]; then
+  cd $TMP
+  java -cp $CLASS_PATH org.junit.runner.JUnitCore $MAIN
+else
+  MAIN=`/home/jake/scripts/getmain.py ${@:1}`
+  [[ $MAIN == '' ]] && MAIN=`echo $1 | sed 's/\..*//'`
+  cd $TMP
+  java -cp $CLASS_PATH $MAIN
+fi
+
+rm -r $TMP
