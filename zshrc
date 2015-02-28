@@ -63,7 +63,7 @@ else
 fi
 
 export LISTMAX=0
-export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/home/jake/.gem/ruby/2.1.0/bin:/home/jake/source/depot_tools/src/out/Release:/home/jake/.npm/bin:$GOPATH/bin:/home/jake/source/templates/bin
+export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/home/jake/.gem/ruby/2.2.0/bin:/home/jake/source/depot_tools/src/out/Release:/home/jake/.npm/bin:$GOPATH/bin:/home/jake/source/templates/bin
 export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
 export EDITOR='vim'
 export PYTHONSTARTUP=~/.python-autocomplete.py

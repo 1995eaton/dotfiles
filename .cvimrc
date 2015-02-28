@@ -47,6 +47,7 @@ map aa :tabopen g<Space>
 map , :set numerichints!<CR>
 map ga :settings<CR>
 map g0 scrollToLeft
+map I yankHighlight
 map g$ scrollToRight
 site '*://*/*' {
   call :script [].slice.call(document.querySelectorAll('*[accesskey]')).forEach(function(e){e.removeAttribute('accesskey')});
@@ -64,7 +65,6 @@ imap <C-f> forwardWord
 imap <C-b> backwardWord
 map <BS> <Nop>
 map , passKeys
-
 getIP() -> {{
 httpRequest({url: 'http://api.ipify.org/?format=json', json: true},
             function(res) { Status.setMessage('IP: ' + res.ip); });
