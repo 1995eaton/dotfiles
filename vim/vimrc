@@ -196,7 +196,7 @@ call ToggleLineMax()
 
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.peg,*.jison set ft=javascript
-au FileType python set ts=2 sw=2
+" au FileType python set ts=2 sw=2
 au FileType java set ts=4 sw=4
 " au Filetype java setlocal omnifunc=javacomplete#Complete
 " au BufRead,BufNewFile *.java call javacomplete#SetSourcePath('.')

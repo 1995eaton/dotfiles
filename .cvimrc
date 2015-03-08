@@ -1,23 +1,20 @@
 set nosmoothscroll
-"set nodimhintcharacters
 set noautofocus
 set cncpcompletion
 set nohud
+set nodimhintcharacters
 set typelinkhints
 let zoomfactor = 0.05
-map <C-=> zoomPageIn
-map <C--> zoomPageOut
 let scrollduration = 350
 let homedirectory = '/home/jake'
 let searchlimit = 25
-let searchengine sgoogle = 'https://www.google.com/search?q=%s&pws=0&cad=h&gl=us'
-let searchalias sg = 'sgoogle'
 let completionengines = ['google', 'wikipedia', 'imdb',
       \ 'amazon', 'wolframalpha', 'duckduckgo']
 let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
       \ 'http://www.reddit.com/r/learnpython/new/',
       \ 'http://www.reddit.com/r/learnprogramming/new']
 let vimcommand = 'urxvt -e vim'
+
 imap <C-o> editWithVim
 map af createActiveTabbedHint
 map $ lastTab
@@ -44,7 +41,7 @@ map <C-g> :set smoothscroll!<CR>
 map <C-h> :nohl<CR>
 map cc :set hud!<CR>
 map aa :tabopen g<Space>
-map , :set numerichints!<CR>
+map g, :set numerichints!<CR>
 map ga :settings<CR>
 map g0 scrollToLeft
 map I yankHighlight
@@ -56,17 +53,15 @@ site '*://gist.github.com/*' {
   let nextmatchpattern = 'Older'
   let previousmatchpattern = 'Newer'
 }
-map E createEditHint
 imap <C-y> selectAll
 imap <C-a> <C-i>
-imap <C-l> forwardChar
-imap <C-h> backwardChar
-imap <C-f> forwardWord
-imap <C-b> backwardWord
+imap <C-l> forwardWord
+imap <C-h> backwardWord
 map <BS> <Nop>
 map , passKeys
 getIP() -> {{
-httpRequest({url: 'http://api.ipify.org/?format=json', json: true},
-            function(res) { Status.setMessage('IP: ' + res.ip); });
+httpRequest({url: 'http://www.telize.com/geoip', json: true},
+            function(res) { Status.setMessage(res.ip + ' - ' + res.isp); });
 }}
 map ci :call getIP<CR>
+let blacklists = ["http://www.typingtest.com/*","http://typing-speed-test.aoeu.eu/*","http://play.typeracer.com/*"]

@@ -86,8 +86,6 @@ vpn() {
   esac
 }
 
-alias 6to5='6to5 -b generators --experimental'
-alias 6to5-node='6to5-node --experimental'
 alias mac="echo -e \$(hexdump -ve '/1 \"%02x:\"' /dev/urandom | fold -w18 | head -c17)"
 alias ns='ss -plantu | sed "s/\S\+:((\|))$//g" | tr "," "	" | column -t -s"	"'
 alias -g H='|& head -n20'

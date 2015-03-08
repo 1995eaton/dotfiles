@@ -180,6 +180,7 @@ void get_cpus_available() {
   }
   sscanf(split, "%d", &CPUS_AVAILABLE);
   CPUS_AVAILABLE++;
+  free(data);
 }
 
 void enable_cpus(int *cpus) {
@@ -431,5 +432,6 @@ int main(int argc, char **argv) {
         show_help();
     }
   }
+  clear_array(&arguments);
   return 0;
 }
