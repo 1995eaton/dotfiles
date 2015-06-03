@@ -4,6 +4,7 @@ repository_dir = ~/dotfiles
 [mappings]
 tmux.conf = ~/.tmux.conf
 .cvimrc = ~/.cvimrc
+.mplayer = ~/.mplayer
 macros = ~/.macros
 vim/vim = ~/.vim
 vim/vimrc = ~/.vimrc
