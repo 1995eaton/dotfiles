@@ -34,16 +34,18 @@ super + q
   killall conky bar; bspc quit
 alt + {o,i}
   bspc window -t {floating,fullscreen}
-alt + f
-  bspc window -t floating
 alt + {_,shift + }{1-9,0}
   bspc {desktop -f,window -d} ^{1-9,10}
 alt + p
   dmenu_run -nb \#1c1c1c -nf \#8f8f8f -sb \#f92672
 alt + shift + w
-  google-chrome-unstable --test-type
+  google-chrome-unstable --test-type --harmony_arrow_functions
 alt + w
-  chromium --test-type
+  chromium --test-type --harmony_arrow_functions
+alt + ctrl + w
+  primusrun chromium --test-type --harmony_arrow_functions
+alt + shift + n
+  chromium --test-type --incognito --harmony_arrow_functions
 alt + t
   urxvtc -geometry 120x40 -e tmux -2 -q
 alt + m

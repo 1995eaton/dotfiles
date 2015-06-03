@@ -6,8 +6,8 @@ cd $repo_dir
 
 repositories=(
  'git|https://github.com/baskerville/bspwm|bspwm'
- 'git|https://github.com/baskerville/sxhkd|sxhdkd'
- 'hg|https://vim.googlecode.com/hg|vim'
+ 'git|https://github.com/baskerville/sxhkd|sxhkd'
+ 'git|https://github.com/vim/vim|vim'
 )
 
 for i in ${repositories[*]}; do

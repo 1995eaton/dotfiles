@@ -1,6 +1,7 @@
+CC=gcc
 CFLAGS=-std=gnu11 -c -Ofast -march=native
 PREFIX=/usr/local
-LDFLAGS=
+LDFLAGS=-lm
 SOURCES=main.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=cpupower

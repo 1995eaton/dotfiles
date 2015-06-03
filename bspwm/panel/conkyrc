@@ -12,4 +12,4 @@ ${execi 0.5 ~/.config/bspwm/panel/bspwm.sh}\
 ${execi 5 ~/.config/bspwm/panel/bat.sh} | \
 ${cpu cpu0}%% | \
 ${execi 5 /home/jake/scripts/cputemp} | \
-${execi 30 date +%I:%M\ %P | sed 's/^0//'} 
+${execi 30 date +%m/%_d/%y\ \|\ %I:%M\ %P}

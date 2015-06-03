@@ -2,19 +2,16 @@ execute pathogen#infect()
 
 " Color schemes
 set t_Co=256
-" let g:rehash256=1
-" colorscheme molokai
 
 " File settings
 filetype plugin indent on
-" au BufReadPost * call vimcomplete#init()
 set fileformats=unix,dos,mac
 
 " Syntax hightlighting
 syntax on
 nnoremap <silent> <C-h> :nohlsearch<CR>
+set bg=dark
 colorscheme mine
-
 
 " Line numbering
 " set relativenumber
@@ -27,17 +24,17 @@ nnoremap j gj
 nnoremap k gk
 nnoremap 0 g^
 nnoremap $ g$
-nnoremap <silent> <C-j> :bn<CR>
-nnoremap <silent> <C-K> :bN<CR>
+nnoremap g$ $
+nnoremap g0 0
 nnoremap J jzz
 nnoremap K kzz
 vnoremap K k
 vnoremap J j
-map L zz
 
 " Disable line breaks unless the <Enter> key is hit
 set wrap
 set linebreak
+set showbreak=\ ...\ "
 set nolist
 set textwidth=0
 set wrapmargin=0
@@ -104,7 +101,6 @@ let g:airline_theme='molokai'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:tcommentMapLeaderOp1="ga"
-map <C-t> :tabnew<CR>:Explore<CR>
 map <A-q> :q<CR>
 map <C-S-q> :q!<CR>
 
@@ -123,7 +119,7 @@ nnoremap <C-e> <C-u>
 nnoremap Q @q
 vnoremap Q :norm @q<CR>
 nnoremap @@ @q
-inoremap <C-i> <C-o>:NeoCompleteToggle<CR>
+nnoremap <C-f> :call neocomplete#initialize()<CR>:NeoCompleteToggle<CR>
 inoremap <C-e> <C-o>A
 inoremap <C-a> <C-o>I
 inoremap <C-b> <C-o><BS>
@@ -183,27 +179,18 @@ nnoremap <silent> <C-l> :set nohlsearch\|:call HighlightInstances()<CR>
 hi LineMax cterm=none
 match LineMax /\%81v.*/
 let s:line_max_enabled = 0
-func ToggleLineMax()
+func! ToggleLineMax()
   let s:line_max_enabled = !s:line_max_enabled
   if s:line_max_enabled
-    " hi LineMax cterm=reverse
-    hi LineMax cterm=underline
+    echo "LineMax Enabled"
+    hi link LineMax Todo
   else
-    hi clear LineMax
+    echo "LineMax Disabled"
+    hi link LineMax NONE
   endif
 endfunc
-call ToggleLineMax()
-
-au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile *.peg,*.jison set ft=javascript
-" au FileType python set ts=2 sw=2
-au FileType java set ts=4 sw=4
-" au Filetype java setlocal omnifunc=javacomplete#Complete
-" au BufRead,BufNewFile *.java call javacomplete#SetSourcePath('.')
-" au BufRead,BufNewFile *.java call javacomplete#AddClassPath('/home/jake/.java8-src/out')
 
 " Neocomplete
-let g:acp_enableAtStartup = 0
 let g:neocomplete#auto_completion_start_length=2
 let g:neocomplete#force_overwrite_completefunc=0
 let g:neocomplete#max_keyword_width=80
@@ -218,11 +205,6 @@ endfunction
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=js#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
@@ -234,10 +216,37 @@ let g:neocomplete#sources#omni#input_patterns.javascript = '[a-zA-Z_$]\{3,}\|\.[
 set pumheight=8
 set completeopt=menu
 
+silent
+set statusline=%f\ %m%=%{&filetype}\ \|\ %{&encoding}[%{&fileformat}]
+set statusline+=\ \|\ %3l/%L\ %3c\ \ "
+
 let g:syntastic_java_javac_config_file_enabled = 1
 let g:syntastic_java_javac_config_file = '/home/jake/.syntastic_javac_config'
-silent
-let g:Omnisharp_start_server = 0
+let g:syntastic_check_on_wq = 0
+hi SyntasticErrorSign ctermbg=233
+hi SyntasticWarningSign ctermbg=233
+let g:syntastic_error_symbol = "E"
+let g:syntastic_warning_symbol = "W"
+
+set pastetoggle=<C-t>
+
+nnoremap } ]}
+nnoremap { [{
+nnoremap ( [(
+nnoremap ) ])
+
 au FileType cs setlocal cinoptions+=j1,J1
-set statusline=%f\ %m%=%{&filetype}\ \|\ %{&encoding}[%{&fileformat}]
-set statusline+=\ \|\ %3l/%L\ %3c\ \ 
+au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.peg,*.jison set ft=javascript
+au FileType java set ts=4 sw=4
+autocmd FileType python setlocal completeopt-=preview
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=js#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd Filetype tex setlocal nofoldenable
+
+au BufNewFile,BufRead sxhkdrc set ft=sxhkdrc
+call tcomment#DefineType('sxhkdrc', '# %s')
+call tcomment#DefineType('tmux', '# %s')

@@ -7,6 +7,7 @@ SAVEHIST=500000
 KEYTIMEOUT=1
 
 setopt APPEND_HISTORY
+setopt NULL_GLOB
 setopt AUTO_CD
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_GLOB
@@ -52,29 +53,42 @@ zmodload -a autocomplete
 zmodload -a complist
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-[ $COLORTERM ] && export TERM='xterm-256color'
+[ $COLORTERM ] && export TERM='screen-256color'
 
-if ls --color -d . &>/dev/null 2>&1; then
-  export LS_COLORS=$LS_COLORS
-  alias ls='ls --color=always'
-else
-  export LSCOLORS=$LSCOLORS
-  alias ls='ls -G'
-fi
+function ls() {
+/usr/bin/ls --color=always $*
+}
+# if ls --color -d . &>/dev/null 2>&1; then
+  # export LS_COLORS=$LS_COLORS
+#   alias -gm ls='ls --color=always'
+# else
+#   export LSCOLORS=$LSCOLORS
+#   alias ls='ls -G'
+# fi
 
 export LISTMAX=0
-export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:~/.config/bspwm/bar:/home/jake/.gem/ruby/2.2.0/bin:/home/jake/source/depot_tools/src/out/Release:/home/jake/.npm/bin:$GOPATH/bin:/home/jake/source/templates/bin
+# export PATH=$PATH:~/dotfiles/scripts:~/.config/bspwm/panel:/home/jake/.gem/ruby/2.2.0/bin:/home/jake/.npm/bin:$GOPATH/bin:/home/jake/source/templates/bin
+
+export PATH=$PATH
 export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
 export EDITOR='vim'
 export PYTHONSTARTUP=~/.python-autocomplete.py
-export BROWSER='google-chrome-unstable'
+export BROWSER='chromium --test-type'
 export GOPATH=~/.go
 export GCC_COLORS=always
 
-function tcp() {
-  traceur --array-comprehension true --spread true --classes true --generators true \
-    --for-of true --rest-parameters true --destructuring true --arrow-functions true \
-    --script $1 --out $2;
+function {
+  local PATH_ARRAY; PATH_ARRAY=(
+    ~/dotfiles/scripts
+    ~/.config/bspwm/panel
+    /home/jake/.gem/ruby/*/bin
+    /home/jake/.npm/bin
+    $GOPATH/bin
+    /home/jake/source/templates/bin
+  )
+  local IFS=:
+  shift 0
+  export PATH="`echo "$PATH_ARRAY:$PATH"`"
 }
 
 vpn() {
@@ -86,6 +100,14 @@ vpn() {
   esac
 }
 
+function pacman() {
+  if [[ $(id -u) -ne 0 && $1 =~ ^-(S[ycu]*|R.*)$ ]]; then
+    sudo /usr/bin/pacman $*
+  else
+    /usr/bin/pacman $*
+  fi
+}
+
 alias mac="echo -e \$(hexdump -ve '/1 \"%02x:\"' /dev/urandom | fold -w18 | head -c17)"
 alias ns='ss -plantu | sed "s/\S\+:((\|))$//g" | tr "," "	" | column -t -s"	"'
 alias -g H='|& head -n20'
@@ -95,8 +117,7 @@ alias -g T='|& tail -n20'
 alias -g V='|& view -'
 alias -g @='|xsel -b'
 alias :q='exit'
-alias :wq='exit' # Vi has ruined me
-alias c='cd'
+alias :wq='exit'
 alias cwdtopath='export PATH=$(pwd):$PATH'
 alias d='pwd'
 alias dl='cd ~/downloads'
@@ -112,17 +133,13 @@ alias gds='git diff --stat'
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias chrome=' chrome --test-type --ppapi-flash-path=/usr/lib/PepperFlash/libpepflashplayer.so --ppapi-flash-version=`grep -i version /usr/lib/PepperFlash/manifest.json | grep -oE "[0-9.]+"`'
 alias gp='git pull'
-alias gpu='git push'
 alias h='history -t %m/%d\ -\ %r'
 alias hide='/home/jake/scripts/hide_cursor/hide.sh'
 alias irb='irb --prompt simple'
 alias killvim='$(kill -9 `ps -eo pid,comm | grep vim | egrep -o "[0-9]+" | tr "\n" " "`)'
-alias l='ls'
 alias less='less -Cr'
 alias p='netstat -plantu'
-alias s='ls'
 alias sc='cd ~/source'
-alias sl='ls'
 alias su='sudo su'
 alias u='id -u -n'
 alias v='vim'
@@ -130,14 +147,42 @@ alias quiet='sudo cpupower -g powersave --min=0.8 --max=1.8 -i'
 alias help='echo -n ""'
 alias z='source ~/.zshrc'
 alias cpui='sudo cpupower -i'
-alias cpuh='sudo cpupower --high -i'
-alias gcc='gcc -std=c11 -Wall -Wextra -pedantic'
-alias g++='g++ -std=c++14 -Wall -Wextra -pedantic'
 alias html='template html'
-alias find='noglob find'
+# alias find='noglob find'
 alias csc='cd /home/jake/source/CSC/CSC-151'
 alias size='du -h --apparent-size'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
+
+alias c='cd'
+alias dc='cd'
+alias cc='cd'
+
+alias l='ls'
+alias s='ls'
+alias ss='ls'
+alias ll='ls'
+alias lsl='ls'
+alias lss='ls'
+alias sll='ls'
+alias ssl='ls'
+alias slll='ls'
+alias sl='ls'
+
+# function accept-line() {
+#   read -A tokens <<< ${BUFFER:gs/\\/\\\\}
+#   if [[ "${tokens[1]}" == % ]]; then
+#     BUFFER='noglob '${tokens[2,#tokens]}
+#     zle .accept-line
+#   fi
+#   # fi
+#   # noglob eval $*
+# }
+# zle -N _alias ng
+# zle -N accept-line
+alias %='noglob'
+
+alias cpu='ps axk%cpu -o %cpu,%mem,pid,cmd'
+alias j='ps axk%cpu -o %cpu,%mem,pid,cmd'
 
 function cpull() {
   sudo cpupower -g powersave --min=0.8 --max=0.8
@@ -149,6 +194,11 @@ function cpul() {
 }
 function cpun() {
   sudo cpupower -g powersave --min=0.8 --max=2.4
+  sudo cpupower -i
+}
+function cpuh() {
+  sudo cpupower --min=3.4 --max=3.4
+  sudo cpupower -g performance
   sudo cpupower -i
 }
 
@@ -210,24 +260,5 @@ bindkey '^J' down-line-or-beginning-search
 source /home/jake/.zsh-opp/opp.zsh
 
 stty -ixon # disables flow control (C-s and C-q)
-#source /home/jake/.vimfifo
 source /home/jake/.zsh-npmcompletions
 source /home/jake/scripts/cmp.zsh
-
-compgen() {
-  EXECDIRS=($(echo $PATH | tr ':' ' '))
-
-  FILTERED=()
-
-  for dir in ${EXECDIRS[*]}; do
-    if [[ -d $dir ]]; then
-      FILTERED+=($dir)
-    fi
-  done
-
-  find ${FILTERED[*]} -type f -executable -printf "%f\n"
-}
-
-encrypt() {
-  7z a $1.7z -mhe -p $1
-}

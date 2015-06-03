@@ -1,4 +1,5 @@
 set nosmoothscroll
+set localconfig
 set noautofocus
 set cncpcompletion
 set nohud
@@ -7,6 +8,7 @@ set typelinkhints
 let zoomfactor = 0.05
 let scrollduration = 350
 let homedirectory = '/home/jake'
+let configpath = '~/.cvimrc'
 let searchlimit = 25
 let completionengines = ['google', 'wikipedia', 'imdb',
       \ 'amazon', 'wolframalpha', 'duckduckgo']
@@ -14,7 +16,7 @@ let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
       \ 'http://www.reddit.com/r/learnpython/new/',
       \ 'http://www.reddit.com/r/learnprogramming/new']
 let vimcommand = 'urxvt -e vim'
-
+let searchalias i = 'imdb'
 imap <C-o> editWithVim
 map af createActiveTabbedHint
 map $ lastTab
@@ -22,9 +24,9 @@ map 0 firstTab
 map <Space> l
 map <S-Space> h
 map gS :viewsource&<CR>
-unmap x
 map xx closeTab
 map qq xx
+map \ :source<CR>
 map gs fullImageHint
 map Q createHoverHint
 map gq :restore<Space>
@@ -63,5 +65,9 @@ getIP() -> {{
 httpRequest({url: 'http://www.telize.com/geoip', json: true},
             function(res) { Status.setMessage(res.ip + ' - ' + res.isp); });
 }}
+site '*://*.netflix.com/WiPlayer*' {
+  unmap <Space>
+  unmap f
+}
 map ci :call getIP<CR>
-let blacklists = ["http://www.typingtest.com/*","http://typing-speed-test.aoeu.eu/*","http://play.typeracer.com/*"]
+let blacklists = ["file:///home/jake/typing-test/index.html","file:///home/jake/wip/pong/index.html"]

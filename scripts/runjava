@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-CLASS_PATH='.:/usr/share/java/junit.jar'
+CLASS_PATH='.:/usr/share/java/junit.jar:/usr/share/java/hamcrest-core.jar'
 TMP=`mktemp -d`
 
 javac -cp $CLASS_PATH -d $TMP /home/jake/.jars/Log.java "${@:1}"

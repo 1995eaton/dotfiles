@@ -8,16 +8,14 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include "vec.h"
+
 #define PROGRAM_NAME "cpupower"
 
 typedef struct {
   int id;
   char *arg;
 } opt_t;
-
-typedef opt_t *array_t;
-
-#include "array.c"
 
 const char CPUPATH[] = "/sys/devices/system/cpu";
 int CPUS_AVAILABLE;
@@ -40,9 +38,10 @@ static struct option long_options[] = {
 char *format(char *template, ...) {
   va_list va;
   va_start(va, template);
-  char *buffer = calloc(512, 1);
+  char *buffer = calloc(1024, sizeof (char));
   vsprintf(buffer, template, va);
   va_end(va);
+  buffer = realloc(buffer, (strlen(buffer) + 1) * sizeof (char));
   return buffer;
 }
 
@@ -83,8 +82,7 @@ void write_file(const char *file_name, const char *string, int oflag) {
 }
 
 void write_value(const char *pathname, const char *value) {
-  char *file_path = (char*) malloc(PATH_MAX * sizeof(char));
-  memset(file_path, 0, strlen(file_path));
+  char *file_path = calloc(PATH_MAX, sizeof (char));
   sprintf(file_path, "%s%s", CPUPATH, pathname);
   write_file(file_path, value, O_WRONLY);
   free(file_path);
@@ -217,14 +215,14 @@ cpuinfo_t *get_cpu_info(int N) {
        governor_line[80];
   sprintf(freq_line, "/cpu%d/cpufreq/cpuinfo_cur_freq", N);
   sprintf(governor_line, "/cpu%d/cpufreq/scaling_governor", N);
-  result->status = calloc(8, 1);
   if (N > 0) {
     char status_line[80];
     sprintf(status_line, "/cpu%d/online", N);
     char *status_info = read_file(status_line);
     result->status = *status_info == '0' ? "offline" : "online";
+    free(status_info);
   } else {
-    strcat(result->status, "online");
+    result->status = "online";
   }
   char *freq_info = read_file(freq_line);
   result->governor = read_file(governor_line);
@@ -266,15 +264,18 @@ int *parse_int_list(char *_value) {
 }
 
 void show_info() {
+  char *sminf = read_file("/cpu0/cpufreq/scaling_min_freq"),
+       *smaxf = read_file("/cpu0/cpufreq/scaling_max_freq"),
+       *sag   = read_file("/cpu0/cpufreq/scaling_available_governors");
   printf("CPU_MIN_PERC:  %d%%\n"
          "CPU_MAX_PERC:  %d%%\n"
          "CPU_MIN_FREQ:  %s\n"
          "CPU_MAX_FREQ:  %s\n"
          "GOVERNORS:     %s\n",
-         get_max_freq(), get_min_freq(),
-         read_file("/cpu0/cpufreq/scaling_min_freq"),
-         read_file("/cpu0/cpufreq/scaling_max_freq"),
-         read_file("/cpu0/cpufreq/scaling_available_governors"));
+         get_max_freq(), get_min_freq(), sminf, smaxf, sag);
+  free(sminf);
+  free(smaxf);
+  free(sag);
   for (int i = 0; i < CPUS_AVAILABLE; i++) {
     cpuinfo_t *info = get_cpu_info(i);
     printf("CPU%d: %7s, %.2lfGHz, %s\n", i, info->status, info->freq / 1e6, info->governor);
@@ -296,7 +297,8 @@ int main(int argc, char **argv) {
       digit_option;
   get_cpus_available();
 
-  Array arguments = create_array();
+  vec_t(opt_t*, vec_opt_t);
+  vec_opt_t arguments; vec_init(arguments);
 
   for (int c; (c = getopt_long(argc, argv, ":ip:s:t:p:c:g:hm", long_options, &option_index)) != -1;) {
     switch (c) {
@@ -308,24 +310,24 @@ int main(int argc, char **argv) {
         show_error(format("option requires an argument '%s'", argv[optind-1]), 1);
         break;
     }
-    opt_t *opt = calloc(1, sizeof(opt_t));
+    opt_t *opt = calloc(1, sizeof (opt_t));
     opt->id = c;
     opt->arg = optarg == NULL ? "" : optarg;
-    array_push(&arguments, opt);
+    vec_push(arguments, opt);
   }
 
-  if (arguments.length == 0) {
+  if (vec_len(arguments) == 0) {
     show_help();
   }
 
-  char *ids = calloc(arguments.length, 1);
+  char *ids = calloc(vec_len(arguments), 1);
   char *idsp = ids;
-  for (int i = 0; i < arguments.length; i++) {
-    opt_t *opt = array_get(&arguments, i);
+  for (int i = 0; i < vec_len(arguments); i++) {
+    opt_t *opt = vec_get(arguments, i);
     if (strchr(ids, opt->id) != NULL) {
       show_error("duplicate argument", 0);
     }
-    if (opt->id == 'm' && arguments.length > 1) {
+    if (opt->id == 'm' && vec_len(arguments) > 1) {
       show_error("invalid argument combination", 1);
     }
     *idsp++ = opt->id;
@@ -334,8 +336,8 @@ int main(int argc, char **argv) {
   idsp = NULL;
   free(ids);
 
-  for (int i = 0; i < arguments.length; i++) {
-    opt_t *opt = array_get(&arguments, i);
+  for (int i = 0; i < vec_len(arguments); i++) {
+    opt_t *opt = vec_get(arguments, i);
     switch (opt->id) {
       case 'p':
         digit_option = parse_number(opt->arg);
@@ -409,19 +411,27 @@ int main(int argc, char **argv) {
         clear_state();
         set_governor("performance");
         for (int i = 0; i < CPUS_AVAILABLE; i++) {
-          write_value(format("/cpu%d/cpufreq/scaling_max_freq"),
-              read_file(format("/cpu%d/cpufreq/cpuinfo_max_freq")));
-          write_value(format("/cpu%d/cpufreq/scaling_min_freq"),
-              read_file(format("/cpu%d/cpufreq/cpuinfo_max_freq")));
+          char *sminl = format("/cpu%d/cpufreq/scaling_min_freq", i);
+          char *smaxl = format("/cpu%d/cpufreq/scaling_max_freq", i);
+          char *smaxf = read_file(smaxl);
+          write_value(smaxl, smaxf);
+          write_value(sminl, smaxf);
+          free(smaxf);
+          free(sminl);
+          free(smaxl);
         }
         break;
       case 83:
         clear_state();
         for (int i = 0; i < CPUS_AVAILABLE; i++) {
-          write_value(format("/cpu%d/cpufreq/scaling_max_freq"),
-              read_file(format("/cpu%d/cpufreq/cpuinfo_min_freq")));
-          write_value(format("/cpu%d/cpufreq/scaling_min_freq"),
-              read_file(format("/cpu%d/cpufreq/cpuinfo_min_freq")));
+          char *sminl = format("/cpu%d/cpufreq/scaling_min_freq", i);
+          char *smaxl = format("/cpu%d/cpufreq/scaling_max_freq", i);
+          char *sminf = read_file(sminl);
+          write_value(sminl, sminf);
+          write_value(smaxl, sminf);
+          free(sminf);
+          free(sminl);
+          free(smaxl);
         }
         write_value("/intel_pstate/min_perf_pct", "0");
         write_value("/intel_pstate/max_perf_pct", "0");
@@ -432,6 +442,6 @@ int main(int argc, char **argv) {
         show_help();
     }
   }
-  clear_array(&arguments);
+  vec_free(arguments, (opt_t *e) { free(e); });
   return 0;
 }
