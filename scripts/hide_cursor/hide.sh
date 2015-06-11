@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd `dirname $0`
-input=$(xinput --list | grep -E "Unify|Touch" | grep -Eo "id=[0-9]+" | cut -c4- | tr "\n" " " | head -c-1)
+input=$(xinput --list | grep -E "Unify|Touch|M705" | grep -Eo "id=[0-9]+" | cut -c4- | tr "\n" " " | head -c-1)
 
 on() {
   cpos=$(cat mloc)
@@ -10,8 +10,9 @@ on() {
   for i in $input; do
     xinput --enable $i;
   done
-  xdotool mousemove 0 0
+  xdotool mousemove 1 0
   xdotool mousemove_relative $cpos
+  pkill change
 }
 
 off() {
@@ -19,12 +20,13 @@ off() {
   x=`echo $mloc | egrep -o "x:([0-9])+" | cut -c3-`
   y=`echo $mloc | egrep -o "y:([0-9])+" | cut -c3-`
   xsetroot -cursor empty empty
-  xdotool mousemove 960 1080
+  xdotool mousemove 1 0
   for i in $input; do
     echo $i
     xinput --disable $i;
   done
   echo $x $y > mloc
+  ./change_cursor/change
 }
 
 if [[ ! -f mloc ]]; then

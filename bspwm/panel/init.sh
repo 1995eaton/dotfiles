@@ -2,7 +2,7 @@
 
 killall -9 conky bar
 
-FONT="-*-terminus-symbols-medium-r-normal--12-120-72-72-c-60-iso8859-1"
+FONT="-*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1"
 # OPACITY="ff3"
 OPACITY="fff"
 FG="bbbbbb"

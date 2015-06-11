@@ -32,6 +32,7 @@ export XDG_CONFIG_HOME="$HOME/.config/"
 
 xset +fp /usr/share/fonts/local
 xset +fp /home/jake/.fonts
+xsetroot -cursor_name left_ptr
 xset fp rehash
 sh ~/.fehbg &
 sxhkd &

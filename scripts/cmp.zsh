@@ -1,8 +1,8 @@
 CC='g++'
 C='gcc'
 # CXXFLAGS=('-std=c++14' '-Wall' '-Wextra' '-pedantic' '-Ofast')
-CXXFLAGS=('-std=c++14' '-Wall' '-Wextra' '-pedantic')
-CFLAGS=('-std=c11' '-Wall' '-Wextra' '-pedantic' '-lm')
+CXXFLAGS=('-std=c++14' '-Wall' '-Wextra')
+CFLAGS=('-std=gnu11' '-Wall' '-Wextra' '-lm')
 VFLAGS=('--leak-check=full')
 
 function __cc() {

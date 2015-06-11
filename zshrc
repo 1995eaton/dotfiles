@@ -197,7 +197,7 @@ function cpun() {
   sudo cpupower -i
 }
 function cpuh() {
-  sudo cpupower --min=3.4 --max=3.4
+  sudo cpupower --min=4.2 --max=4.2
   sudo cpupower -g performance
   sudo cpupower -i
 }
@@ -260,5 +260,5 @@ bindkey '^J' down-line-or-beginning-search
 source /home/jake/.zsh-opp/opp.zsh
 
 stty -ixon # disables flow control (C-s and C-q)
-source /home/jake/.zsh-npmcompletions
+# source /home/jake/.zsh-npmcompletions
 source /home/jake/scripts/cmp.zsh
