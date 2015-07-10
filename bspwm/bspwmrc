@@ -4,14 +4,17 @@ bspc monitor -d 0 1 2 3 4 5
 
 # bspc rule -a \* floating=on
 bspc config -m DVI-I-1 border_width 0
+bspc config -m DVI-D-0 border_width 0
 # bspc config -m DVI-I-1 window_gap 0
-bspc config top_padding 15
+bspc config -m DVI-I-1 top_padding 15
+bspc config -m DVI-D-0 top_padding 0
 bspc config -m DVI-I-1 window_gap 15
+bspc config -m DVI-D-0 window_gap 15
 bspc config split_ratio 0.52
 bspc config borderless_monocle true
 bspc config gapless_monocle true
 
-compton &
+# compton &
 urxvtd -q &
 xsetroot -cursor_name left_ptr &
 xrdb ~/.Xresources &
@@ -21,4 +24,3 @@ xset m 3/2.5 &
 python3 ~/source/chromium-vim/cvim_server.py &
 ~/.config/bspwm/panel/init.sh &
 wmname LG3D &
-hotcorners -d0.5 &

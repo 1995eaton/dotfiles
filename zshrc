@@ -8,6 +8,7 @@ KEYTIMEOUT=1
 
 setopt APPEND_HISTORY
 setopt NULL_GLOB
+setopt NO_COMPLETE_ALIASES
 setopt AUTO_CD
 setopt HIST_IGNORE_SPACE
 setopt EXTENDED_GLOB
@@ -137,7 +138,7 @@ alias h='history -t %m/%d\ -\ %r'
 alias hide='/home/jake/scripts/hide_cursor/hide.sh'
 alias irb='irb --prompt simple'
 alias killvim='$(kill -9 `ps -eo pid,comm | grep vim | egrep -o "[0-9]+" | tr "\n" " "`)'
-alias less='less -Cr'
+alias less='less -Cri'
 alias p='netstat -plantu'
 alias sc='cd ~/source'
 alias su='sudo su'
@@ -152,6 +153,7 @@ alias html='template html'
 alias csc='cd /home/jake/source/CSC/CSC-151'
 alias size='du -h --apparent-size'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
+alias -g BG='&> /dev/null &'
 
 alias c='cd'
 alias dc='cd'
@@ -167,6 +169,7 @@ alias sll='ls'
 alias ssl='ls'
 alias slll='ls'
 alias sl='ls'
+alias grep='grep --color=always'
 
 # function accept-line() {
 #   read -A tokens <<< ${BUFFER:gs/\\/\\\\}
@@ -252,6 +255,7 @@ bindkey -rpM viins '^[[D'
 
 bindkey '^B' backward-char
 bindkey '^F' forward-char
+bindkey -s '^O' 'ls'
 bindkey '^[[Z' reverse-menu-complete
 bindkey '^K' up-line-or-beginning-search
 bindkey '^J' down-line-or-beginning-search

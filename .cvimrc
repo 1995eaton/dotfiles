@@ -1,5 +1,7 @@
-set nosmoothscroll
+let homedirectory = '/home/jake'
+let configpath = '~/.cvimrc'
 set localconfig
+set nosmoothscroll
 set noautofocus
 set cncpcompletion
 set nohud
@@ -7,22 +9,20 @@ set nodimhintcharacters
 set typelinkhints
 let zoomfactor = 0.05
 let scrollduration = 350
-let homedirectory = '/home/jake'
-let configpath = '~/.cvimrc'
 let searchlimit = 25
 let completionengines = ['google', 'wikipedia', 'imdb',
-      \ 'amazon', 'wolframalpha', 'duckduckgo']
+      \ 'amazon', 'wolframalpha', 'duckduckgo', 'juce', 'dogpile']
 let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
       \ 'http://www.reddit.com/r/learnpython/new/',
       \ 'http://www.reddit.com/r/learnprogramming/new']
 let vimcommand = 'urxvt -e vim'
-let searchalias i = 'imdb'
 imap <C-o> editWithVim
 map af createActiveTabbedHint
 map $ lastTab
 map 0 firstTab
 map <Space> l
 map <S-Space> h
+map <C-Space> :source ~/.cvimrc<CR>
 map gS :viewsource&<CR>
 map xx closeTab
 map qq xx
@@ -70,4 +70,23 @@ site '*://*.netflix.com/WiPlayer*' {
   unmap f
 }
 map ci :call getIP<CR>
-let blacklists = ["file:///home/jake/typing-test/index.html","file:///home/jake/wip/pong/index.html"]
+let blacklists = ["file:///home/jake/typing-test/index.html","file:///home/jake/wip/pong/index.html","file:///home/jake/GameBoy-Online/*"]
+
+big() -> {{
+
+[].forEach.call(document.links, function(e) {
+  if (e.textContent === 'Big') {
+    var img = document.createElement('img');
+    img.onload = function() {
+      document.body.appendChild(img);
+    };
+    img.style.display = 'block';
+    img.style.maxWidth = '100%';
+    img.style.height = 'auto'
+    img.src = e.href;
+  }
+});
+
+}}
+
+map <C-b> :call big<CR>

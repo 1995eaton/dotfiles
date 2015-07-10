@@ -1,4 +1,5 @@
 execute pathogen#infect()
+Helptags
 
 " Color schemes
 set t_Co=256
@@ -8,9 +9,9 @@ filetype plugin indent on
 set fileformats=unix,dos,mac
 
 " Syntax hightlighting
-syntax on
+syntax enable
 nnoremap <silent> <C-h> :nohlsearch<CR>
-set bg=dark
+set background=dark
 colorscheme mine
 
 " Line numbering
@@ -59,8 +60,8 @@ set magic
 nmap <silent> <leader>r :so ~/.vimrc<cr>
 
 " Vim comments
-nmap ge gac
-vmap ge ga
+" nnoremap ge gac
+" vnoremap ge ga
 
 " Copy/Paste to/from X buffer
 vnoremap gy "+y
@@ -100,7 +101,8 @@ set laststatus=2
 let g:airline_theme='molokai'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:tcommentMapLeaderOp1="ga"
+let g:tcommentMapLeaderOp1="s"
+nmap ss sc
 map <A-q> :q<CR>
 map <C-S-q> :q!<CR>
 
@@ -110,7 +112,9 @@ set expandtab
 set visualbell t_vb=
 set ttimeoutlen=0
 set ttyfast
-set timeoutlen=500
+set noesckeys
+" set notimeout
+set timeoutlen=3000
 set lazyredraw
 vnoremap <C-e> <C-u>
 nnoremap <C-e> <C-u>
@@ -153,6 +157,11 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++14'
+func! PkgConfig(libs)
+  return system('pkg-config --cflags --libs '.a:libs.' | tr -d "\n"')
+endfunc
+let g:syntastic_cpp_compiler_options = ' -std=c++14 '.PkgConfig('gtk+-3.0 vte-2.91')
+
 hi CursorLine ctermbg=233
 hi CursorLineNr ctermbg=233
 
@@ -190,35 +199,8 @@ func! ToggleLineMax()
   endif
 endfunc
 
-" Neocomplete
-let g:neocomplete#auto_completion_start_length=2
-let g:neocomplete#force_overwrite_completefunc=0
-let g:neocomplete#max_keyword_width=80
-let g:neocomplete#sources#tags#cache_limit_size=5000000
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 0
-let g:neocomplete#sources#syntax#min_keyword_length = 2
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-endfunction
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.javascript = '[a-zA-Z_$]\{3,}\|\.[a-zA-Z_$]*'
 set pumheight=8
 set completeopt=menu
-
-silent
-set statusline=%f\ %m%=%{&filetype}\ \|\ %{&encoding}[%{&fileformat}]
-set statusline+=\ \|\ %3l/%L\ %3c\ \ "
 
 let g:syntastic_java_javac_config_file_enabled = 1
 let g:syntastic_java_javac_config_file = '/home/jake/.syntastic_javac_config'
@@ -228,7 +210,8 @@ hi SyntasticWarningSign ctermbg=233
 let g:syntastic_error_symbol = "E"
 let g:syntastic_warning_symbol = "W"
 
-set pastetoggle=<C-t>
+" set pastetoggle=<C-t>
+nnoremap <C-t> :source ~/.vimrc<CR>
 
 nnoremap } ]}
 nnoremap { [{
@@ -250,3 +233,35 @@ autocmd Filetype tex setlocal nofoldenable
 au BufNewFile,BufRead sxhkdrc set ft=sxhkdrc
 call tcomment#DefineType('sxhkdrc', '# %s')
 call tcomment#DefineType('tmux', '# %s')
+call tcomment#DefineType('asm', '# %s')
+
+" Neocomplete
+let g:neocomplete#auto_completion_start_length=2
+let g:neocomplete#force_overwrite_completefunc=0
+let g:neocomplete#max_keyword_width=80
+let g:neocomplete#sources#tags#cache_limit_size=5000000
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 0
+let g:neocomplete#sources#syntax#min_keyword_length = 2
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+endfunction
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.javascript = '[a-zA-Z_$]\{3,}\|\.[a-zA-Z_$]*'
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><Esc>[Z pumvisible() ? "\<C-p>" : "\<Esc>"
+
+let g:statusline_loaded = 0
+set lazyredraw
+set ttyfast
+
+au BufRead,BufNewFile *.s set ft=nasm | set cindent
+let g:syntastic_nasm_compiler_options = ' -felf64 '

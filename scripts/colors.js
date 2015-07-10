@@ -115,11 +115,12 @@ function printColor(arg) {
   }
 }
 
-var arg = process.argv[2];
-if (arg) {
-  printColor(arg);
-} else {
+if (process.argv.length < 3) {
   for (var i = 0; i < 256; i++) {
     printColor('' + i);
   }
+}
+for (var i = 2; i < process.argv.length; i++) {
+  var arg = process.argv[i];
+  printColor(arg);
 }

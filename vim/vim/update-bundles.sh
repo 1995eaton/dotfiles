@@ -7,6 +7,7 @@ packages=(
 'https://github.com/godlygeek/tabular'
 'https://github.com/tomtom/tcomment_vim'
 'https://github.com/bling/vim-airline.git'
+'https://github.com/wellle/targets.vim'
 'https://github.com/scrooloose/syntastic'
 'git@github.com:1995eaton/vim-better-javascript-syntax.git'
 )

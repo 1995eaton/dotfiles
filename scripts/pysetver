@@ -2,5 +2,5 @@
 
 [ $1 ] && {
   rm -f ~/scripts/python
-  ln -s /usr/bin/python"$1" ~/scripts/python
+  ln -s `which python"$1"` ~/scripts/python
 }
