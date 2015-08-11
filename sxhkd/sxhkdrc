@@ -41,7 +41,10 @@ alt + p
 alt + shift + w
   google-chrome-unstable --test-type --harmony_arrow_functions
 alt + w
-  chromium --test-type --harmony_arrow_functions
+  chromium-continuous-bin --test-type --user-data-dir=/home/jake/.config/chromium-continuous --ignore-gpu-blacklist --enable-javascript-harmony --enable-gpu-rasterization
+  #chromium --test-type --harmony_arrow_functions
+alt + shift + e
+  primusrun chromium-continuous-bin --test-type --user-data-dir=/home/jake/.config/chromium-continuous --ignore-gpu-blacklist --enable-javascript-harmony --enable-gpu-rasterization
 alt + ctrl + w
   primusrun chromium --test-type --harmony_arrow_functions
 alt + shift + n

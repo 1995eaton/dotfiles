@@ -1,23 +1,26 @@
-set nosmoothscroll
+let configpath = '/home/jake/.cvimrc'
+let homedirectory = '/home/jake'
 set localconfig
+
+let vimcommand = 'urxvt -e vim'
+imap <C-o> editWithVim
+
+set nosmoothscroll
 set noautofocus
 set cncpcompletion
 set nohud
 set nodimhintcharacters
 set typelinkhints
+let mapleader = ','
 let zoomfactor = 0.05
-let scrollduration = 350
-let homedirectory = '/home/jake'
-let configpath = '~/.cvimrc'
+let scrollduration = 250
 let searchlimit = 25
 let completionengines = ['google', 'wikipedia', 'imdb',
       \ 'amazon', 'wolframalpha', 'duckduckgo']
 let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
       \ 'http://www.reddit.com/r/learnpython/new/',
       \ 'http://www.reddit.com/r/learnprogramming/new']
-let vimcommand = 'urxvt -e vim'
 let searchalias i = 'imdb'
-imap <C-o> editWithVim
 map af createActiveTabbedHint
 map $ lastTab
 map 0 firstTab
@@ -26,9 +29,8 @@ map <S-Space> h
 map gS :viewsource&<CR>
 map xx closeTab
 map qq xx
-map \ :source<CR>
+map Q closeTab
 map gs fullImageHint
-map Q createHoverHint
 map gq :restore<Space>
 map a<Space> z<Enter>
 map <C-e> z<Enter>
@@ -37,37 +39,42 @@ map <C-j> previousTab
 map cn :execute nzz<CR>
 map cN :execute Nzz<CR>
 map <C-d> :file ~/
-map mm ;m
+map m* setMark
 map <C-s> openLastHint
 map <C-g> :set smoothscroll!<CR>
 map <C-h> :nohl<CR>
 map cc :set hud!<CR>
 map aa :tabopen g<Space>
-map g, :set numerichints!<CR>
 map ga :settings<CR>
 map g0 scrollToLeft
 map I yankHighlight
 map g$ scrollToRight
-site '*://*/*' {
-  call :script [].slice.call(document.querySelectorAll('*[accesskey]')).forEach(function(e){e.removeAttribute('accesskey')});
-}
-site '*://gist.github.com/*' {
-  let nextmatchpattern = 'Older'
-  let previousmatchpattern = 'Newer'
-}
 imap <C-y> selectAll
 imap <C-a> <C-i>
 imap <C-l> forwardWord
 imap <C-h> backwardWord
 map <BS> <Nop>
-map , passKeys
-getIP() -> {{
-httpRequest({url: 'http://www.telize.com/geoip', json: true},
-            function(res) { Status.setMessage(res.ip + ' - ' + res.isp); });
+map <Leader>s :source<CR>
+map <Leader>n :set numerichints!<CR>
+map ci :call getIP<CR>
+map ? openLinkSearchBar
+
+fixChromiumWikiBug -> {{
+  [].slice.call(document.querySelectorAll('*[accesskey]')).forEach(function(e) {
+    e.removeAttribute('accesskey');
+  });
 }}
-site '*://*.netflix.com/WiPlayer*' {
+site '*://*/*' {
+  call fixChromiumWikiBug
+}
+
+getIP -> {{
+  httpRequest({url: 'http://www.telize.com/geoip', json: true}, function(res) {
+    Status.setMessage(res.ip + ' - ' + res.isp);
+  });
+}}
+
+site '*://*.netflix.com/watch*' {
   unmap <Space>
   unmap f
 }
-map ci :call getIP<CR>
-let blacklists = ["file:///home/jake/typing-test/index.html","file:///home/jake/wip/pong/index.html"]

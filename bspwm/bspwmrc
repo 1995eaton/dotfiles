@@ -12,12 +12,5 @@ bspc config borderless_monocle true
 bspc config gapless_monocle true
 
 compton &
-urxvtd -q &
-xsetroot -cursor_name left_ptr &
-xrdb ~/.Xresources &
-xmodmap /home/jake/.macros &
-xset r rate 300 40 &
-xset m 3/2.5 &
-python3 ~/source/chromium-vim/cvim_server.py &
+
 ~/.config/bspwm/panel/init.sh &
-wmname LG3D &
