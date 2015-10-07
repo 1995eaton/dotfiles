@@ -78,3 +78,5 @@ site '*://*.netflix.com/watch*' {
   unmap <Space>
   unmap f
 }
+
+let blacklists = ["file:///home/jake/source/fractals.js/index.html"]

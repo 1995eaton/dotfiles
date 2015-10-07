@@ -113,6 +113,7 @@ set visualbell t_vb=
 set ttimeoutlen=0
 set ttyfast
 set noesckeys
+set noshowmode
 " set notimeout
 set timeoutlen=3000
 set lazyredraw

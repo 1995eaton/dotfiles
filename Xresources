@@ -57,8 +57,8 @@ urxvt.perl-ext-common:   default,clipboard,matcher,keyboard-select
 urxvt.matcher.button:    1
 urxvt.underlineURLs:     1
 urxvt.url-launcher:      /usr/bin/google-chrome-beta
-urxvt.keysym.M-c:        perl:clipboard:copy
-urxvt.keysym.M-v:        perl:clipboard:paste
+! urxvt.keysym.M-c:        perl:clipboard:copy
+! urxvt.keysym.M-v:        perl:clipboard:paste
 
 ! COLORS
 

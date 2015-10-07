@@ -260,5 +260,4 @@ bindkey '^J' down-line-or-beginning-search
 source /home/jake/.zsh-opp/opp.zsh
 
 stty -ixon # disables flow control (C-s and C-q)
-source /home/jake/.zsh-npmcompletions
 source /home/jake/scripts/cmp.zsh

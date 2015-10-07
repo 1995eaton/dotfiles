@@ -23,7 +23,7 @@ ctrl + shift + k
 ctrl + shift + j
   bspc window -e up +20 || bspc window -e down +20
 alt + {_,shift} + s
-  {killall -9 conky bar; bspc config -m eDP1 top_padding 0,bspc config top_padding 15; /home/jake/.config/bspwm/panel/init.sh}
+  {killall -9 conky lemonbar; bspc config -m eDP1 top_padding 0,bspc config top_padding 15; /home/jake/.config/bspwm/panel/init.sh}
 alt + {_,shift} + b
   bspc config -m eDP1 window_gap {0,15}
 alt + button{1-3}
@@ -31,7 +31,7 @@ alt + button{1-3}
 alt + shift + d
   bspc window -c
 super + q
-  killall conky bar; bspc quit
+  killall conky lemonbar; bspc quit
 alt + {o,i}
   bspc window -t {floating,fullscreen}
 alt + {_,shift + }{1-9,0}
@@ -41,8 +41,7 @@ alt + p
 alt + shift + w
   google-chrome-unstable --test-type --harmony_arrow_functions
 alt + w
-  chromium-continuous-bin --test-type --user-data-dir=/home/jake/.config/chromium-continuous --ignore-gpu-blacklist --enable-javascript-harmony --enable-gpu-rasterization
-  #chromium --test-type --harmony_arrow_functions
+  chromium --test-type --ignore-gpu-blacklist --enable-javascript-harmony
 alt + shift + e
   primusrun chromium-continuous-bin --test-type --user-data-dir=/home/jake/.config/chromium-continuous --ignore-gpu-blacklist --enable-javascript-harmony --enable-gpu-rasterization
 alt + ctrl + w
