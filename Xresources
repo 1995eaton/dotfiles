@@ -20,6 +20,8 @@
 
 *font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
 *boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
+*italicFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
+*boldItalicFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
 urxvt.letterSpace: -1
 
 ! *font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
