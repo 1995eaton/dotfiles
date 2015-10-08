@@ -230,11 +230,14 @@ autocmd FileType javascript setlocal omnifunc=js#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd Filetype tex setlocal nofoldenable
+au FileType cpp set ts=4 sw=4
 
 au BufNewFile,BufRead sxhkdrc set ft=sxhkdrc
+au BufRead,BufNewFile *\<compton.conf set filetype=compton
 call tcomment#DefineType('sxhkdrc', '# %s')
 call tcomment#DefineType('tmux', '# %s')
 call tcomment#DefineType('asm', '# %s')
+call tcomment#DefineType('compton', '# %s')
 
 " Neocomplete
 let g:neocomplete#auto_completion_start_length=2

@@ -20,13 +20,14 @@
 
 *font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
 *boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
-*italicFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
-*boldItalicFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
 urxvt.letterSpace: -1
 
 ! *font: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Roman
 ! *boldFont: xft:Bitstream Vera Sans Mono:pixelsize=11:style=Bold
 ! urxvt.letterSpace: -1
+
+*italicFont:
+! *boldItalicFont:
 
 ! XFT CONFIG
 
@@ -67,11 +68,12 @@ urxvt.url-launcher:      /usr/bin/google-chrome-beta
 ! Molokai Color Scheme
 ! By Jake Eaton
 ! Manpage colors
-*colorIT: #87af5f
+! *colorIT: #87af5f
 *colorBD: #d7d7d7
 *colorUL: #87afd7
 
 *foreground: #bcbcbc
+! *background: rgba:1c00/1c00/1c00/f332
 ! urxvt.background: [95]#1c1c1c
 *background: #1c1c1c
 urxvt.depth: 32

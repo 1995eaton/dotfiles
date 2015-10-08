@@ -10,6 +10,6 @@ TEXT
 ${execi 0.5 ~/.config/bspwm/panel/bspwm.sh}\
 %{r}${execi 5 ~/.config/bspwm/panel/vol.sh} | \
 ${execi 5 ~/.config/bspwm/panel/bat.sh} | \
-${cpu cpu0}%% | \
+${cpu cpu0}% | \
 ${execi 5 /home/jake/scripts/cputemp} | \
-${execi 30 date +%m/%_d/%y\ \|\ %I:%M\ %P}
+${execi 30 date '+%D | %I:%M %p '}
