@@ -121,12 +121,7 @@ class PanelItem {
   }
 
   updateText() {
-    let promise = this.updateFunc(),
-        resolve = Promise.resolve(promise);
-    promise.then(panelText => {
-      this.panelText = panelText;
-    });
-    return resolve;
+    return this.updateFunc().then(panelText => this.panelText = panelText);
   }
 
   start() {
