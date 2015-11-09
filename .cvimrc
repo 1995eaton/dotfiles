@@ -21,6 +21,7 @@ let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
       \ 'http://www.reddit.com/r/learnpython/new/',
       \ 'http://www.reddit.com/r/learnprogramming/new']
 let searchalias i = 'imdb'
+
 map af createActiveTabbedHint
 map $ lastTab
 map 0 firstTab
@@ -28,6 +29,7 @@ map <Space> l
 map <S-Space> h
 map gS :viewsource&<CR>
 map xx closeTab
+map ,d :du<CR>
 map qq xx
 map Q closeTab
 map gs fullImageHint
@@ -42,7 +44,6 @@ map <C-d> :file ~/
 map m* setMark
 map <C-s> openLastHint
 map <C-g> :set smoothscroll!<CR>
-map <C-h> :nohl<CR>
 map cc :set hud!<CR>
 map aa :tabopen g<Space>
 map ga :settings<CR>
@@ -55,9 +56,12 @@ imap <C-l> forwardWord
 imap <C-h> backwardWord
 map <BS> <Nop>
 map <Leader>s :source<CR>
+map cf nextMatchPattern
+map cd previousMatchPattern
 map <Leader>n :set numerichints!<CR>
 map ci :call getIP<CR>
 map ? openLinkSearchBar
+map <C-h> clearSearchHighlight
 
 fixChromiumWikiBug -> {{
   [].slice.call(document.querySelectorAll('*[accesskey]')).forEach(function(e) {

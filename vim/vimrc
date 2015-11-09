@@ -20,7 +20,7 @@ set number
 " set cursorline
 
 " Cursor movement
-set mouse=nicr
+set mouse=n
 nnoremap j gj
 nnoremap k gk
 nnoremap 0 g^
@@ -162,7 +162,7 @@ func! PkgConfig(libs)
   return system('pkg-config --cflags --libs '.a:libs.' | tr -d "\n"')
 endfunc
 let g:syntastic_cpp_compiler_options = ' -std=c++14 '.PkgConfig('gtk+-3.0 vte-2.91')
-let g:syntastic_c_compiler_options = ' -std=c11 '.PkgConfig('gtk+-3.0')
+let g:syntastic_c_compiler_options = ' -std=gnu11 '.PkgConfig('gtk+-3.0')
 
 hi CursorLine ctermbg=233
 hi CursorLineNr ctermbg=233

@@ -47,7 +47,7 @@ function __vc() {
 }
 
 function c2asm() {
-  gcc -std=c11 -fno-asynchronous-unwind-tables -fno-ident -O0 -S -masm=intel "$1" -o - | vim -c'set ft=nasm' -
+  gcc -std=c11 -fno-asynchronous-unwind-tables -fno-ident -O0 -S -masm=intel $@ -o - | vim -R -c'set ft=nasm' -
 }
 
 alias runcc=__cc

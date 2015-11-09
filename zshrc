@@ -152,6 +152,7 @@ alias html='template html'
 alias csc='cd /home/jake/source/CSC/CSC-151'
 alias size='du -h --apparent-size'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
+alias view='vim -R'
 
 numix_colors() {
   find /usr/share/themes/Numix -type f -print0 | sudo xargs -0 sed -i 's/#ff184d/#f92672/g'
@@ -266,3 +267,4 @@ source /home/jake/.zsh-opp/opp.zsh
 
 stty -ixon # disables flow control (C-s and C-q)
 source /home/jake/scripts/cmp.zsh
+source /home/jake/.vim/bundle/vim-fifo/rcplugin
