@@ -84,3 +84,11 @@ site '*://*.netflix.com/watch*' {
 }
 
 let blacklists = ["file:///home/jake/source/fractals.js/index.html"]
+
+tabnextVimStyle(n) -> {{
+    if (~~n <= 0 && Mappings.lastCommand.repeatStr === '')
+        RUNTIME('nextTab', {repeats: 1});
+    else
+        RUNTIME('goToTab', {index: (n || Mappings.lastCommand.repeats) - 1});
+}}
+map gt :call tabnextVimStyle<CR>

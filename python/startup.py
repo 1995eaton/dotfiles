@@ -1,6 +1,3 @@
-# ~/.pythonrc
-# enable syntax completion
-
 import readline
 import rlcompleter
 import sys
