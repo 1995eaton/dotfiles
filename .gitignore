@@ -1,0 +1,3 @@
+vim/vim/bundle/*
+*.pyc
+vim/vim/.netrwhist
