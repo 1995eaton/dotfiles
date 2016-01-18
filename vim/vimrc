@@ -142,10 +142,10 @@ let loaded_matchparen = 1
 nnoremap <C-p> :SyntasticToggleMode<CR>
 nnoremap go mto<Esc>`t
 nnoremap gO mtO<Esc>`t
-vnoremap ab :normal Va{o^<CR>
-vmap ib :normal Va{o0<CR>
-omap <silent> ab :normal Vab<CR>
-omap <silent> ib i{<CR>
+" vnoremap ab :normal Va{o^<CR>
+" vmap ib :normal Va{o0<CR>
+" omap <silent> ab :normal Vab<CR>
+" omap <silent> ib i{<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
@@ -220,7 +220,7 @@ nnoremap { [{
 nnoremap ( [(
 nnoremap ) ])
 
-au FileType cs setlocal cinoptions+=j1,J1
+au FileType cs setlocal cinoptions+=j1,J1 ts=4 sw=4
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.peg,*.jison set ft=javascript
 au FileType java set ts=4 sw=4
@@ -270,3 +270,7 @@ set ttyfast
 
 au BufRead,BufNewFile *.s set ft=nasm | set cindent
 let g:syntastic_nasm_compiler_options = ' -felf64 '
+
+func! NoEOL()
+  au BufWritePre,BufWritePost * :set binary | set noeol
+endfunc

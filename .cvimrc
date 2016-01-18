@@ -15,8 +15,14 @@ let mapleader = ','
 let zoomfactor = 0.05
 let scrollduration = 250
 let searchlimit = 25
-let completionengines = ['google', 'wikipedia', 'imdb',
-      \ 'amazon', 'wolframalpha', 'duckduckgo']
+" let completionengines = ['google', 'wikipedia', 'imdb',
+"       \ 'amazon', 'wolframalpha', 'duckduckgo']
+let searchalias w = 'wikipedia'
+let completionengines = ['google', 'wikipedia', 'youtube', 'imdb', 'amazon',
+      \ 'google-maps', 'wolframalpha', 'google-image', 'ebay',
+      \ 'webster', 'wiktionary', 'urbandictionary', 'duckduckgo',
+      \ 'answers', 'google-trends', 'google-finance', 'yahoo',
+      \ 'bing', 'themoviedb']
 let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
       \ 'http://www.reddit.com/r/learnpython/new/',
       \ 'http://www.reddit.com/r/learnprogramming/new']
@@ -83,8 +89,6 @@ site '*://*.netflix.com/watch*' {
   unmap f
 }
 
-let blacklists = ["file:///home/jake/source/fractals.js/index.html"]
-
 tabnextVimStyle(n) -> {{
     if (~~n <= 0 && Mappings.lastCommand.repeatStr === '')
         RUNTIME('nextTab', {repeats: 1});
@@ -92,3 +96,9 @@ tabnextVimStyle(n) -> {{
         RUNTIME('goToTab', {index: (n || Mappings.lastCommand.repeats) - 1});
 }}
 map gt :call tabnextVimStyle<CR>
+
+incognitoHint(link) -> {{
+    RUNTIME('openLinkWindow', {url: link.href, incognito: true});
+}}
+map <C-i> createScriptHint(incognitoHint)
+let blacklists = ['file:///home/jake/html5-sudoku/*', 'http://jake-eaton.com/sudoku/']

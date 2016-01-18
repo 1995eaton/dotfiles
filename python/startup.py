@@ -2,6 +2,6 @@ import readline
 import rlcompleter
 import sys
 import os
-from math import *
+import math
 
 readline.parse_and_bind("tab: complete")

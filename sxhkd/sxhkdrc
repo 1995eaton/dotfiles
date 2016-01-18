@@ -23,7 +23,7 @@ ctrl + shift + k
 ctrl + shift + j
   bspc window -e up +20 || bspc window -e down +20
 alt + {_,shift} + s
-  {killall -9 conky lemonbar; bspc config -m eDP1 top_padding 0,bspc config top_padding 15; /home/jake/.config/bspwm/panel/init.sh}
+  {killall -9 conky lemonbar; bspc config -m eDP1 top_padding 0,bspc config top_padding 18; /home/jake/.config/bspwm/panel/init.sh}
 alt + {_,shift} + b
   bspc config -m eDP1 window_gap {0,15}
 alt + button{1-3}
@@ -37,13 +37,13 @@ alt + {o,i}
 alt + {_,shift + }{1-9,0}
   bspc {desktop -f,window -d} ^{1-9,10}
 alt + p
-  dmenu_run -nb \#1c1c1c -nf \#8f8f8f -sb \#f92672
+  dmenu_run -fn 'DejaVu Sans Mono:pixelsize=11' -nb \#1c1c1c -nf \#8f8f8f -sb \#f92672
 alt + shift + w
-  google-chrome-unstable --test-type --harmony_arrow_functions
+  google-chrome-unstable --test-type --ignore-gpu-blacklist --enable-javascript-harmony
+alt + shift + e
+  rm -r /home/jake/.config/chromium-alt; cp -r /home/jake/.config/chromium-alt.orig /home/jake/.config/chromium-alt && chromium --user-data-dir=/home/jake/.config/chromium-alt; rm -r /home/jake/.config/chromium-alt; rm -r /home/jake/.cache/chromium-alt
 alt + w
   chromium --test-type --ignore-gpu-blacklist --enable-javascript-harmony
-alt + shift + e
-  primusrun chromium-continuous-bin --test-type --user-data-dir=/home/jake/.config/chromium-continuous --ignore-gpu-blacklist --enable-javascript-harmony --enable-gpu-rasterization
 alt + ctrl + w
   primusrun chromium --test-type --harmony_arrow_functions
 alt + shift + n

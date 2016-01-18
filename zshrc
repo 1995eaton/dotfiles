@@ -76,6 +76,7 @@ export PYTHONSTARTUP=~/.python/startup.py
 export BROWSER='chromium --test-type'
 export GOPATH=~/.go
 export GCC_COLORS=always
+export NLTK_DATA=/home/jake/.nltk_data
 
 function {
   local PATH_ARRAY; PATH_ARRAY=(
@@ -112,7 +113,7 @@ alias mac="echo -e \$(hexdump -ve '/1 \"%02x:\"' /dev/urandom | fold -w18 | head
 alias ns='ss -plantu | sed "s/\S\+:((\|))$//g" | tr "," "	" | column -t -s"	"'
 alias -g H='|& head -n20'
 alias -g L='|& less'
-alias -g SP='|& tr \"\n\" \",\" |& sed "s/,$/\n/"'
+alias -g SP='|& tr "\n" "," |& sed "s/,$/\n/"'
 alias -g T='|& tail -n20'
 alias -g V='|& view -'
 alias -g @='|xsel -b'
@@ -154,6 +155,7 @@ alias size='du -h --apparent-size'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 alias view='vim -R'
 alias python-sympy='PYTHONSTARTUP=~/.python/startup-sympy.py python'
+alias node='node --use_strict'
 
 numix_colors() {
   find /usr/share/themes/Numix -type f -print0 | sudo xargs -0 sed -i 's/#ff184d/#f92672/g'
