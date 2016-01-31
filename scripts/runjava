@@ -3,17 +3,17 @@
 CLASS_PATH='.:/usr/share/java/junit.jar:/usr/share/java/hamcrest-core.jar'
 TMP=`mktemp -d`
 
-javac -cp $CLASS_PATH -d $TMP "${@:1}"
+javac -cp $CLASS_PATH -d $TMP "$1"
 
-MAIN=`grep -lE 'import\s+org\s*\.\s*junit' ${@:1} | head -1 | sed 's/\..*//'`
+MAIN=`grep -lE 'import\s+org\s*\.\s*junit' $1 | head -1 | sed 's/\..*//'`
 
 if [[ $MAIN != '' ]]; then
   cd $TMP
-  java -cp $CLASS_PATH org.junit.runner.JUnitCore $MAIN
+  java -cp $CLASS_PATH org.junit.runner.JUnitCore $MAIN ${@:2}
 else
   MAIN=`echo $1 | sed 's/\..*//'`
   cd $TMP
-  java -cp $CLASS_PATH $MAIN
+  java -cp $CLASS_PATH $MAIN ${@:2}
 fi
 
 rm -r $TMP

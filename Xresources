@@ -3,8 +3,8 @@
 ! *font: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 ! *boldFont: -misc-terminus-symbols-Medium-R-Normal--12-120-72-72-C-60-ISO8859-1
 
-*font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
-*boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
+! *font: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
+! *boldFont: -*-terminus-bold-r-normal--12-120-72-72-c-60-iso8859-1
 
 ! *font: xft:Terminus:pixelsize=12:style=Regular
 ! *boldFont: xft:Terminus:pixelsize=12:style=Bold
@@ -19,9 +19,9 @@
 ! *boldFont: xft:Source Code Pro:pixelsize=11:style=Bold
 ! *italicFont: xft:Source Code Pro:pixelsize=11:style=Bold
 
-! *font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
-! *boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
-! *italicFont: xft:DejaVu Sans Mono:pixelsize=11:style=Oblique
+*font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
+*boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
+*italicFont: xft:DejaVu Sans Mono:pixelsize=11:style=Oblique
 
 ! *boldItalicFont:
 

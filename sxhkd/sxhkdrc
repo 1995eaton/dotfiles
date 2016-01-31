@@ -43,7 +43,7 @@ alt + shift + w
 alt + shift + e
   rm -r /home/jake/.config/chromium-alt; cp -r /home/jake/.config/chromium-alt.orig /home/jake/.config/chromium-alt && chromium --user-data-dir=/home/jake/.config/chromium-alt; rm -r /home/jake/.config/chromium-alt; rm -r /home/jake/.cache/chromium-alt
 alt + w
-  chromium --test-type --ignore-gpu-blacklist --enable-javascript-harmony
+  chromium --ignore-gpu-blacklist --enable-javascript-harmony
 alt + ctrl + w
   primusrun chromium --test-type --harmony_arrow_functions
 alt + shift + n
