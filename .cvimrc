@@ -1,5 +1,5 @@
-let configpath = '/home/jake/.cvimrc'
 let homedirectory = '/home/jake'
+let configpath = '~/.cvimrc'
 set localconfig
 
 let vimcommand = 'urxvt -e vim'
