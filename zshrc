@@ -1,5 +1,5 @@
 # DRIVE CLONING
-#  rsync -aAXv /* /path/to/backup/folder --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found}
+#  rsync -aAXv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} / /mnt
 
 HISTFILE=~/.history.zsh
 HISTSIZE=500000
@@ -156,6 +156,7 @@ alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 alias view='vim -R'
 alias python-sympy='PYTHONSTARTUP=~/.python/startup-sympy.py python'
 alias node='node --use_strict'
+alias pacman='pacman --color=always'
 
 numix_colors() {
   find /usr/share/themes/Numix -type f -print0 | sudo xargs -0 sed -i 's/#ff184d/#f92672/g'

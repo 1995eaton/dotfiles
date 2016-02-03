@@ -15,14 +15,14 @@ let mapleader = ','
 let zoomfactor = 0.05
 let scrollduration = 250
 let searchlimit = 25
-" let completionengines = ['google', 'wikipedia', 'imdb',
-"       \ 'amazon', 'wolframalpha', 'duckduckgo']
+let completionengines = ['google', 'wikipedia', 'imdb',
+      \ 'amazon', 'wolframalpha', 'duckduckgo']
 let searchalias w = 'wikipedia'
-let completionengines = ['google', 'wikipedia', 'youtube', 'imdb', 'amazon',
-      \ 'google-maps', 'wolframalpha', 'google-image', 'ebay',
-      \ 'webster', 'wiktionary', 'urbandictionary', 'duckduckgo',
-      \ 'answers', 'google-trends', 'google-finance', 'yahoo',
-      \ 'bing', 'themoviedb']
+" let completionengines = ['google', 'wikipedia', 'youtube', 'imdb', 'amazon',
+"       \ 'google-maps', 'wolframalpha', 'google-image', 'ebay',
+"       \ 'webster', 'wiktionary', 'urbandictionary', 'duckduckgo',
+"       \ 'answers', 'google-trends', 'google-finance', 'yahoo',
+"       \ 'bing', 'themoviedb']
 let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
       \ 'http://www.reddit.com/r/learnpython/new/',
       \ 'http://www.reddit.com/r/learnprogramming/new']
