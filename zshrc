@@ -207,8 +207,9 @@ function cpun() {
   sudo cpupower -i
 }
 function cpuh() {
-  sudo cpupower --min=3.4 --max=3.4
   sudo cpupower -g performance
+  sudo cpupower -t 1
+  sudo cpupower -p100 --min=3.4 --max=3.4
   sudo cpupower -i
 }
 

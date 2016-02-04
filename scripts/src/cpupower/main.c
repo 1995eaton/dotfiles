@@ -21,18 +21,21 @@ const char CPUPATH[] = "/sys/devices/system/cpu";
 int CPUS_AVAILABLE;
 
 static struct option long_options[] = {
-  {"set",      required_argument, 0, 's'},
-  {"help",     no_argument,       0, 'h'},
-  {"info",     no_argument,       0, 'i'},
-  {"turbo",    required_argument, 0, 't'},
-  {"percent",  required_argument, 0, 'p'},
-  {"cpu",      required_argument, 0, 'c'},
-  {"governor", required_argument, 0, 'g'},
-  {"monitor",  no_argument,       0, 'm'},
-  {"min",      required_argument, 0,  80},
-  {"max",      required_argument, 0,  81},
-  {"high",     no_argument,       0,  82},
-  {"low",      no_argument,       0,  83}
+  {"set",          required_argument,  0,  's'},
+  {"help",         no_argument,        0,  'h'},
+  {"info",         no_argument,        0,  'i'},
+  {"turbo",        required_argument,  0,  't'},
+  {"percent",      required_argument,  0,  'p'},
+  {"cpu",          required_argument,  0,  'c'},
+  {"governor",     required_argument,  0,  'g'},
+  {"monitor",      no_argument,        0,  'm'},
+  {"min",          required_argument,  0,  80},
+  {"max",          required_argument,  0,  81},
+  {"high",         no_argument,        0,  82},
+  {"low",          no_argument,        0,  83},
+  {"min-percent",  required_argument,  0,  84},
+  {"max-percent",  required_argument,  0,  85},
+  {0,              0,                  0,  0},
 };
 
 char *format(char *template, ...) {
@@ -48,17 +51,19 @@ char *format(char *template, ...) {
 void show_help() {
 puts(
 "Usage: ./"PROGRAM_NAME" [OPTION...]\n\n"
-"   -h --help                show this message\n"
-"      --info                show cpu frequency info\n"
-"   -g --governor=GOVERNOR   set the cpu power governor\n"
-"      --min=FREQUENCY       set the minimum cpu frequency (GHz)\n"
-"      --max=FREQUENCY       set the maximum cpu frequency (GHz)\n"
-"      --high                set the cpu governor to the performance preset\n"
-"      --low                 set the cpu governor to the powersave preset at the lowest frequency\n"
+"   -h --help                    show this message\n"
+"      --info                    show cpu frequency info\n"
+"   -g --governor=GOVERNOR       set the cpu power governor\n"
+"      --min=FREQUENCY           set the minimum cpu frequency (GHz)\n"
+"      --max=FREQUENCY           set the maximum cpu frequency (GHz)\n"
+"      --high                    set the cpu governor to the performance preset\n"
+"      --low                     set the cpu governor to the powersave preset at the lowest frequency\n"
 "\n POWERSAVE GOVERNOR FLAGS:\n"
-"   -s --set=FREQUENCY       set the maximum frequency for all cores (GHz)\n"
-"   -t --turbo=[0..1]        1 enables cpu turbo boost, 0 disables\n"
-"   -p --percent=[0..100]    set the maximum cpu frequency as a percentage\n"
+"   -s --set=FREQUENCY           set the maximum frequency for all cores (GHz)\n"
+"   -t --turbo=[0..1]            1 enables cpu turbo boost, 0 disables\n"
+"   -p --percent=[0..100]        set the maximum cpu frequency as a percentage\n"
+"      --min-percent=[0..100]    set the maximum cpu frequency as a percentage\n"
+"      --max-percent=[0..100]    set the maximum cpu frequency as a percentage\n"
 );
 exit(EXIT_FAILURE);
 }
@@ -190,7 +195,7 @@ void enable_cpus(int *cpus) {
   }
 }
 
-void set_governor(char *value) {
+void set_governor(const char *value) {
   char cpu_str[40];
   memset(cpu_str, 0, 40);
   for (int i = 0; i < CPUS_AVAILABLE; i++) {
@@ -272,7 +277,7 @@ void show_info() {
          "CPU_MIN_FREQ:  %s\n"
          "CPU_MAX_FREQ:  %s\n"
          "GOVERNORS:     %s\n",
-         get_max_freq(), get_min_freq(), sminf, smaxf, sag);
+         get_min_freq(), get_max_freq(), sminf, smaxf, sag);
   free(sminf);
   free(smaxf);
   free(sag);
@@ -282,14 +287,6 @@ void show_info() {
     free(info->governor);
     free(info);
   }
-}
-
-void clear_state() {
-  write_value("/intel_pstate/min_perf_pct", "0");
-  write_value("/intel_pstate/max_perf_pct", "0");
-  set_governor("powersave");
-  write_value("/intel_pstate/min_perf_pct", "0");
-  write_value("/intel_pstate/max_perf_pct", "100");
 }
 
 int main(int argc, char **argv) {
@@ -344,17 +341,36 @@ int main(int argc, char **argv) {
         if (digit_option < 0 || digit_option > 100) {
           show_error(format("invalid -p argument '%s'", opt->arg), 1);
         }
-        clear_state();
-        set_governor("powersave");
         for (int i = 0; i < CPUS_AVAILABLE; i++) {
           set_min_freq("0", i);
           set_max_freq(opt->arg, i);
         }
-        write_value("/intel_pstate/min_perf_pct", "0");
+        write_value("/intel_pstate/min_perf_pct", opt->arg);
+        write_value("/intel_pstate/max_perf_pct", opt->arg);
+        break;
+      case 84: // min-percent
+        digit_option = parse_number(opt->arg);
+        if (digit_option < 0 || digit_option > 100) {
+          show_error(format("invalid -p argument '%s'", opt->arg), 1);
+        }
+        for (int i = 0; i < CPUS_AVAILABLE; i++) {
+          set_min_freq("0", i);
+          set_max_freq(opt->arg, i);
+        }
+        write_value("/intel_pstate/min_perf_pct", opt->arg);
+        break;
+      case 85: // max-percent
+        digit_option = parse_number(opt->arg);
+        if (digit_option < 0 || digit_option > 100) {
+          show_error(format("invalid -p argument '%s'", opt->arg), 1);
+        }
+        for (int i = 0; i < CPUS_AVAILABLE; i++) {
+          set_min_freq("0", i);
+          set_max_freq(opt->arg, i);
+        }
         write_value("/intel_pstate/max_perf_pct", opt->arg);
         break;
       case 's':
-        clear_state();
         set_governor("powersave");
         parse_number(opt->arg);
         for (int i = 0; i < CPUS_AVAILABLE; i++) {
@@ -388,7 +404,6 @@ int main(int argc, char **argv) {
         }
         break;
       case 80:
-        clear_state();
         set_governor("powersave");
         if (parse_number(opt->arg) < 0) {
           show_error(format("invalid --min argument '%s'", opt->arg), 1);
@@ -398,7 +413,6 @@ int main(int argc, char **argv) {
         }
         break;
       case 81:
-        clear_state();
         set_governor("powersave");
         if (parse_number(opt->arg) < 0) {
           show_error(format("invalid --max argument '%s'", opt->arg), 1);
@@ -408,7 +422,6 @@ int main(int argc, char **argv) {
         }
         break;
       case 82:
-        clear_state();
         set_governor("performance");
         for (int i = 0; i < CPUS_AVAILABLE; i++) {
           char *sminl = format("/cpu%d/cpufreq/scaling_min_freq", i);
@@ -422,7 +435,6 @@ int main(int argc, char **argv) {
         }
         break;
       case 83:
-        clear_state();
         for (int i = 0; i < CPUS_AVAILABLE; i++) {
           char *sminl = format("/cpu%d/cpufreq/scaling_min_freq", i);
           char *smaxl = format("/cpu%d/cpufreq/scaling_max_freq", i);
