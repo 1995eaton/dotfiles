@@ -157,6 +157,7 @@ alias view='vim -R'
 alias python-sympy='PYTHONSTARTUP=~/.python/startup-sympy.py python'
 alias node='node --use_strict'
 alias pacman='pacman --color=always'
+alias yo='yaourt -Syua'
 
 numix_colors() {
   find /usr/share/themes/Numix -type f -print0 | sudo xargs -0 sed -i 's/#ff184d/#f92672/g'
@@ -207,9 +208,9 @@ function cpun() {
   sudo cpupower -i
 }
 function cpuh() {
-  sudo cpupower -g performance
   sudo cpupower -t 1
   sudo cpupower -p100 --min=3.4 --max=3.4
+  sudo cpupower -g performance
   sudo cpupower -i
 }
 
