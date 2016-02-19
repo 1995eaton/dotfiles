@@ -77,6 +77,7 @@ export BROWSER='chromium --test-type'
 export GOPATH=~/.go
 export GCC_COLORS=always
 export NLTK_DATA=/home/jake/.nltk_data
+export QUOTING_STYLE=literal
 
 function {
   local PATH_ARRAY; PATH_ARRAY=(
@@ -274,3 +275,5 @@ source /home/jake/.zsh-opp/opp.zsh
 stty -ixon # disables flow control (C-s and C-q)
 source /home/jake/scripts/cmp.zsh
 source /home/jake/.vim/bundle/vim-fifo/rcplugin
+
+alias tb='cd ~/source/CSC/CSC-249/TeamB/Project1'

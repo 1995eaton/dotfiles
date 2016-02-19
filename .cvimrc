@@ -3,7 +3,7 @@ let configpath = '~/.cvimrc'
 set localconfig
 
 let vimcommand = 'urxvt -e vim'
-imap <C-o> editWithVim
+" imap <C-o> editWithVim
 
 set nosmoothscroll
 set noautofocus
