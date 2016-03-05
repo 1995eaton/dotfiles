@@ -85,8 +85,7 @@ getIP -> {{
 }}
 
 site '*://*.netflix.com/watch*' {
-  unmap <Space>
-  unmap f
+  unmap <Space> f
 }
 
 tabnextVimStyle(n) -> {{

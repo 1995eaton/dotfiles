@@ -78,6 +78,7 @@ export GOPATH=~/.go
 export GCC_COLORS=always
 export NLTK_DATA=/home/jake/.nltk_data
 export QUOTING_STYLE=literal
+export ANDROID_HOME=/opt/android-sdk
 
 function {
   local PATH_ARRAY; PATH_ARRAY=(
@@ -156,7 +157,7 @@ alias size='du -h --apparent-size'
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
 alias view='vim -R'
 alias python-sympy='PYTHONSTARTUP=~/.python/startup-sympy.py python'
-alias node='node --use_strict'
+# alias node='node --use_strict'
 alias pacman='pacman --color=always'
 alias yo='yaourt -Syua'
 
