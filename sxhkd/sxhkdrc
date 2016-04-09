@@ -4,10 +4,10 @@ alt + {comma,period}
   bspc pointer -g focus
 alt + shift + {h,j,k,l}
   bspc window -f {left,down,up,right}
-alt + !button{1-3}
-  bspc pointer -t %i %i
-alt + @button{1-3}
-  bspc pointer -u
+#alt + !button{1-3}
+#  bspc pointer -t %i %i
+#alt + @button{1-3}
+#  bspc pointer -u
 alt bracket{left,right}
   bspc window -f {prev,next}
 alt + shift + bracket{left,right}

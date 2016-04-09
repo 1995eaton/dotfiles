@@ -15,8 +15,8 @@ set background=dark
 colorscheme mine
 
 " Line numbering
-" set relativenumber
 set number
+" set relativenumber
 " set cursorline
 
 " Cursor movement
@@ -59,10 +59,6 @@ set magic
 " Reload vimrc
 nmap <silent> <leader>r :so ~/.vimrc<cr>
 
-" Vim comments
-" nnoremap ge gac
-" vnoremap ge ga
-
 " Copy/Paste to/from X buffer
 vnoremap gy "+y
 vnoremap gd "+d
@@ -91,18 +87,12 @@ set wildmode=longest:list,full
 set shellslash
 set history=100
 
-" Syntastic
-nnoremap <C-s> :SyntasticToggleMode<CR>
-let g:syntastic_javascript_checkers = ['jshint']
-hi SpellCap term=reverse ctermbg=160
-
 " Airline
 set laststatus=2
 let g:airline_theme='molokai'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:tcommentMapLeaderOp1="s"
-nmap ss sc
 map <A-q> :q<CR>
 map <C-S-q> :q!<CR>
 
@@ -114,11 +104,13 @@ set ttimeoutlen=0
 set ttyfast
 set noesckeys
 set noshowmode
-" set notimeout
 set timeoutlen=3000
 set lazyredraw
+set pastetoggle=<C-t>
 vnoremap <C-e> <C-u>
 nnoremap <C-e> <C-u>
+" Commenting
+nmap ss sc
 
 " Mappings
 nnoremap Q @q
@@ -139,13 +131,8 @@ nnoremap `` ``zz
 vnoremap < <gv
 vnoremap > >gv
 let loaded_matchparen = 1
-nnoremap <C-p> :SyntasticToggleMode<CR>
 nnoremap go mto<Esc>`t
 nnoremap gO mtO<Esc>`t
-" vnoremap ab :normal Va{o^<CR>
-" vmap ib :normal Va{o0<CR>
-" omap <silent> ab :normal Vab<CR>
-" omap <silent> ib i{<CR>
 cnoremap <C-a> <C-b>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
@@ -156,13 +143,6 @@ inoremap <silent> <C-j> <C-o>:call ToggleLineMax()<CR>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++14'
-func! PkgConfig(libs)
-  return system('pkg-config --cflags --libs '.a:libs.' | tr -d "\n"')
-endfunc
-let g:syntastic_cpp_compiler_options = ' -std=c++14 '.PkgConfig('gtk+-3.0 vte-2.91')
-let g:syntastic_c_compiler_options = ' -std=gnu11 '.PkgConfig('gtk+-3.0')
 
 hi CursorLine ctermbg=233
 hi CursorLineNr ctermbg=233
@@ -181,12 +161,6 @@ if has('gui_running')
   set guioptions+=m
 endif
 
-func! HighlightInstances()
-  let @/ = expand("<cword>")
-  set hlsearch
-endfunc
-nnoremap <silent> <C-l> :set nohlsearch\|:call HighlightInstances()<CR>
-
 hi LineMax cterm=none
 match LineMax /\%81v.*/
 let s:line_max_enabled = 0
@@ -201,9 +175,20 @@ func! ToggleLineMax()
   endif
 endfunc
 
-set pumheight=8
-set completeopt=menu
 
+" Syntastic {{
+nnoremap <C-s> :SyntasticToggleMode<CR>
+let g:syntastic_javascript_checkers = ['jshint']
+hi SpellCap term=reverse ctermbg=160
+nnoremap <C-p> :SyntasticToggleMode<CR>
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++14'
+func! PkgConfig(libs)
+  return system('pkg-config --cflags --libs '.a:libs.' | tr -d "\n"')
+endfunc
+let g:syntastic_cpp_compiler_options = ' -std=c++14 '.PkgConfig('gtk+-3.0 vte-2.91')
+let g:syntastic_c_compiler_options = ' -std=gnu11 '.PkgConfig('gtk+-3.0')
+let g:syntastic_nasm_compiler_options = ' -felf64 '
 let g:syntastic_java_javac_config_file_enabled = 1
 let g:syntastic_java_javac_config_file = '/home/jake/.syntastic_javac_config'
 let g:syntastic_check_on_wq = 0
@@ -211,38 +196,14 @@ hi SyntasticErrorSign ctermbg=233
 hi SyntasticWarningSign ctermbg=233
 let g:syntastic_error_symbol = "E"
 let g:syntastic_warning_symbol = "W"
+hi SpellCap term=reverse ctermbg=160
+" }}
 
-" set pastetoggle=<C-t>
-nnoremap <C-t> :source ~/.vimrc<CR>
-
-nnoremap } ]}
-nnoremap { [{
-nnoremap ( [(
-nnoremap ) ])
-
-au FileType cs setlocal cinoptions+=j1,J1 ts=4 sw=4
-au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile *.peg,*.jison set ft=javascript
-au FileType java set ts=4 sw=4
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=js#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd Filetype tex setlocal nofoldenable
-au FileType cpp set ts=4 sw=4
-
-au BufNewFile,BufRead sxhkdrc set ft=sxhkdrc
-au BufRead,BufNewFile *\<compton.conf set filetype=compton
-call tcomment#DefineType('sxhkdrc', '# %s')
-call tcomment#DefineType('tmux', '# %s')
-call tcomment#DefineType('asm', '# %s')
-call tcomment#DefineType('compton', '# %s')
-
-" Neocomplete
+" Neocomplete {{
+set pumheight=8
+set completeopt=menu
 let g:neocomplete#auto_completion_start_length=2
-let g:neocomplete#force_overwrite_completefunc=0
+let g:neocomplete#force_overwrite_completefunc=1
 let g:neocomplete#max_keyword_width=80
 let g:neocomplete#sources#tags#cache_limit_size=5000000
 let g:neocomplete#enable_at_startup = 1
@@ -261,16 +222,30 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 let g:neocomplete#sources#omni#input_patterns.javascript = '[a-zA-Z_$]\{3,}\|\.[a-zA-Z_$]*'
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr><Esc>[Z pumvisible() ? "\<C-p>" : "\<Esc>"
-
-let g:statusline_loaded = 0
-set lazyredraw
-set ttyfast
-
-au BufRead,BufNewFile *.s set ft=nasm | set cindent
-let g:syntastic_nasm_compiler_options = ' -felf64 '
+" }}
 
 func! NoEOL()
   au BufWritePre,BufWritePost * :set binary | set noeol
 endfunc
+
+au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.peg,*.jison set ft=javascript
+au BufRead,BufNewFile *\<compton.conf set filetype=compton
+au BufRead,BufNewFile *.s set ft=nasm | set cindent
+au BufNewFile,BufRead sxhkdrc set ft=sxhkdrc
+
+au FileType cs setlocal cinoptions+=j1,J1 ts=4 sw=4
+au FileType java set ts=4 sw=4
+au FileType cpp set ts=4 sw=4
+au FileType python setlocal completeopt-=preview
+au FileType css setlocal omnifunc=csscomplete#CompleteCSS
+au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+au FileType javascript setlocal omnifunc=js#CompleteJS
+au FileType python setlocal omnifunc=pythoncomplete#Complete
+au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+au Filetype tex setlocal nofoldenable
+
+call tcomment#DefineType('sxhkdrc', '# %s')
+call tcomment#DefineType('tmux', '# %s')
+call tcomment#DefineType('asm', '# %s')
+call tcomment#DefineType('compton', '# %s')

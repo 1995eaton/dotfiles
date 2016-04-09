@@ -101,3 +101,5 @@ incognitoHint(link) -> {{
 }}
 map <C-i> createScriptHint(incognitoHint)
 let blacklists = ['file:///home/jake/html5-sudoku/*', 'http://jake-eaton.com/sudoku/']
+
+map V :source ~/.cvimrc<CR>
