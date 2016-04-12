@@ -178,7 +178,7 @@ endfunc
 
 " Syntastic {{
 nnoremap <C-s> :SyntasticToggleMode<CR>
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 hi SpellCap term=reverse ctermbg=160
 nnoremap <C-p> :SyntasticToggleMode<CR>
 let g:syntastic_cpp_compiler = 'g++'

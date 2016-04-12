@@ -18,3 +18,4 @@ sxhkd = ~/.config/sxhkd
 zathura = ~/.config/zathura
 xinitrc = ~/.xinitrc
 gtkrc = ~/.gtkrc-2.0
+.eslintrc = ~/.eslintrc
