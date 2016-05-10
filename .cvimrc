@@ -5,6 +5,7 @@ set localconfig
 let vimcommand = 'urxvt -e vim'
 " imap <C-o> editWithVim
 
+" set sortlinkhints
 set nosmoothscroll
 set noautofocus
 set cncpcompletion

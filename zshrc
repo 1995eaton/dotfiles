@@ -106,8 +106,11 @@ alias ls='ls --color=always'
 alias j='ps axk%cpu -o %cpu,%mem,pid,cmd'
 
 numix_colors() {
-  find /usr/share/themes/Numix -type f -print0 | sudo xargs -0 sed -i 's/#ef534b/#f92672/g'
-  find /usr/share/themes/Numix -type f -print0 | sudo xargs -0 sed -i 's/#444444/#1c1c1c/g'
+  find /usr/share/themes/Numix -type f -print0 | sudo xargs -0 sed -i 's/#F0544C/#f92672/gi'
+  find /usr/share/themes/Numix -type f -print0 | sudo xargs -0 sed -i 's/#444444/#1c1c1c/gi'
+}
+arc_colors() {
+  find /usr/share/themes/Arc-Darker -type f -print0 | sudo xargs -0 sed -i 's/#2F343F/#1c1c1c/gi'
 }
 
 alias c='cd'
