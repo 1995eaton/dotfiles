@@ -21,7 +21,7 @@ alt + bracket{left,right}
 # alt + {comma,period}
 #     bspc desktop -C {backward,forward}
 alt + {comma,period}
-    bspc node -s {prev,next}
+    bspc node '@/' -C {backward,forward}
 
 # ctrl + shift + h
 #   bspc window -e right -20 || bspc window -e left -20
@@ -52,7 +52,7 @@ alt + button{1-3}
 alt + shift + d
   bspc node -c
 super + q
-  killall conky lemonbar; bspc quit
+  killall conky lemonbar urxvtd; bspc quit
 
 alt + {_,shift + } {o,i}
   bspc node -t {tiled,floating,fullscreen,pseudo_tiled}
@@ -66,12 +66,12 @@ alt + {_,shift +}{1-9,0}
 
 alt + p
   dmenu_run -fn 'DejaVu Sans Mono:pixelsize=11' -nb \#1c1c1c -nf \#8f8f8f -sb \#4084D6
+alt + shift + x
+  rm -r /home/jake/.config/google-chrome-unstable-alt; cp -r /home/jake/.config/google-chrome-unstable-alt.orig /home/jake/.config/google-chrome-unstable-alt && google-chrome-unstable --disable-xss-auditor --user-data-dir=/home/jake/.config/google-chrome-unstable-alt; rm -r /home/jake/.config/google-chrome-unstable-alt; rm -r /home/jake/.cache/google-chrome-unstable-alt
 alt + shift + w
-  google-chrome-unstable --test-type --ignore-gpu-blacklist --enable-javascript-harmony
-alt + shift + e
-  rm -r /home/jake/.config/chromium-alt; cp -r /home/jake/.config/chromium-alt.orig /home/jake/.config/chromium-alt && chromium --user-data-dir=/home/jake/.config/chromium-alt; rm -r /home/jake/.config/chromium-alt; rm -r /home/jake/.cache/chromium-alt
-alt + w
   chromium --ignore-gpu-blacklist --enable-javascript-harmony
+alt + w
+  google-chrome-unstable --test-type --ignore-gpu-blacklist --enable-javascript-harmony
 alt + ctrl + w
   primusrun chromium --test-type --harmony_arrow_functions
 alt + shift + n

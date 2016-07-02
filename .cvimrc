@@ -5,7 +5,7 @@ set localconfig
 let vimcommand = 'urxvt -e vim'
 " imap <C-o> editWithVim
 
-" set sortlinkhints
+set debugcss
 set nosmoothscroll
 set noautofocus
 set cncpcompletion
@@ -16,18 +16,7 @@ let mapleader = ','
 let zoomfactor = 0.05
 let scrollduration = 250
 let searchlimit = 25
-let completionengines = ['google', 'wikipedia', 'imdb',
-      \ 'amazon', 'wolframalpha', 'duckduckgo']
-let searchalias w = 'wikipedia'
-" let completionengines = ['google', 'wikipedia', 'youtube', 'imdb', 'amazon',
-"       \ 'google-maps', 'wolframalpha', 'google-image', 'ebay',
-"       \ 'webster', 'wiktionary', 'urbandictionary', 'duckduckgo',
-"       \ 'answers', 'google-trends', 'google-finance', 'yahoo',
-"       \ 'bing', 'themoviedb']
-let qmark a = [ 'http://www.reddit.com/r/learnjavascript/new',
-      \ 'http://www.reddit.com/r/learnpython/new/',
-      \ 'http://www.reddit.com/r/learnprogramming/new']
-let searchalias i = 'imdb'
+let completionengines = ['google', 'wikipedia', 'imdb', 'amazon']
 
 map af createActiveTabbedHint
 map $ lastTab
@@ -55,7 +44,6 @@ map cc :set hud!<CR>
 map aa :tabopen g<Space>
 map ga :settings<CR>
 map g0 scrollToLeft
-map I yankHighlight
 map g$ scrollToRight
 imap <C-y> selectAll
 imap <C-a> <C-i>
@@ -65,9 +53,6 @@ map <BS> <Nop>
 map <Leader>s :source<CR>
 map cf nextMatchPattern
 map cd previousMatchPattern
-map <Leader>n :set numerichints!<CR>
-map ci :call getIP<CR>
-map ? openLinkSearchBar
 map <C-h> clearSearchHighlight
 
 fixChromiumWikiBug -> {{
@@ -75,32 +60,13 @@ fixChromiumWikiBug -> {{
     e.removeAttribute('accesskey');
   });
 }}
+
 site '*://*/*' {
   call fixChromiumWikiBug
 }
-
-getIP -> {{
-  httpRequest({url: 'http://www.telize.com/geoip', json: true}, function(res) {
-    Status.setMessage(res.ip + ' - ' + res.isp);
-  });
-}}
 
 site '*://*.netflix.com/watch*' {
   unmap <Space> f
 }
 
-tabnextVimStyle(n) -> {{
-    if (~~n <= 0 && Mappings.lastCommand.repeatStr === '')
-        RUNTIME('nextTab', {repeats: 1});
-    else
-        RUNTIME('goToTab', {index: (n || Mappings.lastCommand.repeats) - 1});
-}}
-map gt :call tabnextVimStyle<CR>
-
-incognitoHint(link) -> {{
-    RUNTIME('openLinkWindow', {url: link.href, incognito: true});
-}}
-map <C-i> createScriptHint(incognitoHint)
-let blacklists = ['file:///home/jake/html5-sudoku/*', 'http://jake-eaton.com/sudoku/']
-
-map V :source ~/.cvimrc<CR>
+let blacklists = []

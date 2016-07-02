@@ -66,6 +66,7 @@ export GCC_COLORS=always
 export NLTK_DATA=/home/jake/.nltk_data
 export QUOTING_STYLE=literal
 export ANDROID_HOME=/opt/android-sdk
+export XZ_OPT='-T 0'
 
 function {
   local PATH_ARRAY; PATH_ARRAY=(
@@ -75,6 +76,7 @@ function {
     /home/jake/.npm/bin
     $GOPATH/bin
     /home/jake/source/code-templates/bin
+    /home/jake/source/Nim/bin
   )
   local IFS=:
   shift 0
@@ -111,6 +113,7 @@ numix_colors() {
 }
 arc_colors() {
   find /usr/share/themes/Arc-Darker -type f -print0 | sudo xargs -0 sed -i 's/#2F343F/#1c1c1c/gi'
+  find /usr/share/themes/Arc-Darker -type f -print0 | sudo xargs -0 sed -i 's/#CDD1D6/#1c1c1c/gi'
 }
 
 alias c='cd'
@@ -118,28 +121,45 @@ alias dc='cd'
 alias l='ls'
 alias s='ls'
 alias sl='ls'
+alias http='sudo /home/jake/source/serve/serve'
+  # LD_PRELOAD='/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so' steam
 
 function cpui() {
-  sudo cpupower -i
+  sudo cpup -i
 }
 function cpull() {
-  sudo cpupower -g powersave --min=0.8 --max=0.8
-  sudo cpupower -i
+  sudo cpup --governor=powersave --perf-bias=15 --min-freq=0.8 --max-freq=0.8 --turbo-boost=0 --info
 }
 function cpul() {
-  sudo cpupower -g powersave --min=0.8 --max=1.6
-  sudo cpupower -i
+  sudo cpup --governor=powersave --perf-bias=15 --min-freq=0.8 --max-freq=1.6 --turbo-boost=0 --info
 }
 function cpun() {
-  sudo cpupower -g powersave --min=0.8 --max=2.4
-  sudo cpupower -i
+  sudo cpup --governor=powersave --perf-bias=6 --min-freq=0.8 --max-freq=2.4 --turbo-boost=0 --info
 }
 function cpuh() {
-  sudo cpupower -t 1
-  sudo cpupower -p100 --min=3.4 --max=3.4
-  sudo cpupower -g performance
-  sudo cpupower -i
+  sudo cpup --governor=performance --perf-bias=0 --max-freq=3.4 --max-freq=3.4 --turbo-boost=1 --info
 }
+# function cpui() {
+#   sudo cpupower -i
+# }
+# function cpull() {
+#   sudo cpupower -g powersave --min=0.8 --max=0.8
+#   sudo cpupower -i
+# }
+# function cpul() {
+#   sudo cpupower -g powersave --min=0.8 --max=1.6
+#   sudo cpupower -i
+# }
+# function cpun() {
+#   sudo cpupower -g powersave --min=0.8 --max=2.4
+#   sudo cpupower -i
+# }
+# function cpuh() {
+#   sudo cpupower -t 1
+#   sudo cpupower -p100 --min=3.4 --max=3.4
+#   sudo cpupower -g performance
+#   sudo cpupower -i
+# }
 
 function zle-line-init zle-keymap-select {
   if [[ ${KEYMAP/vicmd} == "main" ]]; then
@@ -216,3 +236,10 @@ source /home/jake/.vim/bundle/vim-run/plugin/shell.sh
 # VIM MODE [CD]I COMMANDS ==> https://github.com/hchbaw/opp.zsh
 source /home/jake/.zsh-opp/opp.zsh
 source /home/jake/scripts/cmp.zsh
+
+function() {
+  local keys=($(cat ~/.ssh/config | awk '{ ORS = " "; } { if ($1 ~ "IdentityFile") print $2; }'))
+  # echo ${keys[*]}
+  eval $(keychain --quiet --eval ${keys[*]})
+  # echo $keys
+}

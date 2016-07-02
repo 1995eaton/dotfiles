@@ -7,8 +7,10 @@ packages=(
 'https://github.com/godlygeek/tabular'
 'https://github.com/tomtom/tcomment_vim'
 'https://github.com/scrooloose/syntastic'
-'git@github.com:1995eaton/vim-better-javascript-syntax.git'
+'https://github.com/1995eaton/vim-better-javascript-completion'
+'https://github.com/1995eaton/vim-better-javascript-highlighting'
 'https://github.com/bling/vim-airline.git'
+'https://github.com/zah/nim.vim'
 )
 
 update_packages() {

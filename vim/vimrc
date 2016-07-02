@@ -237,10 +237,11 @@ au BufNewFile,BufRead sxhkdrc set ft=sxhkdrc
 au FileType cs setlocal cinoptions+=j1,J1 ts=4 sw=4
 au FileType java set ts=4 sw=4
 au FileType cpp set ts=4 sw=4
+au FileType c set ts=4 sw=4
+au FileType javascript set ts=2 sw=2
 au FileType python setlocal completeopt-=preview
 au FileType css setlocal omnifunc=csscomplete#CompleteCSS
 au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-au FileType javascript setlocal omnifunc=js#CompleteJS
 au FileType python setlocal omnifunc=pythoncomplete#Complete
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 au Filetype tex setlocal nofoldenable

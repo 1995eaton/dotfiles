@@ -159,7 +159,7 @@ class PanelItem {
   let items = {
     desktops: 1000 * 0.5,
     cpu:      1000 * 1,
-    battery:  1000 * 2.5,
+    battery:  1000 * 5,
     volume:   1000 * 1,
     thermal:  1000 * 1,
     date:     1000 * 5,
@@ -178,7 +178,7 @@ class PanelItem {
     function printPanel() {
       let _ = itemText,
           fmt = `  ${_.desktops}%{r}${_.volume} | ${_.battery} | ` +
-                `CPU (${_.cpu}% ${_.thermal}°C) | %{A:/home/jake/.config/bspwm/panel/gtk_popup/cal.sh | /home/jake/.config/bspwm/panel/gtk_popup/gtk_popup:}${_.date}%{A} | ${_.time} `;
+                `CPU (${_.cpu}% ${_.thermal}°C) | ${_.date} | ${_.time} `;
       process.stdout.write(fmt + '\n');
     }
     (function loopFunc() {

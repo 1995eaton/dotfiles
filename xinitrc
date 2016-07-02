@@ -41,7 +41,10 @@ xset r rate 300 40 &
 xset m 3/2.5 &
 sh ~/.fehbg &
 # xsetroot -solid '#3a6ea5'
-sxhkd &
 python3 ~/source/chromium-vim/cvim_server.py &
 wmname LG3D &
+
+sxhkd &
 exec bspwm
+
+# exec i3
