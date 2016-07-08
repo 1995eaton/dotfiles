@@ -55,9 +55,10 @@ urxvt.jumpScroll:        1
 urxvt.saveLines:         0
 urxvt.boldMode:          0
 urxvt.inheritPixmap:     0
-urxvt.perl-ext-common:   default,clipboard,matcher,keyboard-select
+urxvt.perl-ext-common:   default,clipboard,keyboard-select
+! ,matcher
 urxvt.matcher.button:    1
-urxvt.underlineURLs:     1
+urxvt.underlineURLs:     0
 urxvt.url-launcher:      /usr/bin/google-chrome-beta
 
 ! COLORS
@@ -67,7 +68,7 @@ urxvt.url-launcher:      /usr/bin/google-chrome-beta
 ! Manpage colors
 *colorIT: #eeeeee
 *colorBD: #d7d7d7
-*colorUL: #87afd7
+! *colorUL: #87afd7
 
 *foreground: #bcbcbc
 ! *background: rgba:1c00/1c00/1c00/f332

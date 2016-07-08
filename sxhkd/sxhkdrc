@@ -67,7 +67,7 @@ alt + {_,shift +}{1-9,0}
 alt + p
   dmenu_run -fn 'DejaVu Sans Mono:pixelsize=11' -nb \#1c1c1c -nf \#8f8f8f -sb \#4084D6
 alt + shift + x
-  rm -r /home/jake/.config/google-chrome-unstable-alt; cp -r /home/jake/.config/google-chrome-unstable-alt.orig /home/jake/.config/google-chrome-unstable-alt && google-chrome-unstable --disable-xss-auditor --user-data-dir=/home/jake/.config/google-chrome-unstable-alt; rm -r /home/jake/.config/google-chrome-unstable-alt; rm -r /home/jake/.cache/google-chrome-unstable-alt
+  /home/jake/scripts/chrome-xss
 alt + shift + w
   chromium --ignore-gpu-blacklist --enable-javascript-harmony
 alt + w
