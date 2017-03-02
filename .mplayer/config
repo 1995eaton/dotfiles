@@ -1,6 +1,6 @@
 # Write your default config options here!
 
-vo=gl
+vo=gl:yuv=3:lscale=5:cscale=5
 double=yes
 autoq=100
 vf=pp=de,hqdn3d

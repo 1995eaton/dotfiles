@@ -1,72 +1,55 @@
 let homedirectory = '/home/jake'
 let configpath = '~/.cvimrc'
 set localconfig
-
-let vimcommand = 'urxvt -e vim'
-" imap <C-o> editWithVim
-
-set debugcss
-set nosmoothscroll
-set noautofocus
-set cncpcompletion
-set nohud
-set nodimhintcharacters
-set typelinkhints
-let mapleader = ','
+let vimcommand = 'urxvtc -e vim'
+let hintcharacters = 'asdfgqwertxcvb'
 let zoomfactor = 0.05
 let scrollduration = 250
 let searchlimit = 25
 let completionengines = ['google', 'wikipedia', 'imdb', 'amazon']
 
+set noautofocus
+set cncpcompletion
+set nohud
+set nodimhintcharacters
+
 map af createActiveTabbedHint
 map $ lastTab
 map 0 firstTab
+map g0 scrollToLeft
+map g$ scrollToRight
 map <Space> l
 map <S-Space> h
-map gS :viewsource&<CR>
 map xx closeTab
-map ,d :du<CR>
 map qq xx
-map Q closeTab
+map cd :du<CR>
 map gs fullImageHint
-map gq :restore<Space>
-map a<Space> z<Enter>
 map <C-e> z<Enter>
-map <C-k> nextTab
-map <C-j> previousTab
-map cn :execute nzz<CR>
-map cN :execute Nzz<CR>
 map <C-d> :file ~/
 map m* setMark
 map <C-s> openLastHint
 map <C-g> :set smoothscroll!<CR>
-map cc :set hud!<CR>
-map aa :tabopen g<Space>
 map ga :settings<CR>
-map g0 scrollToLeft
-map g$ scrollToRight
-imap <C-y> selectAll
-imap <C-a> <C-i>
-imap <C-l> forwardWord
-imap <C-h> backwardWord
-map <BS> <Nop>
-map <Leader>s :source<CR>
-map cf nextMatchPattern
-map cd previousMatchPattern
 map <C-h> clearSearchHighlight
+map <BS> <Nop>
 
-fixChromiumWikiBug -> {{
-  [].slice.call(document.querySelectorAll('*[accesskey]')).forEach(function(e) {
-    e.removeAttribute('accesskey');
-  });
-}}
-
-site '*://*/*' {
-  call fixChromiumWikiBug
-}
+imap <C-y> selectAll
+imap <C-a> beginningOfLine
 
 site '*://*.netflix.com/watch*' {
   unmap <Space> f
 }
 
+getIP() -> {{
+httpRequest({url: 'http://api.ipify.org/?format=json', json: true},
+            function(res) { Status.setMessage('IP: ' + res.ip); });
+}}
+map ci :call getIP<CR>
+
 let blacklists = []
+
+-> {{
+  Array.from(document.querySelectorAll('*[accesskey]')).forEach(e => {
+    e.removeAttribute('accesskey');
+  });
+}}

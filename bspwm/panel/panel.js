@@ -67,7 +67,7 @@ class PanelHelpers {
         try {
           stdout = stdout.split('\n').find(line => /\[o(n|ff)\]/.test(line));
           stdout = stdout.split(/\s+/).filter(e => e);
-          let percent = stdout[3].slice(1, -2) | 0;
+          let percent = stdout.find(e => e.startsWith('[')).slice(1, -2) | 0;
           let volumes = ['\uf026', '\uf027', '\uf028'];
           let volume = volumes[Math.round(percent / 100 * (volumes.length - 1))];
           if (stdout[stdout.length - 1] === '[off]') {
