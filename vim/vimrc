@@ -114,11 +114,10 @@ let g:airline_symbols.branch = ''
 " let g:airline_symbols.whitespace = 'Ξ'
 nmap <silent> <C-p> <Plug>(ale_previous_wrap)
 nmap <silent> <C-n> <Plug>(ale_next_wrap)
-map <silent> <C-f> :FZF<CR>
+map <silent> <C-f> :Files<CR>
+nmap <silent> <C-s> :b#<CR>
+nmap ; :Buffers<CR>
 set rtp+=~/.fzf
-
-map <A-q> :q<CR>
-map <C-S-q> :q!<CR>
 
 " Miscellaneous
 vnoremap . :normal .<CR>
@@ -204,6 +203,7 @@ let g:ale_fixers = {
 let g:ale_completion_enabled = 0
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_insert_leave = 0
+let g:ale_sign_column_always = 1
 let g:airline#extensions#ale#enabled = 1
 
 " Neocomplete {{

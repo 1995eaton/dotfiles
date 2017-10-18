@@ -10,6 +10,7 @@ packages=(
 'https://github.com/1995eaton/vim-better-javascript-completion'
 'https://github.com/1995eaton/vim-better-javascript-highlighting'
 'https://github.com/bling/vim-airline.git'
+'https://github.com/junegunn/fzf.vim'
 )
 
 update_packages() {
