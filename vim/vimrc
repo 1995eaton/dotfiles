@@ -105,13 +105,17 @@ endif
 " let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = ''
-" let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.branch = ''
 " let g:airline_symbols.paste = 'ρ'
 " let g:airline_symbols.paste = 'Þ'
 " let g:airline_symbols.paste = '∥'
 " let g:airline_symbols.spell = 'Ꞩ'
 " let g:airline_symbols.notexists = '∄'
 " let g:airline_symbols.whitespace = 'Ξ'
+nmap <silent> <C-p> <Plug>(ale_previous_wrap)
+nmap <silent> <C-n> <Plug>(ale_next_wrap)
+map <silent> <C-f> :FZF<CR>
+set rtp+=~/.fzf
 
 map <A-q> :q<CR>
 map <C-S-q> :q!<CR>
@@ -136,7 +140,6 @@ nmap ss sc
 nnoremap Q @q
 vnoremap Q :norm @q<CR>
 nnoremap @@ @q
-nnoremap <C-f> :call neocomplete#initialize()<CR>:NeoCompleteToggle<CR>
 inoremap <C-e> <C-o>A
 inoremap <C-a> <C-o>I
 inoremap <C-b> <C-o><BS>

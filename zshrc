@@ -198,22 +198,6 @@ bindkey '^[[Z' reverse-menu-complete
 bindkey '^K' up-line-or-beginning-search
 bindkey '^J' down-line-or-beginning-search
 
-### {{{ vim-run
-VIM_FIFO_FILE=/tmp/vim-fifo
-
-ctrl_c_trap() {
-  rm "$VIM_FIFO_FILE"
-  trap - INT
-}
-
-vim_fifo() {
-  [[ -e $VIM_FIFO_FILE ]] && rm "$VIM_FIFO_FILE"
-  mkfifo "$VIM_FIFO_FILE"
-  trap ctrl_c_trap INT
-  tail -f "$VIM_FIFO_FILE"
-}
-### }}}
-
 source /home/jake/.vim/bundle/vim-run/plugin/shell.sh
 
 # VIM MODE [CD]I COMMANDS ==> https://github.com/hchbaw/opp.zsh
@@ -226,3 +210,6 @@ function() {
   eval $(keychain --quiet --eval ${keys[*]})
   # echo $keys
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias f=fzf

@@ -6,10 +6,10 @@ packages=(
 'https://github.com/Shougo/neocomplete.vim.git'
 'https://github.com/godlygeek/tabular'
 'https://github.com/tomtom/tcomment_vim'
+'https://github.com/wellle/targets.vim'
 'https://github.com/1995eaton/vim-better-javascript-completion'
 'https://github.com/1995eaton/vim-better-javascript-highlighting'
 'https://github.com/bling/vim-airline.git'
-'https://github.com/zah/nim.vim'
 )
 
 update_packages() {
