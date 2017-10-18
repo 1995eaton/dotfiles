@@ -13,7 +13,8 @@ set cncpcompletion
 set nohud
 set nodimhintcharacters
 
-map af createActiveTabbedHint
+" map a createActiveTabbedHint
+unmap a
 map $ lastTab
 map 0 firstTab
 map g0 scrollToLeft
@@ -35,6 +36,7 @@ map <BS> <Nop>
 
 imap <C-y> selectAll
 imap <C-a> beginningOfLine
+imap <C-o> editWithVim
 
 site '*://*.netflix.com/watch*' {
   unmap <Space> f

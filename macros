@@ -1,4 +1,5 @@
-keycode 66 = Control_L
+keysym Caps_Lock = Control_L
+keysym Alt_R = F12
+
 clear Lock
 add Control = Control_L
-keycode 94 = F12

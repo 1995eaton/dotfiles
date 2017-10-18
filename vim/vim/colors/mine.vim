@@ -7,6 +7,11 @@ if has("spell")
  hi SpellRare ctermfg=none ctermbg=none cterm=reverse gui=reverse
 endif
 
+highlight DiffAdd cterm=NONE ctermfg=119 ctermbg=none gui=NONE
+highlight DiffDelete cterm=NONE ctermfg=124 ctermbg=none gui=NONE
+highlight DiffChange cterm=NONE ctermfg=124 ctermbg=none gui=NONE
+highlight DiffText cterm=NONE ctermfg=124 ctermbg=none gui=NONE
+
 hi Normal ctermbg=none ctermfg=none guibg=#1c1c1c guifg=#bcbcbc
 hi PreProc ctermfg=141 guifg=#af87ff
 hi Comment ctermfg=241 guifg=#606060

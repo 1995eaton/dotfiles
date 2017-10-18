@@ -21,9 +21,14 @@
 ! *boldFont: xft:Source Code Pro:pixelsize=11:style=Bold
 ! *italicFont: xft:Source Code Pro:pixelsize=11:style=Bold
 
-*font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
-*boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
-*italicFont: xft:DejaVu Sans Mono:pixelsize=11:style=Oblique
+! urxvt*font: xft:DejaVu Sans Mono:pixelsize=11:style=Book
+! urxvt*boldFont: xft:DejaVu Sans Mono:pixelsize=11:style=Bold
+! urxvt*italicFont: xft:DejaVu Sans Mono:pixelsize=11:style=Oblique
+
+urxvt*font: -xos4-terminus-medium-r-normal--0-0-72-72-c-0-iso10646-1
+urxvt*boldFont: -xos4-terminus-bold-r-normal--0-0-72-72-c-0-iso10646-1
+! urxvt*italicFont: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
+! urxvt*boldItalicFont: -*-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1
 
 ! *boldItalicFont:
 
@@ -39,27 +44,29 @@ Xft.lcdfilter: lcddefault
 
 ! URXVT CONFIG
 
-urxvt.termName:          xterm-256color
-urxvt.imLocale:          en_US.UTF-8
-urxvt.iso14755:          0
-urxvt.iso14755_52:       0
-urxvt.loginShell:        1
-urxvt*internalBorder:    2
-urxvt*externalBorder:    0
-urxvt.cursorBlink:       1
+*termName:          xterm-256color
+*imLocale:          en_US.UTF-8
+*iso14755:          0
+*iso14755_52:       0
+*loginShell:        1
+*internalBorder:    0
+*externalBorder:    0
+*cursorBlink:       1
 ! urxvt.cursorUnderline:   1
-urxvt.scrollBar:         0
-urxvt.scrollTtyOutput:   0
-urxvt.scrollTtyKeypress: 1
-urxvt.jumpScroll:        1
-urxvt.saveLines:         0
-urxvt.boldMode:          0
-urxvt.inheritPixmap:     0
-urxvt.perl-ext-common:   default,clipboard,keyboard-select
+*scrollBar:         0
+*scrollTtyOutput:   0
+*scrollTtyKeypress: 1
+*jumpScroll:        1
+*saveLines:         0
+*boldMode:          0
+*inheritPixmap:     0
+*perl-ext-common:   default,clipboard,keyboard-select
 ! ,matcher
-urxvt.matcher.button:    1
-urxvt.underlineURLs:     0
-urxvt.url-launcher:      /usr/bin/google-chrome-beta
+*matcher.button:    1
+*underlineURLs:     0
+*url-launcher:      /usr/bin/google-chrome-beta
+XTerm*eightBitInput:   false
+XTerm*eightBitOutput:  true
 
 ! COLORS
 

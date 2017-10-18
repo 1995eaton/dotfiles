@@ -52,7 +52,7 @@ zmodload -a autocomplete
 zmodload -a complist
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-[ $COLORTERM ] && export TERM='screen-256color'
+[ -z ${COLORTERM+x} ] || export TERM='screen-256color'
 
 export ZLE_REMOVE_SUFFIX_CHARS=''
 export CORRECT_IGNORE='_*'
@@ -72,11 +72,14 @@ function {
   local PATH_ARRAY; PATH_ARRAY=(
     ~/dotfiles/scripts
     ~/.config/bspwm/panel
-    /home/jake/.gem/ruby/*/bin
     /home/jake/.npm/bin
     $GOPATH/bin
     /home/jake/source/code-templates/bin
     /home/jake/source/Nim/bin
+    /home/jake/.gem/ruby/2.4.0/bin
+    /home/jake/.gem/ruby/2.3.0/bin
+    /home/jake/.gem/ruby/*/bin
+    /home/jake/.npm-global/bin
   )
   local IFS=:
   shift 0
@@ -106,6 +109,7 @@ alias pacman='pacman --color=always'
 alias yo='yaourt -Syua'
 alias ls='ls --color=always'
 alias j='ps axk%cpu -o %cpu,%mem,pid,cmd'
+alias vi='vim'
 
 numix_colors() {
   find /usr/share/themes/Numix -type f -print0 | sudo xargs -0 sed -i 's/#F0544C/#f92672/gi'
@@ -122,44 +126,23 @@ alias l='ls'
 alias s='ls'
 alias sl='ls'
 alias http='sudo /home/jake/source/serve/serve'
-  # LD_PRELOAD='/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so' steam
+# LD_PRELOAD='/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so' steam
 
 function cpui() {
   sudo cpup -i
 }
 function cpull() {
-  sudo cpup --governor=powersave --perf-bias=15 --min-freq=0.8 --max-freq=0.8 --turbo-boost=0 --info
-}
-function cpul() {
   sudo cpup --governor=powersave --perf-bias=15 --min-freq=0.8 --max-freq=1.6 --turbo-boost=0 --info
 }
-function cpun() {
+function cpul() {
   sudo cpup --governor=powersave --perf-bias=6 --min-freq=0.8 --max-freq=2.4 --turbo-boost=0 --info
 }
-function cpuh() {
-  sudo cpup --governor=performance --perf-bias=0 --max-freq=3.4 --max-freq=3.4 --turbo-boost=1 --info
+function cpun() {
+  sudo cpup --governor=powersave --perf-bias=6 --min-freq=0.8 --max-freq=3.4 --turbo-boost=1 --info
 }
-# function cpui() {
-#   sudo cpupower -i
-# }
-# function cpull() {
-#   sudo cpupower -g powersave --min=0.8 --max=0.8
-#   sudo cpupower -i
-# }
-# function cpul() {
-#   sudo cpupower -g powersave --min=0.8 --max=1.6
-#   sudo cpupower -i
-# }
-# function cpun() {
-#   sudo cpupower -g powersave --min=0.8 --max=2.4
-#   sudo cpupower -i
-# }
-# function cpuh() {
-#   sudo cpupower -t 1
-#   sudo cpupower -p100 --min=3.4 --max=3.4
-#   sudo cpupower -g performance
-#   sudo cpupower -i
-# }
+function cpumax() {
+  sudo cpup --governor=performance --perf-bias=0 --min-freq=3.4 --max-freq=3.4 --turbo-boost=1 --info
+}
 
 function zle-line-init zle-keymap-select {
   if [[ ${KEYMAP/vicmd} == "main" ]]; then

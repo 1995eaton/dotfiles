@@ -24,7 +24,7 @@ alt + {_,shift} + b
 alt + shift + d
   bspc node -c
 super + q
-  killall conky lemonbar urxvtd; bspc quit
+  killall lemonbar node urxvtd; bspc quit
 
 alt + {_,shift + } {o,i}
   bspc node -t {tiled,floating,fullscreen,pseudo_tiled}
@@ -37,19 +37,25 @@ alt + p
 alt + shift + x
   /home/jake/scripts/chrome-xss
 alt + shift + w
-  chromium --ignore-gpu-blacklist --enable-javascript-harmony
+  google-chrome-unstable --ignore-gpu-blacklist
 alt + w
   chromium --ignore-gpu-blacklist
+alt + u
+  chrome-no-user
 alt + ctrl + w
   primusrun chromium --test-type --harmony_arrow_functions
 alt + shift + n
   chromium --test-type --incognito --harmony_arrow_functions
 alt + t
   urxvtc -geometry 120x40 -e tmux -2 -q
+# alt + t
+#   xterm -geometry 120x40 -e tmux -2 -q
 alt + m
   /home/jake/scripts/hide_cursor/hide.sh
 alt + Escape
   pkill -USR1 -x sxhkd
+ctrl + shift + BackSpace
+  sudo pm-suspend
 alt + Down
   amixer -c 0 set Master 0+ toggle
 ctrl + alt + {j,l,k,h}

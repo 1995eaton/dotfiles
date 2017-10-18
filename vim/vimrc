@@ -10,7 +10,7 @@ set fileformats=unix,dos,mac
 
 " Syntax hightlighting
 syntax enable
-nnoremap <silent> <C-h> :nohlsearch<CR>
+nnoremap <silent> <C-k> :nohlsearch<CR>
 set background=dark
 colorscheme mine
 
@@ -93,6 +93,26 @@ let g:airline_theme='molokai'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:tcommentMapLeaderOp1="s"
+
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+" let g:airline_left_sep = '»'
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = '«'
+" let g:airline_right_sep = ''
+" let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.paste = 'Þ'
+" let g:airline_symbols.paste = '∥'
+" let g:airline_symbols.spell = 'Ꞩ'
+" let g:airline_symbols.notexists = '∄'
+" let g:airline_symbols.whitespace = 'Ξ'
+
 map <A-q> :q<CR>
 map <C-S-q> :q!<CR>
 
@@ -137,7 +157,7 @@ cnoremap <C-a> <C-b>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 nnoremap <silent> <C-j> :call ToggleLineMax()<CR>
-inoremap <silent> <C-j> <C-o>:call ToggleLineMax()<CR>
+" inoremap <silent> <C-j> <C-o>:call ToggleLineMax()<CR>
 
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -175,29 +195,13 @@ func! ToggleLineMax()
   endif
 endfunc
 
-
-" Syntastic {{
-nnoremap <C-s> :SyntasticToggleMode<CR>
-let g:syntastic_javascript_checkers = ['eslint']
-hi SpellCap term=reverse ctermbg=160
-nnoremap <C-p> :SyntasticToggleMode<CR>
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++14'
-func! PkgConfig(libs)
-  return system('pkg-config --cflags --libs '.a:libs.' | tr -d "\n"')
-endfunc
-let g:syntastic_cpp_compiler_options = ' -std=c++14 '.PkgConfig('gtk+-3.0 vte-2.91')
-let g:syntastic_c_compiler_options = ' -std=gnu11 '.PkgConfig('gtk+-3.0')
-let g:syntastic_nasm_compiler_options = ' -felf64 '
-let g:syntastic_java_javac_config_file_enabled = 1
-let g:syntastic_java_javac_config_file = '/home/jake/.syntastic_javac_config'
-let g:syntastic_check_on_wq = 0
-hi SyntasticErrorSign ctermbg=233
-hi SyntasticWarningSign ctermbg=233
-let g:syntastic_error_symbol = "E"
-let g:syntastic_warning_symbol = "W"
-hi SpellCap term=reverse ctermbg=160
-" }}
+let g:ale_fixers = {
+      \ 'javascript': ['jshint']
+      \ }
+let g:ale_completion_enabled = 0
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:airline#extensions#ale#enabled = 1
 
 " Neocomplete {{
 set pumheight=8
@@ -238,7 +242,7 @@ au FileType cs setlocal cinoptions+=j1,J1 ts=4 sw=4
 au FileType java set ts=4 sw=4
 au FileType cpp set ts=4 sw=4
 au FileType c set ts=4 sw=4
-au FileType javascript set ts=2 sw=2
+au FileType javascript set ts=4 sw=4
 au FileType python setlocal completeopt-=preview
 au FileType css setlocal omnifunc=csscomplete#CompleteCSS
 au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags

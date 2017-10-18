@@ -18,7 +18,6 @@ class PanelHelpers {
           let all = stdout.split('\n').filter(e => e);
           accept(all.map(name => {
             return current === name ? '-' : '+';
-            // return current === name ? '\uf111' : '\uf10c';
           }).join('  '));
         });
       });
@@ -159,7 +158,7 @@ class PanelItem {
   let items = {
     desktops: 1000 * 0.5,
     cpu:      1000 * 1,
-    battery:  1000 * 5,
+    // battery:  1000 * 5,
     volume:   1000 * 1,
     thermal:  1000 * 1,
     date:     1000 * 5,
@@ -177,8 +176,11 @@ class PanelItem {
     let itemText = {}, firstRun = true;
     function printPanel() {
       let _ = itemText,
-          fmt = `  ${_.desktops}%{r}${_.volume} | ${_.battery} | ` +
+          fmt = `  ${_.desktops}%{r}${_.volume} | ` +
                 `CPU (${_.cpu}% ${_.thermal}°C) | ${_.date} | ${_.time} `;
+      // let _ = itemText,
+      //     fmt = `  ${_.desktops}%{r}${_.volume} | ${_.battery} | ` +
+      //           `CPU (${_.cpu}% ${_.thermal}°C) | ${_.date} | ${_.time} `;
       process.stdout.write(fmt + '\n');
     }
     (function loopFunc() {
